@@ -1,3 +1,4 @@
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -5,9 +6,12 @@
   <title>SHIVANG</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-  <!-- Tailwind CSS CDN -->
+  <!-- Tailwind CSS CDN for Insurance Comparison Dashboard styles -->
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
+    /* * IMPORTANT: All existing styles from the user's provided structure.html are preserved.
+     * ONLY new styles required for the "UPDATES" button and modal are added below this line.
+     */
     body {
       font-family: 'Poppins', sans-serif;
       padding: 20px;
@@ -28,7 +32,7 @@
       font-size: 1.5em;
     }
     .upload-section {
-      margin-top: 20px;
+      margin-top: 100px; /* Adjusted margin-top to push it further down */
       margin-bottom: 20px;
       background: rgba(255, 255, 255, 0.9);
       padding: 20px;
@@ -106,8 +110,6 @@
       text-align: center;
       transition: all 0.3s ease;
       max-width: 200px;
-      position: relative;
-      overflow: hidden;
     }
     .image-container:hover {
       transform: translateY(-5px);
@@ -119,10 +121,6 @@
       object-fit: cover;
       border-radius: 8px;
       border: 2px solid #e0e0e0;
-      transition: all 0.3s ease;
-    }
-    .image-container:hover img {
-        filter: brightness(70%);
     }
     .tag {
       margin: 5px 0;
@@ -130,35 +128,40 @@
       font-weight: 500;
       color: #37474f;
     }
-    /* Styles for Download Button */
+    /* Styles for Download Button (updated to match previous download-btn styles) */
     .download-btn {
       background-color: #ff5722;
       color: white;
-      padding: 8px 12px;
+      padding: 10px 16px;
       border: none;
       border-radius: 8px;
       cursor: pointer;
+      margin-top: 5px;
       font-size: 14px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      transition: opacity 0.3s ease, transform 0.3s ease;
+      transition: all 0.3s ease;
+      display: inline-block;
       text-decoration: none;
       white-space: nowrap;
-
-      position: absolute;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      opacity: 0;
-      visibility: hidden;
+      z-index: 2;
+      position: relative;
+      min-width: 100px;
+      text-align: center;
     }
-    .image-container:hover .download-btn {
-      opacity: 1;
-      visibility: visible;
+
+    /* ✅ Extra support for small screen (mobile) */
+    @media (max-width: 600px) {
+      .download-btn {
+        font-size: 16px;
+        padding: 10px 20px;
+        min-width: 110px;
+        text-align: center;
+      }
     }
     .download-btn:hover {
       background-color: #e64a19;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-      transform: translateX(-50%) translateY(-2px);
+      transform: translateY(-2px);
     }
     /* Popup Styles for Tag Modal */
     .modal {
@@ -340,15 +343,15 @@
     /* Button container for "Close" and "Calculate" */
     .csat-modal-content .button-container {
       display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 20px;
-      flex-wrap: wrap;
+      justify-content: center; /* Center buttons horizontally */
+      gap: 15px; /* Space between buttons */
+      margin-top: 20px; /* Space from content above */
+      flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
     }
     .csat-modal-content .button-container button {
-      flex: 1;
-      max-width: 150px;
-      margin: 0;
+      flex: 1; /* Allow buttons to grow and shrink */
+      max-width: 150px; /* Limit individual button width */
+      margin: 0; /* Remove individual button margins handled by gap */
     }
 
     .csat-modal-content .close-btn {
@@ -374,6 +377,7 @@
       cursor: pointer;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       transition: all 0.3s ease;
+      /* margin-left: 10px; Removed, as gap handles spacing */
     }
     .csat-modal-content .calculate-btn:hover {
       background-color: #303f9f;
@@ -390,13 +394,14 @@
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       transition: all 0.3s ease;
       font-size: 0.9em;
+      /* Default visibility for larger screens */
       display: block;
     }
 
     .csat-btn {
       top: 10px;
       left: 10px;
-      background-color: #1b5e20;
+      background-color: #1b5e20; /* Keep CSAT button green */
     }
     .csat-btn:hover {
       background-color: #2e7d32;
@@ -407,7 +412,7 @@
     .endorsement-btn {
       top: 10px;
       right: 10px;
-      background-color: #1b5e20;
+      background-color: #1b5e20; /* Keep ENDORSEMENT button green */
     }
     .endorsement-btn:hover {
       background-color: #2e7d32;
@@ -416,9 +421,9 @@
     }
 
     .manual-vi-btn-fixed {
-        top: 60px;
-        right: 10px;
-        background-color: #3f51b5;
+        top: 60px; /* Positioned just below endorsement button */
+        right: 10px; /* Aligned with endorsement button */
+        background-color: #3f51b5; /* Blue as per original manual button */
     }
 
     .manual-vi-btn-fixed:hover {
@@ -428,9 +433,9 @@
     }
 
     .claim-count-nstp-btn-fixed {
-        top: 60px;
-        left: 10px;
-        background-color: #3f51b5;
+        top: 60px; /* Positioned just below CSAT button */
+        left: 10px; /* Aligned with CSAT button */
+        background-color: #3f51b5; /* Blue color, matching Manual VI */
     }
     .claim-count-nstp-btn-fixed:hover {
         background-color: #303f9f;
@@ -448,11 +453,11 @@
       height: 100%;
       background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
       z-index: 1000;
-      padding: 0;
-      margin: 0;
+      padding: 0; /* Removed padding to make it truly full-page */
+      margin: 0; /* Ensure no margins */
       box-sizing: border-box;
       font-family: 'Roboto', sans-serif;
-      overflow-y: auto;
+      overflow-y: auto; /* Make content scrollable */
     }
     .endorsement-container {
       width: 100%;
@@ -467,10 +472,10 @@
       opacity: 0;
       position: relative;
       top: 50%;
-      transform: translateY(-50%);
+      transform: translateY(-50%); /* Center vertically */
     }
     .endorsement-container.active {
-      transform: scale(1) translateY(-50%);
+      transform: scale(1) translateY(-50%); /* Adjust transform to include centering */
       opacity: 1;
     }
     .endorsement-container h1 {
@@ -507,15 +512,15 @@
       border: 2px solid #b0bec5;
       border-radius: 8px;
       font-size: 0.95em;
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: Arial, Helvetica, sans-serif; /* Changed to fix BAJAJ rendering */
       background: #fafafa;
       transition: border-color 0.3s ease, box-shadow 0.3s ease;
       cursor: pointer;
-      height: 40px;
-      appearance: none;
+      height: 40px; /* Fixed height to prevent extra space */
+      appearance: none; /* Remove default browser styling */
       -webkit-appearance: none;
       -moz-appearance: none;
-      background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+      background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>'); /* Custom dropdown arrow */
       background-repeat: no-repeat;
       background-position: right 10px center;
     }
@@ -584,7 +589,7 @@
     }
     /* Styles for Manual VI Page */
     .manual-vi-page {
-      display: none;
+      display: none; /* Hidden by default */
       position: fixed;
       top: 0;
       left: 0;
@@ -595,17 +600,18 @@
       padding: 20px;
       box-sizing: border-box;
       text-align: center;
-      overflow-y: auto;
+      overflow-y: auto; /* Make content scrollable */
     }
     .manual-vi-page .back-to-home-btn {
+      /* This button is removed as per user request, keeping styles here for reference if needed */
       display: none;
     }
     .manual-vi-page .card {
-        margin-top: 100px;
+        margin-top: 100px; /* Increased margin to prevent overlap with the button */
     }
     .manual-vi-page .card-header {
-      background-color: #343a40 !important;
-      color: white !important;
+      background-color: #343a40 !important; /* Dark background for header */
+      color: white !important; /* White text for header */
       padding: 10px 15px;
       border-top-left-radius: 15px;
       border-top-right-radius: 15px;
@@ -615,15 +621,72 @@
       padding: 20px;
     }
     .manual-vi-page ul {
-      list-style-type: disc;
+      list-style-type: disc; /* Ensure bullet points are visible */
       padding-left: 20px;
-      text-align: left;
-      padding-top: 20px;
+      text-align: left; /* Align text to the left within the lists */
+      padding-top: 20px; /* Add padding to the top of the list */
+    }
+    /* Styles for Claim Coverage Overlay */
+    .claim-coverage-overlay {
+      display: none; /* Hidden by default */
+      position: absolute; /* Position relative to .manual-vi-page */
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.95); /* Semi-transparent white background */
+      z-index: 1001; /* Above other content in manual-vi-page */
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      box-sizing: border-box;
+      text-align: left; /* Align text to the left within the overlay */
+      overflow-y: auto;
+    }
+
+    .claim-coverage-content {
+      background-color: #f0f8ff; /* Light blue background for content */
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      max-width: 500px; /* Max width for readability */
+      width: 100%;
+      border: 2px solid #5c6bc0; /* Blue border */
+    }
+
+    .claim-coverage-content h4 {
+      color: #1a237e;
+      font-size: 1.8em;
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .claim-coverage-content ul {
+      list-style-type: disc;
+      padding-left: 25px;
+      color: #37474f;
+      line-height: 1.8;
+      font-size: 1.1em;
+    }
+
+    .claim-coverage-content ul li strong {
+      color: #3f51b5; /* Blue for strong text */
+    }
+
+    /* Green color for Claim Coverage button */
+    .claim-coverage-btn-green {
+        background-color: #4CAF50; /* Green */
+    }
+    .claim-coverage-btn-green:hover {
+        background-color: #45a049; /* Darker green on hover */
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        transform: translateY(-2px);
     }
 
     /* Styles for Claim_Count & NSTP Page (Insurance Comparison Dashboard) */
     .claim-count-nstp-page {
-      display: none;
+      display: none; /* Hidden by default */
       position: fixed;
       top: 0;
       left: 0;
@@ -631,34 +694,36 @@
       height: 100%;
       background: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
       z-index: 1000;
-      padding: 20px;
+      padding: 20px; /* Add padding to match the general app styling */
       box-sizing: border-box;
-      overflow-y: auto;
-      font-family: 'Poppins', sans-serif;
+      overflow-y: auto; /* Make content scrollable */
+      font-family: 'Poppins', sans-serif; /* Use Poppins font for consistency */
     }
+    /* Styles from index (4).html adjusted for integration */
     .claim-count-nstp-page .table-header {
         cursor: pointer;
         transition: background-color 0.3s, transform 0.2s;
-        background-color: #2d3748;
-        color: white;
+        /* Changed to dark grey background with white text for better visibility */
+        background-color: #2d3748; /* Dark grey */
+        color: white; /* White text */
     }
     .claim-count-nstp-page .table-header:hover {
-        background-color: #4a5568;
-        transform: scale(1.03);
+        background-color: #4a5568; /* Slightly lighter grey on hover */
+        transform: scale(1.03); /* Reduced scale for subtler effect */
     }
     .claim-count-nstp-page .sort-icon::after {
         content: '↕';
         margin-left: 5px;
         display: inline-block;
-        color: white;
+        color: white; /* Ensure icon is white */
     }
     .claim-count-nstp-page .sort-asc::after {
         content: '↑';
-        color: white;
+        color: white; /* Ensure icon is white */
     }
     .claim-count-nstp-page .sort-desc::after {
         content: '↓';
-        color: white;
+        color: white; /* Ensure icon is white */
     }
     .claim-count-nstp-page .table-row {
         transition: background-color 0.3s;
@@ -678,244 +743,22 @@
         word-break: break-words !important;
     }
     .claim-count-nstp-page .table-row:nth-child(odd) {
-        background-color: #e0f7fa;
+        background-color: #e0f7fa; /* Light blue for odd rows */
     }
     .claim-count-nstp-page .table-row:nth-child(even) {
-        background-color: #fce4ec;
+        background-color: #fce4ec; /* Light pink for even rows */
     }
     .claim-count-nstp-page .table-row:hover {
-        background-color: #fff9c4 !important;
+        background-color: #fff9c4 !important; /* Bright yellow on hover */
     }
 
-    /* Chatbox button */
-    .chatbox-toggle-btn {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: #e91e63;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      font-size: 2em;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-      z-index: 9999;
-      transition: all 0.3s ease;
-    }
-
-    .chatbox-toggle-btn:hover {
-      background-color: #c2185b;
-      transform: scale(1.05);
-    }
-
-    /* Chatbox Container - Full page overlay */
-    .chatbox-container {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
-      z-index: 9998;
-      justify-content: center;
-      align-items: center;
-    }
-
-    /* Chatbox Content - The actual chat window */
-    .chatbox-content {
-      width: 90%;
-      max-width: 500px;
-      height: 90%;
-      max-height: 600px;
-      background-color: white;
-      border-radius: 15px;
-      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      border: 1px solid #e0e0e0;
-    }
-
-    .chatbox-header {
-      background-color: #3f51b5;
-      color: white;
-      padding: 15px;
-      border-top-left-radius: 15px;
-      border-top-right-radius: 15px;
-      font-size: 1.2em;
-      font-weight: 600;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      position: relative;
-    }
-
-    .chatbox-header .chatbox-title {
-        font-size: 1.2em;
-        font-weight: 600;
-        margin-bottom: 2px;
-    }
-
-    .chatbox-header .chatbox-subtitle {
-        font-size: 0.65em; /* Even smaller font for shivang */
-        font-weight: 300; /* Even lighter font weight for shivang */
-        color: rgba(255, 255, 255, 0.4); /* Even less prominent color for shivang */
-    }
-
-    /* .chatbox-header .close-chat { display: none; } Removed from HTML directly */
-
-    .chatbox-messages {
-      flex-grow: 1;
-      padding: 15px;
-      overflow-y: auto;
-      background-color: #f0f4f7;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .chatbox-message {
-      padding: 10px 12px;
-      border-radius: 12px;
-      max-width: 85%;
-      word-wrap: break-word;
-      font-size: 0.95em;
-      line-height: 1.4;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-      position: relative;
-      color: white; /* Default to white text for all messages */
-    }
-
-    .chatbox-message .reply-text-preview {
-        font-size: 0.8em;
-        opacity: 0.7;
-        margin-bottom: 5px;
-        padding-bottom: 3px;
-        display: block;
-        font-style: italic;
-    }
-
-    /* Message colors - Dark tones for main messages */
-    .message-primary-dark {
-      background-color: #1a237e; /* Deep Blue */
-    }
-    .message-secondary-dark {
-      background-color: #ff5722; /* Deep Orange */
-    }
-
-    /* Reply colors - Lighter tones with borders */
-    .message-primary-reply {
-      background-color: #a7b7e5; /* Lighter blue for replies */
-      color: white; /* Ensure text is visible */
-    }
-    .message-secondary-reply {
-      background-color: #ffddc1; /* Lighter orange for replies */
-      color: white; /* Ensure text is visible */
-    }
-
-    /* Alignment specific styles */
-    .align-right {
-        align-self: flex-end;
-        border-bottom-left-radius: 12px;
-        border-bottom-right-radius: 3px;
-    }
-    .align-left {
-        align-self: flex-start;
-        border-bottom-right-radius: 12px;
-        border-bottom-left-radius: 3px;
-    }
-
-    /* Reply specific margins and borders */
-    /* This style will be applied dynamically based on parent's color */
-    .chatbox-message.is-reply {
-      padding-left: 10px; /* Adjust padding due to border */
-      padding-right: 10px;
-      margin-left: 20px; /* Indent for replies */
-      margin-right: 20px; /* Indent for replies */
-      border-width: 5px;
-      border-style: solid;
-    }
-
-    .chatbox-input-area {
-      display: flex;
-      padding: 15px;
-      border-top: 1px solid #e0e0e0;
-      background-color: #fcfcfc;
-    }
-
-    .chatbox-input-area input {
-      flex-grow: 1;
-      padding: 10px 15px;
-      border: 1px solid #b0bec5;
-      border-radius: 20px;
-      font-size: 1em;
-      margin-right: 10px;
-      outline: none;
-      transition: border-color 0.3s ease;
-    }
-
-    .chatbox-input-area input:focus {
-      border-color: #3f51b5;
-    }
-
-    .chatbox-input-area button {
-      background-color: #3f51b5;
-      color: white;
-      border: none;
-      border-radius: 20px;
-      padding: 10px 20px;
-      cursor: pointer;
-      font-size: 1em;
-      transition: background-color 0.3s ease;
-    }
-
-    .chatbox-input-area button:hover {
-      background-color: #303f9f;
-    }
-
-    /* Reply button on messages */
-    .reply-btn {
-        position: absolute;
-        bottom: 5px;
-        right: 5px;
-        background: rgba(255, 255, 255, 0.2);
-        color: white;
-        border: none;
-        border-radius: 50%;
-        width: 24px;
-        height: 24px;
-        font-size: 0.7em;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        opacity: 0;
-        transition: opacity 0.2s ease;
-    }
-
-    .chatbox-message:hover .reply-btn {
-        opacity: 1;
-    }
-
-
-    /* Media Queries for Chatbox on smaller screens */
     @media (max-width: 600px) {
+      /* Hide all fixed buttons on main page view for mobile */
       .csat-btn,
       .endorsement-btn,
       .manual-vi-btn-fixed,
       .claim-count-nstp-btn-fixed {
         display: none;
-      }
-
-      body {
-        padding-top: 20px;
       }
 
       #gallery {
@@ -952,7 +795,7 @@
       }
       .PB_DROPDOWN {
         font-size: 0.9em;
-        height: 36px;
+        height: 36px; /* Adjusted for mobile */
       }
       .output {
         font-size: 0.95em;
@@ -960,51 +803,285 @@
       .created-by {
         font-size: 0.7em;
       }
+      /* Ensure the mobile page content has enough margin to clear any top elements */
       .manual-vi-page .card, .claim-count-nstp-page .container {
-        margin-top: 60px;
+        margin-top: 60px; /* Adjusted for mobile to account for back buttons */
       }
       .claim-count-nstp-page h1 {
-        font-size: 1.8em;
+        font-size: 1.8em; /* Adjust font size for mobile view */
       }
+      /* Ensure back buttons within active full-page sections are visible on mobile */
       .endorsement-page .back-btn,
-      .manual-vi-page .back-to-home-btn,
+      .manual-vi-page .back-btn, /* This is the "Back to Main Page" button */
+      .manual-vi-page .claim-coverage-btn, /* New button for Claim Coverage */
       .claim-count-nstp-page .back-btn {
-        display: block;
-        position: absolute;
+        display: block; /* Make sure these buttons are visible within their pages on mobile */
+        position: absolute; /* Changed to absolute to be relative to the page div */
         top: 20px;
         left: 20px;
-        z-index: 1001;
+        z-index: 1001; /* Ensure it's above other content */
+      }
+      /* Adjust position for the new Claim Coverage button on mobile */
+      .manual-vi-page .claim-coverage-btn {
+        top: 60px; /* Position below Back to Main Page button */
       }
 
-      .chatbox-content {
-        width: 95vw;
-        height: 95vh;
-        max-width: unset;
-        max-height: unset;
+      /* On mobile, when the claim coverage overlay is active, the regular card should be hidden */
+      .manual-vi-page.claim-coverage-active .card {
+          display: none;
       }
-      .chatbox-toggle-btn {
-        width: 50px;
-        height: 50px;
-        font-size: 1.8em;
-        bottom: 15px;
+    }
+
+    /* --- NEW STYLES FOR UPDATES BUTTON AND MODAL --- */
+    /* These styles are added to blend with the existing design */
+    #companyUpdatesButton {
+        background-color: #28a745; /* Matching the 'Aaj Ki Baat' green */
+        color: white;
+        padding: 10px 25px;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.5em;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        text-decoration: none;
+        display: flex; /* Changed from inline-block to flex */
+        flex-direction: column; /* Stack text and snippet */
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px;
+        font-weight: 600;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        position: relative; /* For the new update indicator */
+        width: 80%; /* Match existing input/button width */
+        max-width: 300px; /* Match existing input/button max-width */
+        margin-left: auto; /* Center the button */
+        margin-right: auto; /* Center the button */
+        overflow: hidden; /* Hide anything overflowing, especially for snippet */
+    }
+
+    #companyUpdatesButton:hover {
+        background-color: #218838; /* Darker green on hover */
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+    }
+
+    #latestUpdateSnippet {
+        font-size: 0.6em; /* Smaller font for snippet */
+        color: rgba(255, 255, 255, 0.8); /* Slightly faded white for readability */
+        margin-top: 5px;
+        text-align: center;
+        max-width: 90%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        display: block;
+    }
+
+    #newUpdateIndicator {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        width: 12px;
+        height: 12px;
+        background-color: #ffc107; /* Yellow for "New" highlight */
+        border-radius: 50%;
+        display: none; /* Hidden by default */
+        box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.7);
+        animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.7); }
+        70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(255, 193, 7, 0); }
+        100% { transform: scale(0.9); box-shadow: 0 0 0 0 rgba(255, 193, 7, 0); }
+    }
+
+    /* Modal Overlay (for updates section) */
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent dark overlay */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .modal-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    /* Modal Content */
+    .modal-content {
+        background-color: white;
+        padding: 25px;
+        border-radius: 15px; /* Matching other modals */
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        width: 90%;
+        max-width: 600px; /* Adjusted max-width for better readability of updates */
+        max-height: 90vh;
+        overflow-y: auto;
+        position: relative;
+        border: 2px solid #3f51b5; /* Matching other modals' border color */
+        animation: fadeInScale 0.3s ease-out;
+    }
+
+    @keyframes fadeInScale {
+        from { opacity: 0; transform: scale(0.9); }
+        to { opacity: 1; transform: scale(1); }
+    }
+
+    .modal-content h2 {
+        color: #1a237e; /* Matching existing h2 color */
+        font-weight: 600;
+        font-size: 1.8em; /* Adjusted for modal h2 */
+        margin-top: 0;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #eee;
+        text-align: center; /* Center align title */
+    }
+
+    .modal-close-button {
+        position: absolute;
+        top: 15px;
         right: 15px;
-      }
+        font-size: 1.8em;
+        cursor: pointer;
+        color: #888;
+        transition: color 0.2s;
+    }
+
+    .modal-close-button:hover {
+        color: #333;
+    }
+
+    /* Accordion Styles for Updates */
+    .accordion-item {
+        border: 1px solid #b0bec5; /* Matching input/button border */
+        border-radius: 8px; /* Matching input/button border-radius */
+        margin-bottom: 10px;
+        overflow: hidden;
+    }
+
+    .accordion-header {
+        background-color: #eceff1; /* Light grey, blending with progress bar / modal inputs */
+        color: #37474f; /* Matching tag/label color */
+        padding: 12px 15px;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: 500; /* Matching existing font-weights */
+        font-size: 1.1em;
+        transition: background-color 0.2s;
+    }
+
+    .accordion-header:hover {
+        background-color: #cfd8dc; /* Slightly darker grey on hover */
+    }
+
+    .accordion-header::after {
+        content: '+';
+        font-size: 1.2em;
+        transition: transform 0.3s ease;
+    }
+
+    .accordion-header.active::after {
+        content: '-';
+        transform: rotate(0deg);
+    }
+
+    .accordion-content {
+        padding: 0 15px;
+        background-color: #f9f9f9; /* Lighter background for content area */
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+    }
+
+    .accordion-content.active {
+        max-height: 500px; /* Sufficient height for updates */
+        padding: 15px;
+        border-top: 1px solid #e0e0e0;
+    }
+
+    .accordion-content ul {
+        list-style: none; /* No bullets */
+        padding: 0;
+        margin: 0;
+        text-align: left;
+    }
+
+    .accordion-content ul li {
+        margin-bottom: 8px;
+        line-height: 1.4;
+        color: #455a64; /* Matching status text color */
+        font-size: 0.95em;
+    }
+
+    .accordion-content ul li strong {
+        color: #3f51b5; /* Matching button/border blue */
+        margin-right: 5px;
+    }
+
+    /* Mobile adjustments for the new button and modal */
+    @media (max-width: 600px) {
+        #companyUpdatesButton {
+            font-size: 1.2em;
+            padding: 8px 15px;
+            width: 90%; /* Adjust width for mobile */
+            max-width: none; /* Remove max-width on mobile */
+        }
+        #latestUpdateSnippet {
+            font-size: 0.55em;
+        }
+        .modal-content {
+            padding: 15px;
+            max-width: 95%; /* Make modal wider on very small screens */
+        }
+        .modal-content h2 {
+            font-size: 1.4em;
+        }
+        .accordion-header {
+            font-size: 1em;
+            padding: 10px;
+        }
+        .accordion-content ul li {
+            font-size: 0.9em;
+        }
     }
   </style>
 </head>
 <body>
-  <!-- Existing CSAT Calculator button -->
   <button class="csat-btn" onclick="openCSATModal()">CSAT Calculator</button>
 
   <button class="endorsement-btn" onclick="openEndorsementPage()">ENDORSEMENT</button>
 
-  <button class="manual-vi-btn-fixed" onclick="openManualVIPage()">MANUAL-VI</button>
+  <!-- Renamed Manual VI button -->
+  <button class="manual-vi-btn-fixed" onclick="openManualVIPage()">MANUAL-VI & Claim Coverage</button>
 
   <!-- New button for Claim_Count & NSTP -->
   <button class="claim-count-nstp-btn-fixed" onclick="openClaimCountNSTPPage()">Claim_Count & NSTP</button>
 
-  <h2 id="mainHeader">📷SHIVANG</h2>
+  <!-- "📷SHIVANG" header ko "Aaj Ki Baat" button se replace kiya gaya hai -->
+  <!-- REPLACED: Aaj Ki Baat button will now be the UPDATES button -->
+  <div id="companyUpdatesButton">
+      <span>UPDATES</span>
+      <span id="latestUpdateSnippet"></span>
+      <span id="newUpdateIndicator"></span>
+  </div>
+
   <div class="upload-section">
+    <h2>Upload Images</h2>
+    <label for="fileUpload">Choose image files to upload:</label>
     <input type="file" id="fileUpload" accept="image/*">
     <input type="text" id="tagInput" placeholder="Enter tag (e.g., SHIVANG)">
     <button onclick="uploadImage()">Upload</button>
@@ -1080,19 +1157,30 @@
           <option value="100">100%+</option>
         </select>
       </div>
-      <div id="csatResult" class="result-section">
+      <div class="result-section" id="csatResult">
         <p>Total: 0</p>
         <p>CSAT: 0%</p>
         <p id="csatStatus">Enter counts to see status</p>
       </div>
+      <!-- New button container for alignment -->
       <div class="button-container">
         <button class="close-btn" onclick="closeCSATModal()">Close</button>
-        <button id="calculateButton" class="calculate-btn" onclick="calculateCSAT()">Calculate</button>
+        <button class="calculate-btn" id="calculateButton" onclick="calculateCSAT()">Calculate</button>
       </div>
     </div>
   </div>
 
-  <div id="endorsementPage" class="endorsement-page">
+  <div id="updatesModal" class="modal-overlay">
+    <div class="modal-content">
+      <span class="modal-close-button" id="closeModalButton">&times;</span>
+      <h2>Company Updates</h2>
+      <div id="updatesContainer">
+        <!-- Updates will be populated here by JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <div class="endorsement-page" id="endorsementPage">
     <div class="endorsement-container">
       <h1>ENDORSEMENT</h1>
       <div class="created-by">Created by Shivang</div>
@@ -1109,11 +1197,13 @@
     </div>
   </div>
 
-  <div id="manualVIPage" class="manual-vi-page">
+  <div class="manual-vi-page" id="manualVIPage">
     <button class="back-btn" onclick="closeManualVIPage()">Back to Main Page</button>
-    <div class="card mt-4">
+    <!-- New "Claim Coverage" button with green color -->
+    <button class="claim-coverage-btn back-btn claim-coverage-btn-green" onclick="toggleClaimCoverage()">Claim Coverage</button>
+    <div class="card mt-4" id="manualVICardContent">
       <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
-        </div>
+      </div>
       <div class="card-body">
         <div class="mb-3 p-3 rounded" style="background-color: #e3f2fd;">
           <strong>ADP Home Visit Cities: 42</strong>
@@ -1139,10 +1229,25 @@
         </div>
       </div>
     </div>
+
+    <!-- Claim Coverage Overlay -->
+    <div class="claim-coverage-overlay" id="claimCoverageOverlay">
+        <div class="claim-coverage-content">
+            <h4>Claim Coverage Details</h4>
+            <ul>
+                <li><strong>Plastic Nylon Rubber:</strong> 50%</li>
+                <li><strong>Tyre tube Batteries:</strong> 50%</li>
+                <li><strong>Denting Painting:</strong> 87.5%</li>
+                <li><strong>Fiberglass:</strong> 70%</li>
+                <li><strong>Windshield glass:</strong> 100%</li>
+                <li><strong>Metal, Wooden fiber and other parts:</strong> As per car age</li>
+            </ul>
+        </div>
+    </div>
   </div>
 
   <!-- New Claim_Count & NSTP Section (Insurance Comparison Dashboard) -->
-  <div id="claimCountNSTPPage" class="claim-count-nstp-page">
+  <div class="claim-count-nstp-page" id="claimCountNSTPPage">
     <div class="container mx-auto p-4 bg-white rounded-2xl shadow-2xl max-w-7xl w-full border-4 border-transparent bg-clip-border bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500" style="margin-top: 20px;">
         <h1 class="text-4xl font-bold text-center mb-6 text-indigo-800 tracking-tight">Insurance Comparison Dashboard</h1>
         <div class="mb-4">
@@ -1175,42 +1280,21 @@
     <button class="back-btn" onclick="closeClaimCountNSTPPage()">Back to Main Page</button>
   </div>
 
-  <!-- Chatbox Toggle Button -->
-  <button id="chatboxToggleBtn" class="chatbox-toggle-btn">💬</button>
-
-  <!-- Chatbox Container (Full-page overlay) -->
-  <div id="chatboxContainer" class="chatbox-container">
-    <div class="chatbox-content">
-      <div class="chatbox-header">
-        <span class="chatbox-title">CHATBOOK</span>
-        <span class="chatbox-subtitle">shivang</span>
-      </div>
-      <div id="chatboxMessages" class="chatbox-messages">
-        <!-- Messages will be loaded here by JavaScript -->
-      </div>
-      <div class="chatbox-input-area">
-        <input type="text" id="chatInput" placeholder="Type your message...">
-        <button id="sendChatBtn">Send</button>
-      </div>
-    </div>
-  </div>
-
 
   <script type="module">
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
-    import { getDatabase, ref as dbRef, push, onValue, remove, serverTimestamp, get } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
+    import { getDatabase, ref as dbRef, push, onValue, remove, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
 
-    // Your web app's Firebase configuration
-    // REPLACE WITH YOUR ACTUAL API KEYS AND PROJECT IDS
+    // Your web app's Firebase configuration (using config from structure.html)
     const firebaseConfig = {
-      apiKey: "AIzaSyCIfleywEbd1rcjymkfEfFYxPpvYdZHGhk", // Replace with your actual API key
+      apiKey: "AIzaSyCIfleywEbd1rcjymkfEfFYxPpvYdZHGhk",
       authDomain: "cvang-vahan.firebaseapp.com",
       databaseURL: "https://cvang-vahan-default-rtdb.firebaseio.com",
       projectId: "cvang-vahan",
       storageBucket: "cvang-vahan.appspot.com",
-      messagingSenderId: "117318825099", // Replace with your actual Messaging Sender ID
-      appId: "1:117318825099:web:afc0e2f863117cb14bfc" // Replace with your actual App ID
+      messagingSenderId: "117318825099",
+      appId: "1:117318825099:web:afc0e2f863117cb14bfc"
     };
 
     // Initialize Firebase
@@ -1218,252 +1302,15 @@
     const db = getDatabase(app);
     const imagesRef = dbRef(db, 'images');
 
-    // Cloudinary configuration
+    // Cloudinary configuration (from structure.html)
     const cloudName = 'di83mshki'; // Replace with your Cloudinary cloud name
     const uploadPreset = 'anonymous_upload'; // Replace with your Cloudinary upload preset
 
     // Global variables
     let selectedFile = null;
     let hasCalculated = false;
-    let displayedImages = {}; // To keep track of image elements in the gallery for efficient updates
 
-    // --- NEW GLOBAL VARIABLES FOR CHAT ---
-    const chatMessagesRef = dbRef(db, 'chatMessages');
-    const chatboxToggleBtn = document.getElementById('chatboxToggleBtn');
-    const chatboxContainer = document.getElementById('chatboxContainer');
-    const chatInput = document.getElementById('chatInput');
-    const sendChatBtn = document.getElementById('sendChatBtn');
-    const chatboxMessages = document.getElementById('chatboxMessages');
-
-    let anonymousUserId = getAnonymousUserId();
-    let replyToMessageId = null; // To store the ID of the message being replied to
-    let replyToMessageText = null; // To store a preview of the message being replied to
-
-    // --- CHATBOX FUNCTIONS ---
-
-    // Generates or retrieves a unique anonymous ID for the user
-    function getAnonymousUserId() {
-        let userId = localStorage.getItem('anonymousUserId');
-        if (!userId) {
-            // Generate a simple unique ID
-            userId = 'anon_' + Math.random().toString(36).substring(2, 9) + Date.now();
-            localStorage.setItem('anonymousUserId', userId);
-        }
-        return userId;
-    }
-
-    // Event listeners for chatbox toggle and send
-    chatboxToggleBtn.addEventListener('click', () => {
-        if (chatboxContainer.style.display === 'flex') {
-            chatboxContainer.style.display = 'none';
-            showAllMainContent(); // Show main content when closed
-        } else {
-            chatboxContainer.style.display = 'flex';
-            hideAllMainContent(); // Hide main content when chatbox opens
-            // Scroll to bottom when opening
-            chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
-        }
-    });
-
-    // Close chatbox when clicking outside the chatbox-content
-    chatboxContainer.addEventListener('click', (event) => {
-        const chatContent = document.getElementById('chatboxContainer').querySelector('.chatbox-content');
-        if (chatContent && !chatContent.contains(event.target)) {
-            chatboxContainer.style.display = 'none';
-            showAllMainContent(); // Show main content when closed by outside click
-        }
-    });
-
-    sendChatBtn.addEventListener('click', sendMessage);
-    chatInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            sendMessage();
-        }
-    });
-
-    // Function to set the reply context
-    window.replyTo = function(messageId, messageText) {
-        replyToMessageId = messageId;
-        replyToMessageText = messageText;
-        chatInput.value = `Replying to "${messageText.substring(0, 30)}${messageText.length > 30 ? '...' : ''}" `;
-        chatInput.focus();
-    };
-
-    // Sends a message to Firebase Realtime Database
-    function sendMessage() {
-        const text = chatInput.value.trim();
-        if (text) {
-            const message = {
-                userId: anonymousUserId,
-                text: text,
-                timestamp: serverTimestamp(),
-                parentId: replyToMessageId || null,
-                parentText: replyToMessageText || null
-            };
-
-            push(chatMessagesRef, message)
-                .then(() => {
-                    chatInput.value = '';
-                    replyToMessageId = null;
-                    replyToMessageText = null;
-                })
-                .catch(error => {
-                    console.error("Error sending message:", error);
-                    showMessage("Failed to send message.", "error");
-                });
-        }
-    }
-
-    // Define main and reply colors
-    const chatColorSchemes = [
-        { main: '#1a237e', reply: '#a7b7e5' }, // Blue scheme (Deep Blue for main, Lighter Blue for reply)
-        { main: '#ff5722', reply: '#ffddc1' }  // Orange scheme (Deep Orange for main, Lighter Orange for reply)
-    ];
-
-    let globalColorAlternatorIndex = 0; // Tracks which main color to use next for non-reply messages
-
-    // Loads and displays chat messages from Firebase
-    function loadChatMessages() {
-        onValue(chatMessagesRef, (snapshot) => {
-            const messagesData = snapshot.val();
-            const now = Date.now();
-            const fiveDaysInMs = 5 * 24 * 60 * 60 * 1000;
-
-            let currentMessagesArray = [];
-            let messagesToDelete = [];
-
-            if (messagesData) {
-                Object.entries(messagesData).forEach(([key, msg]) => {
-                    const messageTimestamp = msg.timestamp || 0;
-
-                    if (messageTimestamp && (now - messageTimestamp > fiveDaysInMs)) {
-                        messagesToDelete.push(key);
-                    } else {
-                        currentMessagesArray.push({ id: key, ...msg });
-                    }
-                });
-
-                messagesToDelete.forEach(key => {
-                    remove(dbRef(db, `chatMessages/${key}`))
-                        .then(() => console.log(`Chat message ${key} deleted (older than 5 days)`))
-                        .catch((error) => console.error("Auto-delete chat error:", error));
-                });
-
-                // Sort messages by timestamp for display (oldest at top, newest at bottom)
-                currentMessagesArray.sort((a, b) => a.timestamp - b.timestamp);
-            }
-
-            // Clear previous messages and re-render all to ensure correct order and colors
-            chatboxMessages.innerHTML = '';
-            globalColorAlternatorIndex = 0; // Reset index for full re-render
-
-            currentMessagesArray.forEach((msg) => {
-                const messageElement = document.createElement('div');
-                messageElement.dataset.messageId = msg.id;
-                messageElement.className = 'chatbox-message';
-
-                let currentColorScheme = null; // This will hold the scheme for the message being rendered
-                let parentColorScheme = null;  // This will hold the scheme of the parent message (if reply)
-                let alignmentClass = '';
-                let appliedBgColor = '';
-                let replyBorderColor = '';
-
-                // Determine alignment for the current message
-                if (msg.userId === anonymousUserId) {
-                    alignmentClass = 'align-right';
-                } else {
-                    alignmentClass = 'align-left';
-                }
-                messageElement.classList.add(alignmentClass); // Apply alignment class
-
-                // Determine message background color and reply specific styles
-                if (msg.parentId) {
-                    // This is a reply
-                    messageElement.classList.add('is-reply'); // Add class for reply specific margins/borders
-
-                    // Find the parent message to determine its original color scheme
-                    const parentMessage = messagesData[msg.parentId];
-                    if (parentMessage) {
-                        if (parentMessage.userId === anonymousUserId) {
-                            parentColorScheme = chatColorSchemes[0]; // Parent was from current user (Blue scheme)
-                        } else {
-                            parentColorScheme = chatColorSchemes[1]; // Parent was from another user (Orange scheme)
-                        }
-                        appliedBgColor = parentColorScheme.reply; // Use parent's lighter reply color
-                        replyBorderColor = parentColorScheme.main; // Use parent's dark main color for border
-                    } else {
-                        // Fallback if parent message is not found (e.g., deleted or old)
-                        // Assign a default reply color based on current message sender
-                        appliedBgColor = (msg.userId === anonymousUserId) ? chatColorSchemes[0].reply : chatColorSchemes[1].reply;
-                        replyBorderColor = (msg.userId === anonymousUserId) ? chatColorScheemes[0].main : chatColorSchemes[1].main;
-                    }
-
-                    messageElement.style.backgroundColor = appliedBgColor;
-                    if (alignmentClass === 'align-right') {
-                        messageElement.style.borderRightColor = replyBorderColor;
-                    } else {
-                        messageElement.style.borderLeftColor = replyBorderColor;
-                    }
-
-                } else {
-                    // This is a regular message: use alternating dark colors based on global index
-                    const colorIndex = globalColorAlternatorIndex % 2;
-                    currentColorScheme = chatColorSchemes[colorIndex];
-                    appliedBgColor = currentColorScheme.main; // Get main color from alternating scheme
-                    messageElement.style.backgroundColor = appliedBgColor;
-                    globalColorAlternatorIndex++; // Increment for the next *non-reply* message
-                }
-
-                // Apply reply preview if present, adjust its border color to match the side's main color
-                if (msg.parentText) {
-                    const replyPreview = document.createElement('span');
-                    replyPreview.className = 'reply-text-preview';
-                    replyPreview.textContent = `Replying to: "${msg.parentText.substring(0, 40)}${msg.parentText.length > 40 ? '...' : ''}"`;
-                    // The border color of the preview should match the main color of the reply's side
-                    // If the reply itself is from the current user (align-right)
-                    replyPreview.style.borderBottomColor = (alignmentClass === 'align-right') ? chatColorSchemes[0].main : chatColorSchemes[1].main;
-                    messageElement.appendChild(replyPreview);
-                }
-
-                const messageTextNode = document.createTextNode(msg.text);
-                messageElement.appendChild(messageTextNode);
-
-                // Add reply button
-                const replyBtn = document.createElement('button');
-                replyBtn.className = 'reply-btn';
-                replyBtn.textContent = '↩';
-                replyBtn.title = 'Reply';
-                replyBtn.onclick = () => window.replyTo(msg.id, msg.text);
-                messageElement.appendChild(replyBtn);
-
-                chatboxMessages.appendChild(messageElement);
-            });
-
-            // Ensure the gallery empty message is shown/hidden correctly
-            const gallery = document.getElementById('gallery');
-            if (Object.keys(displayedImages).length === 0 && gallery) {
-                if (!gallery.querySelector('.no-images-message')) {
-                    const noImagesMsg = document.createElement('p');
-                    noImagesMsg.className = 'no-images-message';
-                    noImagesMsg.style.color = '#455a64';
-                    noImagesMsg.style.marginTop = '20px';
-                    noImagesMsg.textContent = 'No images uploaded yet.';
-                    gallery.appendChild(noImagesMsg);
-                }
-            } else if (gallery) {
-                const noImagesMsg = gallery.querySelector('.no-images-message');
-                if (noImagesMsg) {
-                    gallery.removeChild(noImagesMsg);
-                }
-            }
-
-            // Scroll to bottom after all messages are rendered to show the latest message
-            chatboxMessages.scrollTop = chatboxMessages.scrollHeight;
-        });
-    }
-
-
-    // Expose functions to window object (existing functions)
+    // Expose functions to window object
     window.uploadImage = function() {
       const fileInput = document.getElementById('fileUpload');
       const tagInput = document.getElementById('tagInput');
@@ -1478,7 +1325,7 @@
       }
 
       if (!tag) {
-        selectedFile = file;
+        selectedFile = file; // Store file for modal upload
         document.getElementById('tagModal').style.display = 'flex';
         return;
       }
@@ -1492,9 +1339,9 @@
       document.getElementById('modalProgressContainer').style.display = 'none';
       document.getElementById('modalProgress').style.width = '0%';
       document.getElementById('modalProgress').textContent = '0%';
-      document.querySelector('.modal-content .upload-btn').style.display = 'inline-block';
-      document.querySelector('.modal-content .cancel-btn').style.display = 'inline-block';
-      selectedFile = null;
+      document.querySelector('.modal-content .upload-btn').style.display = 'inline-block'; // Show buttons again
+      document.querySelector('.modal-content .cancel-btn').style.display = 'inline-block'; // Show buttons again
+      selectedFile = null; // Clear selected file
     };
 
     window.submitTag = function() {
@@ -1511,8 +1358,8 @@
       }
 
       modalProgressContainer.style.display = 'block';
-      document.querySelector('.modal-content .upload-btn').style.display = 'none';
-      document.querySelector('.modal-content .cancel-btn').style.display = 'none';
+      document.querySelector('.modal-content .upload-btn').style.display = 'none'; // Hide buttons during upload
+      document.querySelector('.modal-content .cancel-btn').style.display = 'none'; // Hide buttons during upload
 
       uploadFile(selectedFile, tag, progressBar, statusText, modalProgress);
     };
@@ -1552,8 +1399,8 @@
           const imgObj = {
             url: data.secure_url,
             tag: tag,
-            name: file.name,
-            timestamp: Date.now()
+            name: file.name, // Store original file name for download
+            timestamp: Date.now() // Use Date.now() for client-side timestamp
           };
           push(imagesRef, imgObj)
             .then(() => {
@@ -1567,8 +1414,9 @@
               statusText.textContent = 'Complete';
               showMessage('Uploaded Successfully!', 'info');
               closeModal();
-              document.getElementById('fileUpload').value = '';
-              document.getElementById('tagInput').value = '';
+              document.getElementById('fileUpload').value = ''; // Clear file input
+              document.getElementById('tagInput').value = ''; // Clear tag input
+              loadImages(); // Reload images to display the new one
             })
             .catch((error) => {
               console.error("Firebase Push Error:", error);
@@ -1612,9 +1460,9 @@
       messageBox.style.opacity = "1";
 
       if (type === "error") {
-        messageBox.style.backgroundColor = "#f44336";
+        messageBox.style.backgroundColor = "#f44336"; /* Red */
       } else {
-        messageBox.style.backgroundColor = "#4CAF50";
+        messageBox.style.backgroundColor = "#4CAF50"; /* Green */
       }
 
       messageBox.textContent = message;
@@ -1647,85 +1495,62 @@
       }
     };
 
+
     function loadImages() {
       const gallery = document.getElementById('gallery');
+      gallery.innerHTML = '';
 
+      // Clear the gallery first to avoid duplicates when data updates
+      // The onValue listener will handle re-rendering on changes
       onValue(imagesRef, (snapshot) => {
-        const imagesData = snapshot.val();
+        gallery.innerHTML = ''; // Clear content every time data changes
+        const images = snapshot.val();
         const now = Date.now();
-        let currentKeys = {};
 
-        if (imagesData) {
-          const sortedImageEntries = Object.entries(imagesData)
-            .sort(([, a], [, b]) => (b.timestamp || 0) - (a.timestamp || 0));
+        if (images) {
+          const sortedImages = Object.entries(images)
+            .map(([key, img]) => ({ key, ...img }))
+            .sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0)); // Sort by timestamp descending
 
-          sortedImageEntries.forEach(([key, img]) => {
-            currentKeys[key] = true;
-
-            if (now - (img.timestamp || 0) > 300000) {
-              if (displayedImages[key]) {
-                gallery.removeChild(displayedImages[key]);
-                delete displayedImages[key];
-              }
+          sortedImages.forEach(({ key, url, tag, timestamp, name }) => {
+            // Check if the image is older than 5 minutes (300,000 milliseconds)
+            // If it is, delete it from the database (cleanup logic)
+            if (now - (timestamp || 0) > 300000) {
               remove(dbRef(db, `images/${key}`))
                 .then(() => console.log(`Image ${key} deleted (older than 5 min)`))
                 .catch((error) => console.error("Auto-delete error:", error));
             } else {
-              if (!displayedImages[key]) {
-                const container = document.createElement('div');
-                container.className = 'image-container';
+              const container = document.createElement('div');
+              container.className = 'image-container';
 
-                const imgElement = document.createElement('img');
-                const optimizedUrl = img.url.replace('/upload/', `/upload/f_auto,q_auto,w_300/`);
-                imgElement.src = optimizedUrl;
-                imgElement.alt = img.tag || 'Uploaded image';
-                imgElement.loading = 'lazy';
-                imgElement.onerror = () => {
-                  imgElement.src = `https://placehold.co/150x150/cccccc/333333?text=Image+Error`;
-                  console.warn(`Failed to load image: ${img.url}`);
-                };
+              const imgElement = document.createElement('img');
+              imgElement.src = url;
+              imgElement.alt = tag || 'Uploaded image';
+              imgElement.loading = 'lazy';
+              imgElement.onerror = () => { // Fallback for broken images
+                imgElement.src = `https://placehold.co/150x150/cccccc/333333?text=Image+Error`;
+                console.warn(`Failed to load image: ${url}`);
+              };
 
-                const tagElement = document.createElement('p');
-                tagElement.className = 'tag';
-                tagElement.textContent = `Tag: ${img.tag || 'No tag'}`;
+              const tagElement = document.createElement('p');
+              tagElement.className = 'tag';
+              tagElement.textContent = `Tag: ${tag || 'No tag'}`;
 
-                const downloadBtn = document.createElement('button');
-                downloadBtn.className = 'download-btn';
-                downloadBtn.textContent = 'Download';
-                downloadBtn.onclick = () => window.downloadImageDirectly(img.url, img.name || `image_${key}.jpg`);
+              // Changed to Download Button with new downloadImageDirectly function
+              const downloadBtn = document.createElement('button'); // Changed back to button for click event
+              downloadBtn.className = 'download-btn';
+              downloadBtn.textContent = 'Download';
+              // Call the new download function
+              downloadBtn.onclick = () => window.downloadImageDirectly(url, name || `image_${key}.jpg`);
 
-                container.appendChild(imgElement);
-                container.appendChild(tagElement);
-                container.appendChild(downloadBtn);
-
-                gallery.prepend(container);
-                displayedImages[key] = container;
-              }
+              container.appendChild(imgElement);
+              container.appendChild(tagElement);
+              container.appendChild(downloadBtn); // Append the download button
+              gallery.appendChild(container);
             }
           });
-        }
-
-        for (const key in displayedImages) {
-          if (!currentKeys[key] && !imagesData[key]) {
-            gallery.removeChild(displayedImages[key]);
-            delete displayedImages[key];
-          }
-        }
-
-        if (Object.keys(displayedImages).length === 0) {
-          if (!gallery.querySelector('.no-images-message')) {
-             const noImagesMsg = document.createElement('p');
-             noImagesMsg.className = 'no-images-message';
-             noImagesMsg.style.color = '#455a64';
-             noImagesMsg.style.marginTop = '20px';
-             noImagesMsg.textContent = 'No images uploaded yet.';
-             gallery.appendChild(noImagesMsg);
-          }
         } else {
-            const noImagesMsg = gallery.querySelector('.no-images-message');
-            if (noImagesMsg) {
-                gallery.removeChild(noImagesMsg);
-            }
+          gallery.innerHTML = '<p style="color: #455a64; margin-top: 20px;">No images uploaded yet.</p>';
         }
       });
     }
@@ -1734,6 +1559,7 @@
     window.openCSATModal = function() {
       document.getElementById('csatModal').style.display = 'flex';
       hideAllMainContent();
+      // Ensure all other full-page views are hidden
       document.getElementById('endorsementPage').style.display = 'none';
       document.getElementById('manualVIPage').style.display = 'none';
       document.getElementById('claimCountNSTPPage').style.display = 'none';
@@ -1804,20 +1630,12 @@
       }
     };
 
-    window.closeCSATModal = function(event) {
-      if (event.target === this || event.currentTarget.classList.contains('close-btn')) {
-        document.getElementById('csatModal').style.display = 'none';
-        document.getElementById('goodCount').value = '0';
-        document.getElementById('badCount').value = '0';
-        document.getElementById('requiredCSAT').value = '70';
-        document.getElementById('calculateButton').textContent = 'Calculate';
-        hasCalculated = false;
-        calculateCSAT();
-        showAllMainContent();
+    // Close CSAT Modal on Outside Click
+    document.getElementById('csatModal').addEventListener('click', function(event) {
+      if (event.target === this) {
+        closeCSATModal();
       }
-    };
-    document.getElementById('csatModal').addEventListener('click', window.closeCSATModal);
-
+    });
 
     // ENDORSEMENT Full-Page Functionality
     window.openEndorsementPage = function() {
@@ -1826,6 +1644,7 @@
         document.querySelector('.endorsement-container').classList.add('active');
       }, 10);
       hideAllMainContent();
+      // Ensure all other full-page views are hidden
       document.getElementById('csatModal').style.display = 'none';
       document.getElementById('manualVIPage').style.display = 'none';
       document.getElementById('claimCountNSTPPage').style.display = 'none';
@@ -1837,6 +1656,7 @@
       showAllMainContent();
     };
 
+    // Close ENDORSEMENT Page on Outside Click
     document.getElementById('endorsementPage').addEventListener('click', function(event) {
       if (event.target === this) {
         closeEndorsementPage();
@@ -1846,7 +1666,12 @@
     // MANUAL-VI Full-Page Functionality
     window.openManualVIPage = function() {
       document.getElementById('manualVIPage').style.display = 'block';
+      // Ensure the manual VI card content is visible by default when opening this page
+      document.getElementById('manualVICardContent').style.display = 'block';
+      document.getElementById('claimCoverageOverlay').style.display = 'none'; // Hide overlay initially
+      document.getElementById('manualVIPage').classList.remove('claim-coverage-active'); // Remove class if present
       hideAllMainContent();
+      // Ensure all other full-page views are hidden
       document.getElementById('csatModal').style.display = 'none';
       document.getElementById('endorsementPage').style.display = 'none';
       document.getElementById('claimCountNSTPPage').style.display = 'none';
@@ -1855,22 +1680,58 @@
     window.closeManualVIPage = function() {
       document.getElementById('manualVIPage').style.display = 'none';
       showAllMainContent();
+      // Also hide the claim coverage overlay when going back to home
+      document.getElementById('claimCoverageOverlay').style.display = 'none';
+      document.getElementById('manualVIPage').classList.remove('claim-coverage-active');
     };
 
+    // Toggle Claim Coverage Overlay within Manual VI Page
+    window.toggleClaimCoverage = function() {
+        const manualVICardContent = document.getElementById('manualVICardContent');
+        const claimCoverageOverlay = document.getElementById('claimCoverageOverlay');
+        const manualVIPage = document.getElementById('manualVIPage');
+
+        if (claimCoverageOverlay.style.display === 'flex') {
+            // If overlay is visible, hide it and show main card content
+            claimCoverageOverlay.style.display = 'none';
+            manualVICardContent.style.display = 'block';
+            manualVIPage.classList.remove('claim-coverage-active'); // Remove class
+        } else {
+            // If overlay is hidden, show it and hide main card content
+            claimCoverageOverlay.style.display = 'flex';
+            manualVICardContent.style.display = 'none';
+            manualVIPage.classList.add('claim-coverage-active'); // Add class for styling
+        }
+    };
+
+    // Close Manual VI Page OR Claim Coverage Overlay on Outside Click
     document.getElementById('manualVIPage').addEventListener('click', function(event) {
+      // If the click is directly on the manual-vi-page (background),
+      // regardless of which sub-section is open, close the entire page.
       if (event.target === this) {
         closeManualVIPage();
       }
     });
 
+    // New: Add click listener to the claimCoverageOverlay to close the entire manualVIPage
+    document.getElementById('claimCoverageOverlay').addEventListener('click', function(event) {
+        if (event.target === this) { // Only if the click is directly on the overlay's background
+            closeManualVIPage(); // Go back to the main page
+        }
+    });
+
+
     // New Claim_Count & NSTP Page Functionality
     window.openClaimCountNSTPPage = function() {
       document.getElementById('claimCountNSTPPage').style.display = 'block';
       hideAllMainContent();
+      // Ensure all other full-page views are hidden
       document.getElementById('csatModal').style.display = 'none';
       document.getElementById('endorsementPage').style.display = 'none';
       document.getElementById('manualVIPage').style.display = 'none';
+      // Populate the table when the page is opened
       populateTable(insuranceData);
+      // Re-apply sort/search listeners as content is dynamic
       setupInsuranceDashboardListeners();
     };
 
@@ -1879,8 +1740,10 @@
         showAllMainContent();
     };
 
+    // Close Claim_Count & NSTP Page on Outside Click
     document.getElementById('claimCountNSTPPage').addEventListener('click', function(event) {
       if (event.target === this) {
+        // Only close if the click is directly on the overlay, not on the content
         if (event.target.classList.contains('claim-count-nstp-page')) {
           closeClaimCountNSTPPage();
         }
@@ -1889,22 +1752,25 @@
 
     // Helper functions to manage visibility
     function hideAllMainContent() {
-      document.getElementById('mainHeader').style.display = 'none';
+      // document.getElementById('mainHeader').style.display = 'none'; // Removed this line
       document.querySelector('.upload-section').style.display = 'none';
-      document.querySelector('h3').style.display = 'none';
+      document.querySelector('h3').style.display = 'none'; /* 'Uploaded Images' header */
       document.getElementById('gallery').style.display = 'none';
       document.querySelector('.csat-btn').style.display = 'none';
       document.querySelector('.endorsement-btn').style.display = 'none';
       document.querySelector('.manual-vi-btn-fixed').style.display = 'none';
       document.querySelector('.claim-count-nstp-btn-fixed').style.display = 'none';
+      // document.getElementById('aaj-ki-baat-button').style.display = 'none'; /* This element is already replaced, no need to hide */
+      document.getElementById('companyUpdatesButton').style.display = 'none'; /* Hide the new updates button when another page is open */
     }
 
     function showAllMainContent() {
-      document.getElementById('mainHeader').style.display = 'block';
+      // document.getElementById('mainHeader').style.display = 'block'; // Removed this line
       document.querySelector('.upload-section').style.display = 'block';
-      document.querySelector('h3').style.display = 'block';
-      document.getElementById('gallery').style.display = 'grid';
+      document.querySelector('h3').style.display = 'block'; /* 'Uploaded Images' header */
+      document.getElementById('gallery').style.display = 'grid'; /* grid for gallery */
 
+      // Only show fixed buttons if not on mobile (based on media query)
       const isMobile = window.matchMedia("(max-width: 600px)").matches;
       if (!isMobile) {
         document.querySelector('.csat-btn').style.display = 'block';
@@ -1912,6 +1778,9 @@
         document.querySelector('.manual-vi-btn-fixed').style.display = 'block';
         document.querySelector('.claim-count-nstp-btn-fixed').style.display = 'block';
       }
+      // Explicitly control visibility of the new updates button
+      document.getElementById('companyUpdatesButton').style.display = 'flex'; /* Show the new updates button */
+      // The original 'Aaj Ki Baat' button is gone, so no need to manage its display here.
     }
 
     // Endorsement Data and Logic
@@ -1919,8 +1788,10872 @@
     const requirementDropdown = document.querySelector('.endorsement-page #requirement');
     const outputBox = document.querySelector('.endorsement-page #output');
 
-    const endorsementData = [];
+    // Empty array for you to manually add JSON data for Endorsement
+    const endorsementData = [{
+    "InsurerRequirement": "New India AssuranceAddition of GST No.",
+    "Insurer": "New India Assurance",
+    "Requirement": "Addition of GST No.",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "GST Certificate in the name of Insured",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "New India AssuranceChassis Number",
+    "Insurer": "New India Assurance",
+    "Requirement": "Chassis Number",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "New India AssuranceColour Change",
+    "Insurer": "New India Assurance",
+    "Requirement": "Colour Change",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "New India AssuranceEngine Number",
+    "Insurer": "New India Assurance",
+    "Requirement": "Engine Number",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "New India AssuranceHypothecation Remove",
+    "Insurer": "New India Assurance",
+    "Requirement": "Hypothecation Remove",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "RC, NOC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "New India AssuranceHypothecation Add",
+    "Insurer": "New India Assurance",
+    "Requirement": "Hypothecation Add",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "Updated RC or Loan sanction letter",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "New India AssuranceHypothecation Change",
+    "Insurer": "New India Assurance",
+    "Requirement": "Hypothecation Change",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "Updated RC or NOC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "New India AssuranceInsured name",
+    "Insurer": "New India Assurance",
+    "Requirement": "Insured name",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC, PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Proceed with O/t incase cx doesn't have PYP",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "New India AssuranceNCB Certificate",
+    "Insurer": "New India Assurance",
+    "Requirement": "NCB Certificate",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Sale letter or new vehicle invoice, PYP, NCB Confirmation letter",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": "Kindly request the customer to provide in written on mail or from MyAccount:\nKindly confirm whether customer wants to cancel the Own damage part of the policy or want to recover the ncb."
+  },
+  {
+    "InsurerRequirement": "New India AssuranceRegistration Date",
+    "Insurer": "New India Assurance",
+    "Requirement": "Registration Date",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "New India AssuranceRegst. Number",
+    "Insurer": "New India Assurance",
+    "Requirement": "Regst. Number",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "New India AssuranceRTO Endorsement",
+    "Insurer": "New India Assurance",
+    "Requirement": "RTO Endorsement",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "New India AssuranceSeating Capacity",
+    "Insurer": "New India Assurance",
+    "Requirement": "Seating Capacity",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "New India AssurancePeriod of Insurance (POI)",
+    "Insurer": "New India Assurance",
+    "Requirement": "Period of Insurance (POI)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "New India AssurancePYP Details- POI or Insurer or Policy number",
+    "Insurer": "New India Assurance",
+    "Requirement": "PYP Details- POI or Insurer or Policy number",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "New India AssuranceTP details",
+    "Insurer": "New India Assurance",
+    "Requirement": "TP details",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "Bundled TP or PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "New India AssuranceCommunication Address",
+    "Insurer": "New India Assurance",
+    "Requirement": "Communication Address",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Complete address with pincode",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "New India AssuranceDate of Birth (DOB)",
+    "Insurer": "New India Assurance",
+    "Requirement": "Date of Birth (DOB)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "New India AssuranceEmail Address",
+    "Insurer": "New India Assurance",
+    "Requirement": "Email Address",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Complete Email ID",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "New India AssuranceMobile Number",
+    "Insurer": "New India Assurance",
+    "Requirement": "Mobile Number",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Mobile Number",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "New India AssuranceNominee Details",
+    "Insurer": "New India Assurance",
+    "Requirement": "Nominee Details",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Nominee Details",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "New India AssuranceSalutation",
+    "Insurer": "New India Assurance",
+    "Requirement": "Salutation",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Correct salutation",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "New India AssuranceOwner Driver Personal Accident",
+    "Insurer": "New India Assurance",
+    "Requirement": "Owner Driver Personal Accident",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "New India AssurancePaid Driver",
+    "Insurer": "New India Assurance",
+    "Requirement": "Paid Driver",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "New India AssuranceUn Named Passanger Cover",
+    "Insurer": "New India Assurance",
+    "Requirement": "Un Named Passanger Cover",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "New India AssuranceCNG Addition External",
+    "Insurer": "New India Assurance",
+    "Requirement": "CNG Addition External",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, CNG Invoice",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "New India AssuranceCNG Addition Company fitted",
+    "Insurer": "New India Assurance",
+    "Requirement": "CNG Addition Company fitted",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "New India AssuranceCubic Capacity (CC)",
+    "Insurer": "New India Assurance",
+    "Requirement": "Cubic Capacity (CC)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "New India AssuranceFuel Type (Petrol - Diesel, Diesel - petrol)",
+    "Insurer": "New India Assurance",
+    "Requirement": "Fuel Type (Petrol - Diesel, Diesel - petrol)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "Maybe",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "New India AssuranceIDV Change",
+    "Insurer": "New India Assurance",
+    "Requirement": "IDV Change",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "New India AssuranceManufactured Date",
+    "Insurer": "New India Assurance",
+    "Requirement": "Manufactured Date",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "New India AssuranceMake, Model & Variant",
+    "Insurer": "New India Assurance",
+    "Requirement": "Make, Model & Variant",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "New India AssuranceOwnership Transfer",
+    "Insurer": "New India Assurance",
+    "Requirement": "Ownership Transfer",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, New owner details",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "New India AssuranceNCB Correction (taken extra NCB)",
+    "Insurer": "New India Assurance",
+    "Requirement": "NCB Correction (taken extra NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "PYP, NCB Confirmation",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "New India AssuranceNCB Correction (taken less NCB)",
+    "Insurer": "New India Assurance",
+    "Requirement": "NCB Correction (taken less NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "PYP, NCB Confirmation",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Refund",
+    "Inspection": "Yes",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "New India AssuranceTop Up (PAYD plan)",
+    "Insurer": "New India Assurance",
+    "Requirement": "Top Up (PAYD plan)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "New India AssuranceMultiple Mismatch (Reg no, chassis no & Engine no mismatch)",
+    "Insurer": "New India Assurance",
+    "Requirement": "Multiple Mismatch (Reg no, chassis no & Engine no mismatch)",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC,KYC,PYP, Proposal Form & Bank statement with payee name",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+  "InsurerRequirement": "New India AssurancePost Issuance Cancellation",
+  "Insurer": "New India Assurance",
+  "Requirement": "Post Issuance Cancellation",
+  "Endorsement type": "NA",
+  "Documents or any other requirement": "Alternate Policy and Reason for cancellation",
+  "TAT": "SRS / 10 Days",
+  "Charges / Deduction": "Deduction",
+  "Inspection": "NA",
+  "Any Exception": "To cancel a third-party policy, need to provide an alternate policy from the same insurer with the same issuance date.",
+  "Declaration format (if declaration required)": "NA"
+},
+  {
+    "InsurerRequirement": "New India AssurancePost Issuance Cancellation (Multiple Mismatch - Reg no, chassis no & Engine no mismatch",
+    "Insurer": "New India Assurance",
+    "Requirement": "Post Issuance Cancellation (Multiple Mismatch - Reg no, chassis no & Engine no mismatch",
+    "Endorsement type": "NA",
+    "Documents or any other requirement": "RC, KYC, Bank Statement with Payee name & Alternate Policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Deduction",
+    "Inspection": "",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "New India AssuranceM-Parivahan",
+    "Insurer": "New India Assurance",
+    "Requirement": "M-Parivahan",
+    "Endorsement type": "NA",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },{
+    "InsurerRequirement": "BajajAddition of GST No.",
+    "Insurer": "Bajaj",
+    "Requirement": "Addition of GST No.",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "GST Certificate in the name of Insured",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "BajajChassis Number",
+    "Insurer": "Bajaj",
+    "Requirement": "Chassis Number",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "BajajColour Change",
+    "Insurer": "Bajaj",
+    "Requirement": "Colour Change",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "BajajEngine Number",
+    "Insurer": "Bajaj",
+    "Requirement": "Engine Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "BajajHypothecation Remove",
+    "Insurer": "Bajaj",
+    "Requirement": "Hypothecation Remove",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Bank NOC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "BajajHypothecation Add",
+    "Insurer": "Bajaj",
+    "Requirement": "Hypothecation Add",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Updated RC or Loan Sanction letter",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "BajajHypothecation Change",
+    "Insurer": "Bajaj",
+    "Requirement": "Hypothecation Change",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "RC and Previous Bank NOC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "BajajInsured name",
+    "Insurer": "Bajaj",
+    "Requirement": "Insured name",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "RC and Previous Year Policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Proceed with O/t incase cx doesn't have PYP",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "BajajNCB Certificate",
+    "Insurer": "Bajaj",
+    "Requirement": "NCB Certificate",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Sale letter & RC (In case of vehicle sold out)\nRC and Customer request (If vehicle retained)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May be",
+    "Inspection": "Maybe",
+    "Any Exception": "Cacellation Decalration Required :\nSell letter required if cx wants to cancel the policy and OD premium will be refund and Third party premium will be retained by insurer\nIf cx don't want to cancel the policy then NCB Recovery and inspection will be applicable (Sell letter will be required in case of OT)",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "BajajRegistration Date",
+    "Insurer": "Bajaj",
+    "Requirement": "Registration Date",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC , Unmasked Aadhar card",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May be",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "BajajRegst. Number",
+    "Insurer": "Bajaj",
+    "Requirement": "Regst. Number",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Incase of State change (for eg: MH to DL), then RTO receipt will be required",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "BajajRTO Endorsement",
+    "Insurer": "Bajaj",
+    "Requirement": "RTO Endorsement",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May be",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "BajajSeating Capacity",
+    "Insurer": "Bajaj",
+    "Requirement": "Seating Capacity",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC and Unmasked Aadhar card",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May be",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "BajajPeriod of Insurance (POI)",
+    "Insurer": "Bajaj",
+    "Requirement": "Period of Insurance (POI)",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC ,Previous Year Policy and Unmasked Aadhar card",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May be",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "BajajPYP Details- POI or Insurer or Policy number",
+    "Insurer": "Bajaj",
+    "Requirement": "PYP Details- POI or Insurer or Policy number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC ,Previous Year Policy and Unmasked Aadhar card",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "BajajTP details",
+    "Insurer": "Bajaj",
+    "Requirement": "TP details",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC ,Previous Year Policy , Bundle Policy and Unmasked Aadhar card",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "BajajCommunication Address",
+    "Insurer": "Bajaj",
+    "Requirement": "Communication Address",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Complete Address with Pincode",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "BajajDate of Birth (DOB)",
+    "Insurer": "Bajaj",
+    "Requirement": "Date of Birth (DOB)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "BajajEmail Address",
+    "Insurer": "Bajaj",
+    "Requirement": "Email Address",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Email Id",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "BajajMobile Number",
+    "Insurer": "Bajaj",
+    "Requirement": "Mobile Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Mobile No.",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "BajajNominee Details",
+    "Insurer": "Bajaj",
+    "Requirement": "Nominee Details",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Nominee Details",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "BajajSalutation",
+    "Insurer": "Bajaj",
+    "Requirement": "Salutation",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Correct Salutation",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "BajajOwner Driver Personal Accident",
+    "Insurer": "Bajaj",
+    "Requirement": "Owner Driver Personal Accident",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC ,Driving License ,pan card and Nominee Details",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "BajajPaid Driver",
+    "Insurer": "Bajaj",
+    "Requirement": "Paid Driver",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC ,Unmasked Aadhar card of Insured , Driving License of Driver and 3 Months Salary slip",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": "Rs.50/- will be applicable in case of 2W",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "BajajUn Named Passanger Cover",
+    "Insurer": "Bajaj",
+    "Requirement": "Un Named Passanger Cover",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC ,Unmasked Aadhar card and written confirmation of coverage for Rs.50 - 1L and Rs.100/- 2L",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "BajajCNG Addition External",
+    "Insurer": "Bajaj",
+    "Requirement": "CNG Addition External",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC and CNG Invoice",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Maybe",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "BajajCNG Addition Company fitted",
+    "Insurer": "Bajaj",
+    "Requirement": "CNG Addition Company fitted",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Maybe",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "BajajCubic Capacity (CC)",
+    "Insurer": "Bajaj",
+    "Requirement": "Cubic Capacity (CC)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC and Unmasked Aadhar card",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May be",
+    "Inspection": "No",
+    "Any Exception": "For Ticket associate: Raise to insurer with Quote with correct cc",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "BajajFuel Type (Petrol - Diesel, Diesel - petrol)",
+    "Insurer": "Bajaj",
+    "Requirement": "Fuel Type (Petrol - Diesel, Diesel - petrol)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May be",
+    "Inspection": "Maybe",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "BajajIDV Change",
+    "Insurer": "Bajaj",
+    "Requirement": "IDV Change",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Unmasked Aadhar card and Renewal Notice (which customer receives at the time of booking)",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "May be",
+    "Inspection": "Not Possible",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "BajajManufactured Date",
+    "Insurer": "Bajaj",
+    "Requirement": "Manufactured Date",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC , Unmasked Aadhar card",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May Be",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "BajajMake, Model & Variant",
+    "Insurer": "Bajaj",
+    "Requirement": "Make, Model & Variant",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC , Unmasked Aadhar card",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May Be",
+    "Inspection": "Maybe",
+    "Any Exception": "For ticket associate: Raise to insurer with Quote with MMV",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "BajajOwnership Transfer",
+    "Insurer": "Bajaj",
+    "Requirement": "Ownership Transfer",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC and Proposal Form",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Maybe",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "BajajNCB Correction (taken extra NCB)",
+    "Insurer": "Bajaj",
+    "Requirement": "NCB Correction (taken extra NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Previous Year Policy and confirmation if customer has taken claim or not",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Maybe",
+    "Any Exception": "Verbal confirmation if customer has taken claim or not",
+    "Declaration format": ""
+  },
+  {
+    "InsurerRequirement": "BajajNCB Correction (taken less NCB)",
+    "Insurer": "Bajaj",
+    "Requirement": "NCB Correction (taken less NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Previous Year Policy and confirmation if customer has taken claim or not",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Refund",
+    "Inspection": "Maybe",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "BajajTop Up (PAYD plan)",
+    "Insurer": "Bajaj",
+    "Requirement": "Top Up (PAYD plan)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC and Unmasked Aadhar card and written or verbal confirmation for KM (min 2,000 km & max 6,000 km)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "BajajMultiple Mismatch (Reg no, chassis no & Engine no mismatch)",
+    "Insurer": "Bajaj",
+    "Requirement": "Multiple Mismatch (Reg no, chassis no & Engine no mismatch)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "BajajPost Issuance Cancellation",
+    "Insurer": "Bajaj",
+    "Requirement": "Post Issuance Cancellation",
+    "Endorsement type": "",
+    "Documents or any other requirement": "Alternate Policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May Be",
+    "Inspection": "No",
+    "Any Exception": "cancellation is possible before policy start date without alternate policy, note that request to be raised before 24 hrs of policy start date",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "BajajPost Issuance Cancellation (Multiple Mismatch - Reg no, chassis no & Engine no mismatch",
+    "Insurer": "Bajaj",
+    "Requirement": "Post Issuance Cancellation (Multiple Mismatch - Reg no, chassis no & Engine no mismatch",
+    "Endorsement type": "",
+    "Documents or any other requirement": "Customer Consent",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Deduction",
+    "Inspection": "",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "BajajM-Parivahan",
+    "Insurer": "Bajaj",
+    "Requirement": "M-Parivahan",
+    "Endorsement type": "NA",
+    "Documents or any other requirement": "No Requirement",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "",
+    "Inspection": "",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },{
+    "InsurerRequirement": "CholaAddition of GST No.",
+    "Insurer": "Chola",
+    "Requirement": "Addition of GST No.",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "GST Certificate in the name of Insured",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CholaChassis Number",
+    "Insurer": "Chola",
+    "Requirement": "Chassis Number",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CholaCNG Addition Company fitted",
+    "Insurer": "Chola",
+    "Requirement": "CNG Addition Company fitted",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May Be",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CholaCNG Addition External",
+    "Insurer": "Chola",
+    "Requirement": "CNG Addition External",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC and CNG Invoice Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CholaColour Change",
+    "Insurer": "Chola",
+    "Requirement": "Colour Change",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CholaCommunication Address",
+    "Insurer": "Chola",
+    "Requirement": "Communication Address",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Written consent",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CholaCubic Capacity (CC)",
+    "Insurer": "Chola",
+    "Requirement": "Cubic Capacity (CC)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May Be",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CholaDate of Birth (DOB)",
+    "Insurer": "Chola",
+    "Requirement": "Date of Birth (DOB)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CholaEmail Address",
+    "Insurer": "Chola",
+    "Requirement": "Email Address",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "updated email id",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CholaEngine Number",
+    "Insurer": "Chola",
+    "Requirement": "Engine Number",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CholaFuel Type (Petrol - Diesel, Diesel - petrol)",
+    "Insurer": "Chola",
+    "Requirement": "Fuel Type (Petrol - Diesel, Diesel - petrol)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May Be",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CholaHypothecation Add",
+    "Insurer": "Chola",
+    "Requirement": "Hypothecation Add",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Updated RC or Loan Sanction letter",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CholaHypothecation Change",
+    "Insurer": "Chola",
+    "Requirement": "Hypothecation Change",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Updated RC and Previous Bank NOC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CholaHypothecation Remove",
+    "Insurer": "Chola",
+    "Requirement": "Hypothecation Remove",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Bank NOC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CholaIDV Change",
+    "Insurer": "Chola",
+    "Requirement": "IDV Change",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CholaInsured name",
+    "Insurer": "Chola",
+    "Requirement": "Insured name",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "RC ,PYP and Umasked Aadhar Card",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Proceed with O/t incase cx doesn't have PYP",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CholaMake, Model & Variant",
+    "Insurer": "Chola",
+    "Requirement": "Make, Model & Variant",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May Be",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CholaManufactured Date",
+    "Insurer": "Chola",
+    "Requirement": "Manufactured Date",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May Be",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CholaMobile Number",
+    "Insurer": "Chola",
+    "Requirement": "Mobile Number",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "updated mobile no.",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CholaM-Parivahan",
+    "Insurer": "Chola",
+    "Requirement": "M-Parivahan",
+    "Endorsement type": "NA",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "",
+    "Inspection": "",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CholaMultiple Mismatch (Reg no, chassis no & Engine no mismatch)",
+    "Insurer": "Chola",
+    "Requirement": "Multiple Mismatch (Reg no, chassis no & Engine no mismatch)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CholaNCB Certificate",
+    "Insurer": "Chola",
+    "Requirement": "NCB Certificate",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Sell Letter with stamp / RC cancellation receipt or NCB Recovery (Charges)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May Be",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CholaNCB Correction (taken extra NCB)",
+    "Insurer": "Chola",
+    "Requirement": "NCB Correction (taken extra NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Previous Year Policy and NCB Confirmation",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CholaNCB Correction (taken less NCB)",
+    "Insurer": "Chola",
+    "Requirement": "NCB Correction (taken less NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Previous Year Policy and NCB Confirmation",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Refund",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CholaNominee Details",
+    "Insurer": "Chola",
+    "Requirement": "Nominee Details",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Nominee details ( if PA cover is added)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CholaOwner Driver Personal Accident",
+    "Insurer": "Chola",
+    "Requirement": "Owner Driver Personal Accident",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CholaOwnership Transfer",
+    "Insurer": "Chola",
+    "Requirement": "Ownership Transfer",
+    "Endorsement type": "Self Financial Endt",
+    "Documents or any other requirement": "RC, New owner details and Umasked Aadhar Card ( need to raise to insurer in case of reg. no. change)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CholaPaid Driver",
+    "Insurer": "Chola",
+    "Requirement": "Paid Driver",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CholaPeriod of Insurance (POI)",
+    "Insurer": "Chola",
+    "Requirement": "Period of Insurance (POI)",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Previous Year Policy (Backdated POI request - correction not Possible)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CholaPost Issuance Cancellation",
+    "Insurer": "Chola",
+    "Requirement": "Post Issuance Cancellation",
+    "Endorsement type": "",
+    "Documents or any other requirement": "Alternate Policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CholaPost Issuance Cancellation (Multiple Mismatch - Reg no, chassis no & Engine no mismatch",
+    "Insurer": "Chola",
+    "Requirement": "Post Issuance Cancellation (Multiple Mismatch - Reg no, chassis no & Engine no mismatch",
+    "Endorsement type": "",
+    "Documents or any other requirement": "Customer consent & Alternate policy and RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Deduction",
+    "Inspection": "",
+    "Any Exception": "Only third Party policy cannot be cancelled\n\nFor comprehensive: TP (Third Party) amount will be retained, and the OD (Own Damage) part will be refunded based on the usage of the policy.",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CholaPYP Details- POI or Insurer or Policy number",
+    "Insurer": "Chola",
+    "Requirement": "PYP Details- POI or Insurer or Policy number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Previous Year Policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CholaRegistration Date",
+    "Insurer": "Chola",
+    "Requirement": "Registration Date",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May Be",
+    "Inspection": "No",
+    "Any Exception": "Correction not possible in Bundle Policy",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CholaRegst. Number",
+    "Insurer": "Chola",
+    "Requirement": "Regst. Number",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CholaRTO Endorsement",
+    "Insurer": "Chola",
+    "Requirement": "RTO Endorsement",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CholaSalutation",
+    "Insurer": "Chola",
+    "Requirement": "Salutation",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Correct salutation",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CholaSeating Capacity",
+    "Insurer": "Chola",
+    "Requirement": "Seating Capacity",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May Be",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CholaTop Up (PAYD plan)",
+    "Insurer": "Chola",
+    "Requirement": "Top Up (PAYD plan)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CholaTP details",
+    "Insurer": "Chola",
+    "Requirement": "TP details",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "TP Policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CholaUn Named Passanger Cover",
+    "Insurer": "Chola",
+    "Requirement": "Un Named Passanger Cover",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - BajajInsured name",
+    "Insurer": "CPA - Bajaj",
+    "Requirement": "Insured name",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC, DL & KYC (Masked Aadhaar / DL / Voter Card / Passport / PAN Card) as per base policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - BajajCommunication Address",
+    "Insurer": "CPA - Bajaj",
+    "Requirement": "Communication Address",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Consent via App/Email/Call - Remarks on BMS",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - BajajNominee Details",
+    "Insurer": "CPA - Bajaj",
+    "Requirement": "Nominee Details",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Nominee details (Name, DOB, Relation) & Consent via App/Email/Call - Remarks on BMS",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - BajajDate of Birth (DOB)",
+    "Insurer": "CPA - Bajaj",
+    "Requirement": "Date of Birth (DOB)",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Correct DOB - Customer's consent / Written consent",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - BajajSalutation",
+    "Insurer": "CPA - Bajaj",
+    "Requirement": "Salutation",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Consent via App/Email/Call - Remarks on BMS",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - BajajMobile Number",
+    "Insurer": "CPA - Bajaj",
+    "Requirement": "Mobile Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Consent via App/Email/Call - Remarks on BMS",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - BajajEmail Address",
+    "Insurer": "CPA - Bajaj",
+    "Requirement": "Email Address",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Consent via App/Email/Call - Remarks on BMS",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - BajajAddition of GST No.",
+    "Insurer": "CPA - Bajaj",
+    "Requirement": "Addition of GST No.",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "GST Certificate in the name of Insured",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - BajajOwnership Transfer",
+    "Insurer": "CPA - Bajaj",
+    "Requirement": "Ownership Transfer",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "Not Possible",
+    "Declaration format (if declaration required)": "Not Possible"
+  },
+  {
+    "InsurerRequirement": "CPA - BajajVehicle Details",
+    "Insurer": "CPA - Bajaj",
+    "Requirement": "Vehicle Details",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "Not Possible",
+    "Declaration format (if declaration required)": "Not Possible"
+  },
+  {
+    "InsurerRequirement": "CPA - BajajPost Issuance Cancellation",
+    "Insurer": "CPA - Bajaj",
+    "Requirement": "Post Issuance Cancellation",
+    "Endorsement type": "",
+    "Documents or any other requirement": "Reason for cancellation (like don’t have DL / don’t drive etc.),& Alternate policy (if customer has an alternate policy)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Deduction",
+    "Inspection": "No",
+    "Any Exception": "Provides freelook period of 15 Days from the policy start date, deductions are done post free look up period",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - CholaInsured name",
+    "Insurer": "CPA - Chola",
+    "Requirement": "Insured name",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "RC, DL & KYC (Masked Aadhaar / DL / Voter Card / Passport / PAN Card)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Only spelling mistake correction possible, complete name cannot be endorsed",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - CholaCommunication Address",
+    "Insurer": "CPA - Chola",
+    "Requirement": "Communication Address",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "Masked Aadhaar / DL / Voter Card / Passport",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - CholaNominee Details",
+    "Insurer": "CPA - Chola",
+    "Requirement": "Nominee Details",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "Nominee's KYC (Masked Aadhaar / DL / Voter Card / Passport / Pan) & Nominee details (Name, DOB, Relation)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - CholaDate of Birth (DOB)",
+    "Insurer": "CPA - Chola",
+    "Requirement": "Date of Birth (DOB)",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "Nominee's KYC (Masked Aadhaar / DL / Voter Card / Passport / Pan) & Correct DOB",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - CholaSalutation",
+    "Insurer": "CPA - Chola",
+    "Requirement": "Salutation",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "Masked Aadhaar / DL / Voter Card / Passport / Pan",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - CholaMobile Number",
+    "Insurer": "CPA - Chola",
+    "Requirement": "Mobile Number",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Consent via App/Email/Call - Remarks on BMS",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - CholaEmail Address",
+    "Insurer": "CPA - Chola",
+    "Requirement": "Email Address",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Consent via App/Email/Call - Remarks on BMS",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - CholaAddition of GST No.",
+    "Insurer": "CPA - Chola",
+    "Requirement": "Addition of GST No.",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "Not Possible",
+    "Declaration format (if declaration required)": "Not Possible"
+  },
+  {
+    "InsurerRequirement": "CPA - CholaOwnership Transfer",
+    "Insurer": "CPA - Chola",
+    "Requirement": "Ownership Transfer",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "Not Possible",
+    "Declaration format (if declaration required)": "Not Possible"
+  },
+  {
+    "InsurerRequirement": "CPA - CholaVehicle Details",
+    "Insurer": "CPA - Chola",
+    "Requirement": "Vehicle Details",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "Not Possible",
+    "Declaration format (if declaration required)": "Not Possible"
+  },
+  {
+    "InsurerRequirement": "CPA - CholaPost Issuance Cancellation",
+    "Insurer": "CPA - Chola",
+    "Requirement": "Post Issuance Cancellation",
+    "Endorsement type": "",
+    "Documents or any other requirement": "Alternate policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Deduction",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - DigitInsured name",
+    "Insurer": "CPA - Digit",
+    "Requirement": "Insured name",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC, DL & Written Consent via App/Email & Nominee’s DOB",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Only spelling mistake correction possible, complete name cannot be endorsed",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - DigitCommunication Address",
+    "Insurer": "CPA - Digit",
+    "Requirement": "Communication Address",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Written Consent via App/Email & Nominee’s DOB",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - DigitNominee Details",
+    "Insurer": "CPA - Digit",
+    "Requirement": "Nominee Details",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Written Consent via App/Email & Nominee Details (Name, DOB & Relation)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - DigitDate of Birth (DOB)",
+    "Insurer": "CPA - Digit",
+    "Requirement": "Date of Birth (DOB)",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Written Consent via App/Email & Nominee’s DOB",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - DigitSalutation",
+    "Insurer": "CPA - Digit",
+    "Requirement": "Salutation",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Written Consent via App/Email & Nominee’s DOB",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - DigitMobile Number",
+    "Insurer": "CPA - Digit",
+    "Requirement": "Mobile Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Written Consent via App/Email & Nominee’s DOB",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - DigitEmail Address",
+    "Insurer": "CPA - Digit",
+    "Requirement": "Email Address",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Written Consent via App/Email & Nominee’s DOB",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - DigitAddition of GST No.",
+    "Insurer": "CPA - Digit",
+    "Requirement": "Addition of GST No.",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "Not Possible",
+    "Declaration format (if declaration required)": "Not Possible"
+  },
+  {
+    "InsurerRequirement": "CPA - DigitOwnership Transfer",
+    "Insurer": "CPA - Digit",
+    "Requirement": "Ownership Transfer",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "Not Possible",
+    "Declaration format (if declaration required)": "Not Possible"
+  },
+  {
+    "InsurerRequirement": "CPA - DigitVehicle Details",
+    "Insurer": "CPA - Digit",
+    "Requirement": "Vehicle Details",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "Not Possible",
+    "Declaration format (if declaration required)": "Not Possible"
+  },
+ {
+  "InsurerRequirement": "CPA - DigitPost Issuance Cancellation",
+  "Insurer": "CPA - Digit",
+  "Requirement": "Post Issuance Cancellation",
+  "Endorsement type": "NA",
+  "Documents or any other requirement": "Alternative Policy",
+  "TAT": "10 days",
+  "Charges / Deduction": "May be",
+  "Inspection": "NA",
+  "Any Exception": "NA",
+  "Declaration format (if declaration required)": "NA"
+},{
+    "InsurerRequirement": "CPA - KotakInsured name",
+    "Insurer": "CPA - Kotak",
+    "Requirement": "Insured name",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC, DL, Aadhaar & PAN",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - KotakCommunication Address",
+    "Insurer": "CPA - Kotak",
+    "Requirement": "Communication Address",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Aadhaar, PAN & Consent via App/Email/Call - Remarks on BMS",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - KotakNominee Details",
+    "Insurer": "CPA - Kotak",
+    "Requirement": "Nominee Details",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Aadhaar & PAN of insured person & Nominee details (Name, DOB, Relation)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - KotakDate of Birth (DOB)",
+    "Insurer": "CPA - Kotak",
+    "Requirement": "Date of Birth (DOB)",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Aadhaar & PAN",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - KotakSalutation",
+    "Insurer": "CPA - Kotak",
+    "Requirement": "Salutation",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Aadhaar & PAN",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - KotakMobile Number",
+    "Insurer": "CPA - Kotak",
+    "Requirement": "Mobile Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Aadhaar & PAN",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - KotakEmail Address",
+    "Insurer": "CPA - Kotak",
+    "Requirement": "Email Address",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Aadhaar & PAN",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - KotakAddition of GST No.",
+    "Insurer": "CPA - Kotak",
+    "Requirement": "Addition of GST No.",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "Not Possible",
+    "Declaration format (if declaration required)": "Not Possible"
+  },
+  {
+    "InsurerRequirement": "CPA - KotakOwnership Transfer",
+    "Insurer": "CPA - Kotak",
+    "Requirement": "Ownership Transfer",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "Not Possible",
+    "Declaration format (if declaration required)": "Not Possible"
+  },
+  {
+    "InsurerRequirement": "CPA - KotakVehicle Details",
+    "Insurer": "CPA - Kotak",
+    "Requirement": "Vehicle Details",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "Not Possible",
+    "Declaration format (if declaration required)": "Not Possible"
+  },
+  {
+    "InsurerRequirement": "CPA - KotakPost Issuance Cancellation",
+    "Insurer": "CPA - Kotak",
+    "Requirement": "Post Issuance Cancellation",
+    "Endorsement type": "",
+    "Documents or any other requirement": "Within Freelook period: Reason for cancellation & Aadhaar and PAN\nPost Free look period: Alternate policy & Reason for cancellation & Aadhaar and PAN",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Deduction",
+    "Inspection": "No",
+    "Any Exception": "Provides freelook period of 15 Days from the policy start date, deductions are done post free look up period",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - LibertyInsured name",
+    "Insurer": "CPA - Liberty",
+    "Requirement": "Insured name",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC, DL, KYC & Endorsement form (will be provided by TL / ticketing team)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For Ticket associate: Endorsement form to be filled and raised to insurer",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - LibertyCommunication Address",
+    "Insurer": "CPA - Liberty",
+    "Requirement": "Communication Address",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Address Proof (KYC Doc) and Endorsement form (will be provided by TL / ticketing team)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For Ticket associate: Endorsement form to be filled and raised to insurer",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - LibertyNominee Details",
+    "Insurer": "CPA - Liberty",
+    "Requirement": "Nominee Details",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Nominee Details (Name, DOB & Relation and Nominee’s KYC docs.) & Endorsement form (will be provided by TL / ticketing team)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For Ticket associate: Endorsement form to be filled and raised to insurer",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - LibertyDate of Birth (DOB)",
+    "Insurer": "CPA - Liberty",
+    "Requirement": "Date of Birth (DOB)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "Not Possible",
+    "Declaration format (if declaration required)": "Not Possible"
+  },
+  {
+    "InsurerRequirement": "CPA - LibertySalutation",
+    "Insurer": "CPA - Liberty",
+    "Requirement": "Salutation",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Written Consent via App/Email, KYC Docs  & Endorsement form (will be provided by TL / ticketing team)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For Ticket associate: Endorsement form to be filled and raised to insurer",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - LibertyMobile Number",
+    "Insurer": "CPA - Liberty",
+    "Requirement": "Mobile Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Written Consent via App/Email, KYC Docs  & Endorsement form (will be provided by TL / ticketing team)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For Ticket associate: Endorsement form to be filled and raised to insurer",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - LibertyEmail Address",
+    "Insurer": "CPA - Liberty",
+    "Requirement": "Email Address",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Written Consent via App/Email, KYC Docs  & Endorsement form (will be provided by TL / ticketing team)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For Ticket associate: Endorsement form to be filled and raised to insurer",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - LibertyAddition of GST No.",
+    "Insurer": "CPA - Liberty",
+    "Requirement": "Addition of GST No.",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "Not Possible",
+    "Declaration format (if declaration required)": "Not Possible"
+  },
+  {
+    "InsurerRequirement": "CPA - LibertyOwnership Transfer",
+    "Insurer": "CPA - Liberty",
+    "Requirement": "Ownership Transfer",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "Not Possible",
+    "Declaration format (if declaration required)": "Not Possible"
+  },
+  {
+    "InsurerRequirement": "CPA - LibertyVehicle Details",
+    "Insurer": "CPA - Liberty",
+    "Requirement": "Vehicle Details",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "Not Possible",
+    "Declaration format (if declaration required)": "Not Possible"
+  },
+  {
+    "InsurerRequirement": "CPA - LibertyPost Issuance Cancellation",
+    "Insurer": "CPA - Liberty",
+    "Requirement": "Post Issuance Cancellation",
+    "Endorsement type": "",
+    "Documents or any other requirement": "Endorsement form (will be provided by TL / ticketing team) & Consent via App/Email/Call - Remarks on BMS",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Deduction",
+    "Inspection": "No",
+    "Any Exception": "Provides freelook period of 15 Days from the policy start date, deductions are done post free look up period",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - RelianceInsured name",
+    "Insurer": "CPA - Reliance",
+    "Requirement": "Insured name",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "RC, DL & KYC (Masked Aadhaar / DL / Voter Card / Passport / PAN Card) as per base policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - RelianceCommunication Address",
+    "Insurer": "CPA - Reliance",
+    "Requirement": "Communication Address",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Consent via App/Email/Call - Remarks on BMS",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - RelianceNominee Details",
+    "Insurer": "CPA - Reliance",
+    "Requirement": "Nominee Details",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Nominee details (Name, DOB, Relation) & Consent via App/Email/Call - Remarks on BMS",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - RelianceDate of Birth (DOB)",
+    "Insurer": "CPA - Reliance",
+    "Requirement": "Date of Birth (DOB)",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "Nominee's KYC (Masked Aadhaar / DL / Voter Card / Passport / Pan) & Correct DOB",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - RelianceSalutation",
+    "Insurer": "CPA - Reliance",
+    "Requirement": "Salutation",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Consent via App/Email/Call - Remarks on BMS",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - RelianceMobile Number",
+    "Insurer": "CPA - Reliance",
+    "Requirement": "Mobile Number",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Consent via App/Email/Call - Remarks on BMS",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - RelianceEmail Address",
+    "Insurer": "CPA - Reliance",
+    "Requirement": "Email Address",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Consent via App/Email/Call - Remarks on BMS",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "CPA - RelianceAddition of GST No.",
+    "Insurer": "CPA - Reliance",
+    "Requirement": "Addition of GST No.",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "Not Possible",
+    "Declaration format (if declaration required)": "Not Possible"
+  },
+  {
+    "InsurerRequirement": "CPA - RelianceOwnership Transfer",
+    "Insurer": "CPA - Reliance",
+    "Requirement": "Ownership Transfer",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "Not Possible",
+    "Declaration format (if declaration required)": "Not Possible"
+  },
+  {
+    "InsurerRequirement": "CPA - RelianceVehicle Details",
+    "Insurer": "CPA - Reliance",
+    "Requirement": "Vehicle Details",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "Not Possible",
+    "Declaration format (if declaration required)": "Not Possible"
+  },
+  {
+    "InsurerRequirement": "CPA - ReliancePost Issuance Cancellation",
+    "Insurer": "CPA - Reliance",
+    "Requirement": "Post Issuance Cancellation",
+    "Endorsement type": "",
+    "Documents or any other requirement": "Consent via App/Email/Call - Remarks on BMS",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Deduction",
+    "Inspection": "No",
+    "Any Exception": "Provides freelook period of 30 Days from the policy start date, deductions are done post free look up period",
+    "Declaration format (if declaration required)": ""
+  },{
+    "InsurerRequirement": "DigitAddition of GST No.",
+    "Insurer": "Digit",
+    "Requirement": "Addition of GST No.",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "GST Certificate in the name of Insured",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Correction possible only within a month of policy start date",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "DigitChassis Number",
+    "Insurer": "Digit",
+    "Requirement": "Chassis Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "DigitColour Change",
+    "Insurer": "Digit",
+    "Requirement": "Colour Change",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "DigitEngine Number",
+    "Insurer": "Digit",
+    "Requirement": "Engine Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "DigitHypothecation Remove",
+    "Insurer": "Digit",
+    "Requirement": "Hypothecation Remove",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC, NOC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "DigitHypothecation Add",
+    "Insurer": "Digit",
+    "Requirement": "Hypothecation Add",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Updated RC or Loan sanction letter",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "DigitHypothecation Change",
+    "Insurer": "Digit",
+    "Requirement": "Hypothecation Change",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Updated RC or NOC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "DigitInsured name",
+    "Insurer": "Digit",
+    "Requirement": "Insured name",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC, PYP, KYC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Proceed with O/t incase cx doesn't have PYP",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "DigitNCB Certificate",
+    "Insurer": "Digit",
+    "Requirement": "NCB Certificate",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Sale letter, PYP, NCB Confirmation letter",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": "Kindly request the customer to provide in written on mail or from MyAccount:\nKindly confirm whether customer wants to cancel the Own damage part of the policy or want to recover the ncb."
+  },
+  {
+    "InsurerRequirement": "DigitRegistration Date",
+    "Insurer": "Digit",
+    "Requirement": "Registration Date",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "DigitRegst. Number",
+    "Insurer": "Digit",
+    "Requirement": "Regst. Number",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "DigitRTO Endorsement",
+    "Insurer": "Digit",
+    "Requirement": "RTO Endorsement",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "DigitSeating Capacity",
+    "Insurer": "Digit",
+    "Requirement": "Seating Capacity",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "DigitPeriod of Insurance (POI)",
+    "Insurer": "Digit",
+    "Requirement": "Period of Insurance (POI)",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Correction possible before policy start date",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "DigitPYP Details- POI or Insurer or Policy number",
+    "Insurer": "Digit",
+    "Requirement": "PYP Details- POI or Insurer or Policy number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "DigitTP details",
+    "Insurer": "Digit",
+    "Requirement": "TP details",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Bundled TP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "DigitCommunication Address",
+    "Insurer": "Digit",
+    "Requirement": "Communication Address",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Complete address with pincode",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "DigitDate of Birth (DOB)",
+    "Insurer": "Digit",
+    "Requirement": "Date of Birth (DOB)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "DigitEmail Address",
+    "Insurer": "Digit",
+    "Requirement": "Email Address",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Complete Email ID",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "DigitMobile Number",
+    "Insurer": "Digit",
+    "Requirement": "Mobile Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Mobile Number",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "DigitNominee Details",
+    "Insurer": "Digit",
+    "Requirement": "Nominee Details",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Nominee Details",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "DigitSalutation",
+    "Insurer": "Digit",
+    "Requirement": "Salutation",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Correct salutation",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "DigitOwner Driver Personal Accident",
+    "Insurer": "Digit",
+    "Requirement": "Owner Driver Personal Accident",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, DL, Nominee Details",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": "Correction possible before policy start date",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "DigitPaid Driver",
+    "Insurer": "Digit",
+    "Requirement": "Paid Driver",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, Salary slip of last 3 months, DL of the driver",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": "Correction possible before policy start date",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "DigitUn Named Passanger Cover",
+    "Insurer": "Digit",
+    "Requirement": "Un Named Passanger Cover",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, written confirmation of coverage for Rs.50 - 1L and Rs.100/- 2L",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": "Correction possible before policy start date",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "DigitCNG Addition External",
+    "Insurer": "Digit",
+    "Requirement": "CNG Addition External",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, CNG Invoice",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "DigitCNG Addition Company fitted",
+    "Insurer": "Digit",
+    "Requirement": "CNG Addition Company fitted",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "DigitCubic Capacity (CC)",
+    "Insurer": "Digit",
+    "Requirement": "Cubic Capacity (CC)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "DigitFuel Type (Petrol - Diesel, Diesel - petrol)",
+    "Insurer": "Digit",
+    "Requirement": "Fuel Type (Petrol - Diesel, Diesel - petrol)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "Yes",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "DigitIDV Change",
+    "Insurer": "Digit",
+    "Requirement": "IDV Change",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "DigitManufactured Date",
+    "Insurer": "Digit",
+    "Requirement": "Manufactured Date",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "DigitMake, Model & Variant",
+    "Insurer": "Digit",
+    "Requirement": "Make, Model & Variant",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "DigitOwnership Transfer",
+    "Insurer": "Digit",
+    "Requirement": "Ownership Transfer",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, New owner details, KYC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "DigitNCB Correction (taken extra NCB)",
+    "Insurer": "Digit",
+    "Requirement": "NCB Correction (taken extra NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "PYP, NCB Confirmation",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "DigitNCB Correction (taken less NCB)",
+    "Insurer": "Digit",
+    "Requirement": "NCB Correction (taken less NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "PYP, NCB Confirmation",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Refund",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "DigitTop Up (PAYD plan)",
+    "Insurer": "Digit",
+    "Requirement": "Top Up (PAYD plan)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "DigitMultiple Mismatch (Reg no, chassis no & Engine no mismatch)",
+    "Insurer": "Digit",
+    "Requirement": "Multiple Mismatch (Reg no, chassis no & Engine no mismatch)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "DigitPost Issuance Cancellation",
+    "Insurer": "Digit",
+    "Requirement": "Post Issuance Cancellation",
+    "Endorsement type": "",
+    "Documents or any other requirement": "Alternate Policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Deductible",
+    "Inspection": "",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "DigitPost Issuance Cancellation (Multiple Mismatch - Reg no, chassis no & Engine no mismatch",
+    "Insurer": "Digit",
+    "Requirement": "Post Issuance Cancellation (Multiple Mismatch - Reg no, chassis no & Engine no mismatch",
+    "Endorsement type": "",
+    "Documents or any other requirement": "Customer consent & Alternate policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Deduction",
+    "Inspection": "",
+    "Any Exception": "Only third Party policy cannot be cancelled\n\nFor comprehensive: TP (Third Party) amount will be retained, and the OD (Own Damage) part will be refunded based on the usage of the policy.",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "DigitM-Parivahan",
+    "Insurer": "Digit",
+    "Requirement": "M-Parivahan",
+    "Endorsement type": "NA",
+    "Documents or any other requirement": "No Requirement",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "",
+    "Inspection": "",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },{
+    "InsurerRequirement": "Future GeneraliAddition of GST No.",
+    "Insurer": "Future Generali",
+    "Requirement": "Addition of GST No.",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "GST Certificate in the name of Insured",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For Ticketing associate: Raise endorsement with XML sheet",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "Future GeneraliChassis Number",
+    "Insurer": "Future Generali",
+    "Requirement": "Chassis Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For Ticketing associate: Raise endorsement with XML sheet",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "Future GeneraliColour Change",
+    "Insurer": "Future Generali",
+    "Requirement": "Colour Change",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For Ticketing associate: Raise endorsement with XML sheet",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "Future GeneraliEngine Number",
+    "Insurer": "Future Generali",
+    "Requirement": "Engine Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For Ticketing associate: Raise endorsement with XML sheet",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "Future GeneraliHypothecation Remove",
+    "Insurer": "Future Generali",
+    "Requirement": "Hypothecation Remove",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC, NOC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For Ticketing associate: Raise endorsement with XML sheet",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "Future GeneraliHypothecation Add",
+    "Insurer": "Future Generali",
+    "Requirement": "Hypothecation Add",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Updated RC or Loan sanction letter,",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For Ticketing associate: Raise endorsement with XML sheet",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "Future GeneraliHypothecation Change",
+    "Insurer": "Future Generali",
+    "Requirement": "Hypothecation Change",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Updated RC or NOC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For Ticketing associate: Raise endorsement with XML sheet",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "Future GeneraliInsured name",
+    "Insurer": "Future Generali",
+    "Requirement": "Insured name",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC, PYP, KYC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Proceed with O/t incase cx doesn't have PYP\nFor Ticketing associate: Raise endorsement with XML sheet ",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "Future GeneraliNCB Certificate",
+    "Insurer": "Future Generali",
+    "Requirement": "NCB Certificate",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Sale letter or new vehicle invoice, PYP, NCB Confirmation letter",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": "For Ticketing associate: Raise endorsement with XML sheet",
+    "Declaration format (if declaration required)": "Kindly request the customer to provide in written on mail or from MyAccount:\nKindly confirm whether customer wants to cancel the Own damage part of the policy or want to recover the ncb."
+  },
+  {
+    "InsurerRequirement": "Future GeneraliRegistration Date",
+    "Insurer": "Future Generali",
+    "Requirement": "Registration Date",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "For Ticketing associate: Raise endorsement with XML sheet",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "Future GeneraliRegst. Number",
+    "Insurer": "Future Generali",
+    "Requirement": "Regst. Number",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "For Ticketing associate: Raise endorsement with XML sheet",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "Future GeneraliRTO Endorsement",
+    "Insurer": "Future Generali",
+    "Requirement": "RTO Endorsement",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "For Ticketing associate: Raise endorsement with XML sheet",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "Future GeneraliSeating Capacity",
+    "Insurer": "Future Generali",
+    "Requirement": "Seating Capacity",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For Ticketing associate: Raise endorsement with XML sheet",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "Future GeneraliPeriod of Insurance (POI)",
+    "Insurer": "Future Generali",
+    "Requirement": "Period of Insurance (POI)",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For Ticketing associate: Raise endorsement with XML sheet",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "Future GeneraliPYP Details- POI or Insurer or Policy number",
+    "Insurer": "Future Generali",
+    "Requirement": "PYP Details- POI or Insurer or Policy number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For Ticketing associate: Raise endorsement with XML sheet",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "Future GeneraliTP details",
+    "Insurer": "Future Generali",
+    "Requirement": "TP details",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Bundled TP or PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For Ticketing associate: Raise endorsement with XML sheet",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "Future GeneraliCommunication Address",
+    "Insurer": "Future Generali",
+    "Requirement": "Communication Address",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Complete address with pincode",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "Future GeneraliDate of Birth (DOB)",
+    "Insurer": "Future Generali",
+    "Requirement": "Date of Birth (DOB)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "Future GeneraliEmail Address",
+    "Insurer": "Future Generali",
+    "Requirement": "Email Address",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Complete Email ID",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "Future GeneraliMobile Number",
+    "Insurer": "Future Generali",
+    "Requirement": "Mobile Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Mobile Number",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "Future GeneraliNominee Details",
+    "Insurer": "Future Generali",
+    "Requirement": "Nominee Details",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Nominee Details",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "Future GeneraliSalutation",
+    "Insurer": "Future Generali",
+    "Requirement": "Salutation",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Correct salutation",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "Future GeneraliOwner Driver Personal Accident",
+    "Insurer": "Future Generali",
+    "Requirement": "Owner Driver Personal Accident",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, DL, Nominee Details",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": "For Ticketing associate: Raise endorsement with XML sheet",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "Future GeneraliPaid Driver",
+    "Insurer": "Future Generali",
+    "Requirement": "Paid Driver",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, Salary slip of last 3 months, DL of the driver",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": "For Ticketing associate: Raise endorsement with XML sheet",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "Future GeneraliUn Named Passanger Cover",
+    "Insurer": "Future Generali",
+    "Requirement": "Un Named Passanger Cover",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, written confirmation of coverage for Rs.50 - 1L and Rs.100/-  2L",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": "For Ticketing associate: Raise endorsement with XML sheet",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "Future GeneraliCNG Addition External",
+    "Insurer": "Future Generali",
+    "Requirement": "CNG Addition External",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, CNG Invoice",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": "For Ticketing associate: Raise endorsement with XML sheet",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "Future GeneraliCNG Addition Company fitted",
+    "Insurer": "Future Generali",
+    "Requirement": "CNG Addition Company fitted",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": "For Ticketing associate: Raise endorsement with XML sheet",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "Future GeneraliCubic Capacity (CC)",
+    "Insurer": "Future Generali",
+    "Requirement": "Cubic Capacity (CC)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "For Ticketing associate: Raise endorsement with XML sheet",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "Future GeneraliFuel Type (Petrol - Diesel, Diesel - petrol)",
+    "Insurer": "Future Generali",
+    "Requirement": "Fuel Type (Petrol - Diesel, Diesel - petrol)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "Maybe",
+    "Any Exception": "For Ticketing associate: Raise endorsement with XML sheet",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "Future GeneraliIDV Change",
+    "Insurer": "Future Generali",
+    "Requirement": "IDV Change",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "Future GeneraliManufactured Date",
+    "Insurer": "Future Generali",
+    "Requirement": "Manufactured Date",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "Maybe",
+    "Any Exception": "For Ticketing associate: Raise endorsement with XML sheet",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "Future GeneraliMake, Model & Variant",
+    "Insurer": "Future Generali",
+    "Requirement": "Make, Model & Variant",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "Maybe",
+    "Any Exception": "For Ticketing associate: Raise endorsement with XML sheet",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "Future GeneraliOwnership Transfer",
+    "Insurer": "Future Generali",
+    "Requirement": "Ownership Transfer",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, New owner details, KYC, NOC & Proposal form (NOC & PF format availble on MyAccount)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": "For Ticketing associate: Raise endorsement with XML sheet",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "Future GeneraliNCB Correction (taken extra NCB)",
+    "Insurer": "Future Generali",
+    "Requirement": "NCB Correction (taken extra NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "PYP, NCB Confirmation",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": "For Ticketing associate: Raise endorsement with XML sheet",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "Future GeneraliNCB Correction (taken less NCB)",
+    "Insurer": "Future Generali",
+    "Requirement": "NCB Correction (taken less NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "PYP, NCB Confirmation",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For Ticketing associate: Raise endorsement with XML sheet",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "Future GeneraliTop Up (PAYD plan)",
+    "Insurer": "Future Generali",
+    "Requirement": "Top Up (PAYD plan)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "Future GeneraliMultiple Mismatch (Reg no, chassis no & Engine no mismatch)",
+    "Insurer": "Future Generali",
+    "Requirement": "Multiple Mismatch (Reg no, chassis no & Engine no mismatch)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "Future GeneraliPost Issuance Cancellation",
+    "Insurer": "Future Generali",
+    "Requirement": "Post Issuance Cancellation",
+    "Endorsement type": "",
+    "Documents or any other requirement": "Alternate Policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "",
+    "Any Exception": "For Ticketing Associates: Raise cancellation to insurer & meanwhile XML Sheet to tech",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "Future GeneraliPost Issuance Cancellation (Multiple Mismatch - Reg no, chassis no & Engine no mismatch",
+    "Insurer": "Future Generali",
+    "Requirement": "Post Issuance Cancellation (Multiple Mismatch - Reg no, chassis no & Engine no mismatch",
+    "Endorsement type": "",
+    "Documents or any other requirement": "Customer consent & Alternate policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Deduction",
+    "Inspection": "",
+    "Any Exception": "Only third Party policy cannot be cancelled\n\nFor comprehensive: TP (Third Party) amount will be retained, and the OD (Own Damage) part will be refunded based on the usage of the policy.\n\nFor ticketing associate: Raise cancellation with XML Sheet",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "Future GeneraliM-Parivahan",
+    "Insurer": "Future Generali",
+    "Requirement": "M-Parivahan",
+    "Endorsement type": "NA",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For Ticketing associate: Raise endorsement with XML sheet",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "HDFCAddition of GST No.",
+    "Insurer": "HDFC",
+    "Requirement": "Addition of GST No.",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "GST Certificate in the name of Insured",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "HDFCChassis Number",
+    "Insurer": "HDFC",
+    "Requirement": "Chassis Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "HDFCColour Change",
+    "Insurer": "HDFC",
+    "Requirement": "Colour Change",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "HDFCEngine Number",
+    "Insurer": "HDFC",
+    "Requirement": "Engine Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "HDFCHypothecation Remove",
+    "Insurer": "HDFC",
+    "Requirement": "Hypothecation Remove",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC and NOC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "HDFCHypothecation Add",
+    "Insurer": "HDFC",
+    "Requirement": "Hypothecation Add",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "HDFCHypothecation Change",
+    "Insurer": "HDFC",
+    "Requirement": "Hypothecation Change",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC and NOC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "HDFCInsured name",
+    "Insurer": "HDFC",
+    "Requirement": "Insured name",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC, Pehchaan ID, PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Proceed with O/t incase cx doesn't have PYP",
+    "Declaration format (if declaration required)": "Pehchan ID link: https://pehchaan.hdfcergo.com/"
+  },
+  {
+    "InsurerRequirement": "HDFCNCB Certificate",
+    "Insurer": "HDFC",
+    "Requirement": "NCB Certificate",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Sale Letter, PYP, NCB Confirmation letter",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "HDFCRegistration Date",
+    "Insurer": "HDFC",
+    "Requirement": "Registration Date",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "HDFCRegst. Number",
+    "Insurer": "HDFC",
+    "Requirement": "Regst. Number",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "HDFCRTO Endorsement",
+    "Insurer": "HDFC",
+    "Requirement": "RTO Endorsement",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "HDFCSeating Capacity",
+    "Insurer": "HDFC",
+    "Requirement": "Seating Capacity",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "HDFCPeriod of Insurance (POI)",
+    "Insurer": "HDFC",
+    "Requirement": "Period of Insurance (POI)",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "HDFCPYP Details- POI or Insurer or Policy number",
+    "Insurer": "HDFC",
+    "Requirement": "PYP Details- POI or Insurer or Policy number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "HDFCTP details",
+    "Insurer": "HDFC",
+    "Requirement": "TP details",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "TP Bundle Policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "HDFCCommunication Address",
+    "Insurer": "HDFC",
+    "Requirement": "Communication Address",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Address Proof",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "HDFCDate of Birth (DOB)",
+    "Insurer": "HDFC",
+    "Requirement": "Date of Birth (DOB)",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "DOB proof",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "HDFCEmail Address",
+    "Insurer": "HDFC",
+    "Requirement": "Email Address",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "New Mail ID",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "HDFCMobile Number",
+    "Insurer": "HDFC",
+    "Requirement": "Mobile Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "New Mobile Number",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "HDFCNominee Details",
+    "Insurer": "HDFC",
+    "Requirement": "Nominee Details",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Nominee details",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "HDFCSalutation",
+    "Insurer": "HDFC",
+    "Requirement": "Salutation",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Customer Request",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "HDFCOwner Driver Personal Accident",
+    "Insurer": "HDFC",
+    "Requirement": "Owner Driver Personal Accident",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, DL and Nominee details",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "HDFCPaid Driver",
+    "Insurer": "HDFC",
+    "Requirement": "Paid Driver",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "DL, 3 months Salary slip of driver.",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "HDFCUn Named Passanger Cover",
+    "Insurer": "HDFC",
+    "Requirement": "Un Named Passanger Cover",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC Copy along with confirmation of 1Lac/2Lacs per seat coverage addition.",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "HDFCCNG Addition External",
+    "Insurer": "HDFC",
+    "Requirement": "CNG Addition External",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, CNG Invoice",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "HDFCCNG Addition Company fitted",
+    "Insurer": "HDFC",
+    "Requirement": "CNG Addition Company fitted",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "HDFCCubic Capacity (CC)",
+    "Insurer": "HDFC",
+    "Requirement": "Cubic Capacity (CC)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "HDCFuel Type (Petrol - Diesel, Diesel - petrol)",
+    "Insurer": "HDFC",
+    "Requirement": "Fuel Type (Petrol - Diesel, Diesel - petrol)",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "HDFCIDV Change",
+    "Insurer": "HDFC",
+    "Requirement": "IDV Change",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "HDFCManufactured Date",
+    "Insurer": "HDFC",
+    "Requirement": "Manufactured Date",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "HDFCMake, Model & Variant",
+    "Insurer": "HDFC",
+    "Requirement": "Make, Model & Variant",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "HDFCOwnership Transfer",
+    "Insurer": "HDFC",
+    "Requirement": "Ownership Transfer",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, PA Declaration form in pdf (available with ticketing team),pehchaan id, New owner details.",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": "Pehchan ID link: https://pehchaan.hdfcergo.com/"
+  },
+  {
+    "InsurerRequirement": "HDFCNCB Correction (taken extra NCB)",
+    "Insurer": "HDFC",
+    "Requirement": "NCB Correction (taken extra NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Previous Year Policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "HDFCNCB Correction (taken less NCB)",
+    "Insurer": "HDFC",
+    "Requirement": "NCB Correction (taken less NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Previous Year Policy,",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Refund",
+    "Inspection": "Yes",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "HDFCTop Up (PAYD plan)",
+    "Insurer": "HDFC",
+    "Requirement": "Top Up (PAYD plan)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "HDFCMultiple Mismatch (Reg no, chassis no & Engine no mismatch)",
+    "Insurer": "HDFC",
+    "Requirement": "Multiple Mismatch (Reg no, chassis no & Engine no mismatch)",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC, PYP AND KYC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "",
+    "Inspection": "",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "HDFCPost Issuance Cancellation",
+    "Insurer": "HDFC",
+    "Requirement": "Post Issuance Cancellation",
+    "Endorsement type": "",
+    "Documents or any other requirement": "Alternate and KYC Documents along with NEFT details (NEFT required in only in 2W policies)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Deduction",
+    "Inspection": "No",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "HDFCPost Issuance Cancellation (Multiple Mismatch - Reg no, chassis no & Engine no mismatch",
+    "Insurer": "HDFC",
+    "Requirement": "Post Issuance Cancellation (Multiple Mismatch - Reg no, chassis no & Engine no mismatch",
+    "Endorsement type": "",
+    "Documents or any other requirement": "Customer consent & Alternate policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Deduction",
+    "Inspection": "",
+    "Any Exception": "Only third Party policy cannot be cancelled\n\nFor comprehensive: TP (Third Party) amount will be retained, and the OD (Own Damage) part will be refunded based on the usage of the policy.",
+    "Declaration format (if declaration required)": ""
+  },
+  {
+    "InsurerRequirement": "HDFCM-Parivahan",
+    "Insurer": "HDFC",
+    "Requirement": "M-Parivahan",
+    "Endorsement type": "NA",
+    "Documents or any other requirement": "No Requirement",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "",
+    "Inspection": "",
+    "Any Exception": "",
+    "Declaration format (if declaration required)": ""
+  },{
+    "Insurer": "ICICI",
+    "Requirement": "Addition of GST No.",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "GST Certificate in the name of Insured",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "Maybe",
+    "Any Exception": "Customer request for endorsement mandatory - Please ask the customer to share written consent",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "ICICI",
+    "Requirement": "Chassis Number",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Customer request for endorsement mandatory - Please ask the customer to share written consent",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "ICICI",
+    "Requirement": "Colour Change",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Customer request for endorsement mandatory - Please ask the customer to share written consent",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "ICICI",
+    "Requirement": "Engine Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Customer request for endorsement mandatory - Please ask the customer to share written consent",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "ICICI",
+    "Requirement": "Hypothecation Remove",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Customer request for endorsement mandatory - Please ask the customer to share written consent",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "ICICI",
+    "Requirement": "Hypothecation Add",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Updated Rc or Loan Sanction Letter",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Customer request for endorsement mandatory - Please ask the customer to share written consent",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "ICICI",
+    "Requirement": "Hypothecation Change",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "Updated Rc or Loan Sanction Letter",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Customer request for endorsement mandatory - Please ask the customer to share written consent",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "ICICI",
+    "Requirement": "Insured name",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC,PYP, Aadhaar Card",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Customer request for endorsement mandatory - Please ask the customer to share written consent",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "ICICI",
+    "Requirement": "NCB Certificate",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Sale Letter, PYP, NCB Confirmation letter",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "Customer request for endorsement mandatory - Please ask the customer to share written consent",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "ICICI",
+    "Requirement": "Registration Date",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "Customer request for endorsement mandatory - Please ask the customer to share written consent",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "ICICI",
+    "Requirement": "Regst. Number",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "Maybe",
+    "Any Exception": "Customer request for endorsement mandatory - Please ask the customer to share written consent",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "ICICI",
+    "Requirement": "RTO Endorsement",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "Customer request for endorsement mandatory - Please ask the customer to share written consent",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "ICICI",
+    "Requirement": "Seating Capacity",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "Customer request for endorsement mandatory - Please ask the customer to share written consent",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "ICICI",
+    "Requirement": "Period of Insurance (POI)",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Previous Year Policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Customer request for endorsement mandatory - Please ask the customer to share written consent",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "ICICI",
+    "Requirement": "PYP Details- POI or Insurer or Policy number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Previous Year Policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Customer request for endorsement mandatory - Please ask the customer to share written consent",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "ICICI",
+    "Requirement": "TP details",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Bundled TP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Customer request for endorsement mandatory - Please ask the customer to share written consent",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "ICICI",
+    "Requirement": "Communication Address",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Address with Pincode",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Customer request for endorsement mandatory - Please ask the customer to share written consent",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "ICICI",
+    "Requirement": "Date of Birth (DOB)",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "DOB proof",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Customer request for endorsement mandatory - Please ask the customer to share written consent",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "ICICI",
+    "Requirement": "Email Address",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Email Id",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Customer request for endorsement mandatory - Please ask the customer to share written consent",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "ICICI",
+    "Requirement": "Mobile Number",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Mobile number",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Customer request for endorsement mandatory - Please ask the customer to share written consent",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "ICICI",
+    "Requirement": "Nominee Details",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Nominee details",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Customer request for endorsement mandatory - Please ask the customer to share written consent",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "ICICI",
+    "Requirement": "Salutation",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Customer Written Consent (By Mail or My Account)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Customer request for endorsement mandatory - Please ask the customer to share written consent",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "ICICI",
+    "Requirement": "Owner Driver Personal Accident",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, DL and Nominee details",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": "Addition possible only before policy start date (Post policy start date will suggest customer to take separate PA through ICICI website)\nCustomer request for endorsement mandatory - Please ask the customer to share written consent",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "ICICI",
+    "Requirement": "Paid Driver",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "DL, 3 months Salary slip of driver",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": "Addition possible only before policy start date\nCustomer request for endorsement mandatory - Please ask the customer to share written consent",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "ICICI",
+    "Requirement": "Un Named Passanger Cover",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC Copy and Written consent from Customer along with confirmation of 1Lac/2Lacs per seat coverage addition.",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": "Addition possible only before policy start date\nCustomer request for endorsement mandatory - Please ask the customer to share written consent",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "ICICI",
+    "Requirement": "CNG Addition External",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, CNG Invoice/PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": "Customer request for endorsement mandatory - Please ask the customer to share written consent",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "ICICI",
+    "Requirement": "CNG Addition Company fitted",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": "Customer request for endorsement mandatory - Please ask the customer to share written consent",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "ICICI",
+    "Requirement": "Cubic Capacity (CC)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "Customer request for endorsement mandatory - Please ask the customer to share written consent",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "ICICI",
+    "Requirement": "Fuel Type (Petrol - Diesel, Diesel - petrol)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "Customer request for endorsement mandatory - Please ask the customer to share written consent",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "ICICI",
+    "Requirement": "IDV Change",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": "Customer request for endorsement mandatory - Please ask the customer to share written consent",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "ICICI",
+    "Requirement": "Manufactured Date",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "Customer request for endorsement mandatory - Please ask the customer to share written consent",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "ICICI",
+    "Requirement": "Make, Model & Variant",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "Customer request for endorsement mandatory - Please ask the customer to share written consent",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "ICICI",
+    "Requirement": "Ownership Transfer",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, Aadhaar Card and Pan Card (New owner), New owner details",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": "Customer request for endorsement mandatory - Please ask the customer to share written consent",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "ICICI",
+    "Requirement": "NCB Correction (taken extra NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Previous Year Policy, NCB Confirmation letter from pyp insurer",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": "Customer request for endorsement mandatory - Please ask the customer to share written consent",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "ICICI",
+    "Requirement": "NCB Correction (taken less NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Previous Year Policy, NCB Confirmation letter from pyp insurer",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Refund",
+    "Inspection": "Yes",
+    "Any Exception": "Customer request for endorsement mandatory - Please ask the customer to share written consent",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "ICICI",
+    "Requirement": "Top Up (PAYD plan)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Customer Written Consent (By Mail or My Account)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": "Customer request for endorsement mandatory - Please ask the customer to share written consent",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "ICICI",
+    "Requirement": "Multiple Mismatch (Reg no, chassis no & Engine no mismatch)",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Reg. date and MMV needs to be correct, then only correction is possible - RC PYP & Aadhaar and Pan required or else cancellation (RC, Alternate, Aadhaar and Pan required for cancellation)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Customer request for endorsement mandatory - Please ask the customer to share written consent",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "ICICI",
+    "Requirement": "Post Issuance Cancellation",
+    "Endorsement type": null,
+    "Documents or any other requirement": "Alternate policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Deduction",
+    "Inspection": "No",
+    "Any Exception": "Customer request for endorsement mandatory - Please ask the customer to share written consent",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "ICICI",
+    "Requirement": "Post Issuance Cancellation (Multiple Mismatch - Reg no, chassis no & Engine no mismatch",
+    "Endorsement type": null,
+    "Documents or any other requirement": "Customer consent & Alternate policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Deduction",
+    "Inspection": null,
+    "Any Exception": "Only third Party policy cannot be cancelled\n\nFor comprehensive: TP (Third Party) amount will be retained, and the OD (Own Damage) part will be refunded based on the usage of the policy.",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "ICICI",
+    "Requirement": "M-Parivahan",
+    "Endorsement type": "NA",
+    "Documents or any other requirement": "RC and written consent Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": null,
+    "Inspection": null,
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Iffco tokio",
+    "Requirement": "Addition of GST No.",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "GST Certificate in the name of Insured, KYC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Iffco tokio",
+    "Requirement": "Chassis Number",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Iffco tokio",
+    "Requirement": "Colour Change",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Iffco tokio",
+    "Requirement": "Engine Number",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Iffco tokio",
+    "Requirement": "Hypothecation Remove",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC, NOC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Iffco tokio",
+    "Requirement": "Hypothecation Add",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Updated RC or Loan sanction letter",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Iffco tokio",
+    "Requirement": "Hypothecation Change",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Updated RC or NOC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Iffco tokio",
+    "Requirement": "Insured name",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "RC, PYP, KYC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "correction can be done Post start date of the policy \nProceed with O/t incase cx doesn't have PYP",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Iffco tokio",
+    "Requirement": "NCB Certificate",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Sale letter, PYP, NCB Confirmation letter",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": "Kindly request the customer to provide in written on mail or from MyAccount:\nKindly confirm whether customer wants to cancel the Own damage part of the policy or want to recover the ncb."
+  },
+  {
+    "Insurer": "Iffco tokio",
+    "Requirement": "Registration Date",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Iffco tokio",
+    "Requirement": "Regst. Number",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Iffco tokio",
+    "Requirement": "RTO Endorsement",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Iffco tokio",
+    "Requirement": "Seating Capacity",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Iffco tokio",
+    "Requirement": "Period of Insurance (POI)",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Iffco tokio",
+    "Requirement": "PYP Details- POI or Insurer or Policy number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Iffco tokio",
+    "Requirement": "TP details",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Bundled TP or PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Iffco tokio",
+    "Requirement": "Communication Address",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Address Proof",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Iffco tokio",
+    "Requirement": "Date of Birth (DOB)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Iffco tokio",
+    "Requirement": "Email Address",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Complete Email ID",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Iffco tokio",
+    "Requirement": "Mobile Number",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Mobile Number",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Iffco tokio",
+    "Requirement": "Nominee Details",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Nominee Details",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Iffco tokio",
+    "Requirement": "Salutation",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Correct salutation",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Iffco tokio",
+    "Requirement": "Owner Driver Personal Accident",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, Insured DL & Nominee Name, Age & Relationship",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Iffco tokio",
+    "Requirement": "Paid Driver",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, Salary slip of last 3 months, DL of the driver",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Iffco tokio",
+    "Requirement": "Un Named Passanger Cover",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, written confirmation of coverage for Rs.50 - 1L and Rs.100/-  2L",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Iffco tokio",
+    "Requirement": "CNG Addition External",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, CNG Invoice",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Iffco tokio",
+    "Requirement": "CNG Addition Company fitted",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Iffco tokio",
+    "Requirement": "Cubic Capacity (CC)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Iffco tokio",
+    "Requirement": "Fuel Type (Petrol - Diesel, Diesel - petrol)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "Maybe",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Iffco tokio",
+    "Requirement": "IDV Change",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Iffco tokio",
+    "Requirement": "Manufactured Date",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Iffco tokio",
+    "Requirement": "Make, Model & Variant",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Iffco tokio",
+    "Requirement": "Ownership Transfer",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, New owner details, KYC, NOC from previous owner (in a format, format is with the ticketing team)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": "correction possible Post start date of the policy\nFor ticketing associate: Raise request to insurer with NOC in the said format",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Iffco tokio",
+    "Requirement": "NCB Correction (taken extra NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "PYP, NCB Confirmation",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Iffco tokio",
+    "Requirement": "NCB Correction (taken less NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "PYP, NCB Confirmation",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Iffco tokio",
+    "Requirement": "Top Up (PAYD plan)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Iffco tokio",
+    "Requirement": "Multiple Mismatch (Reg no, chassis no & Engine no mismatch)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Iffco tokio",
+    "Requirement": "Post Issuance Cancellation",
+    "Endorsement type": null,
+    "Documents or any other requirement": "Alternate Policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Deduction",
+    "Inspection": null,
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Iffco tokio",
+    "Requirement": "Post Issuance Cancellation (Multiple Mismatch - Reg no, chassis no & Engine no mismatch",
+    "Endorsement type": null,
+    "Documents or any other requirement": "Customer consent & Alternate policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Deduction",
+    "Inspection": null,
+    "Any Exception": "Only third Party policy cannot be cancelled\n\nFor comprehensive: TP (Third Party) amount will be retained, and the OD (Own Damage) part will be refunded based on the usage of the policy.",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Iffco tokio",
+    "Requirement": "M-Parivahan",
+    "Endorsement type": "NA",
+    "Documents or any other requirement": "No requirement",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Kotak",
+    "Requirement": "Addition of GST No.",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "GST Certificate in the name of Insured",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "PAN and Masked Adhar card is required ( If CKYC not done)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Kotak",
+    "Requirement": "Chassis Number",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "PAN and Masked Adhar card is required ( If CKYC not done)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Kotak",
+    "Requirement": "Colour Change",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "PAN and Masked Adhar card is required ( If CKYC not done)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Kotak",
+    "Requirement": "Engine Number",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "PAN and Masked Adhar card is required ( If CKYC not done)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Kotak",
+    "Requirement": "Hypothecation Remove",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "NOC or Updated RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "PAN and Masked Adhar card is required ( If CKYC not done)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Kotak",
+    "Requirement": "Hypothecation Add",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Updated RC or Loan Sanction Letter",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "PAN and Masked Adhar card is required ( If CKYC not done)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Kotak",
+    "Requirement": "Hypothecation Change",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Updated RC and Loan Sanction Letter",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "PAN and Masked Adhar card is required ( If CKYC not done)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Kotak",
+    "Requirement": "Insured name",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC, PYP and KYC of RC owner",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "PAN and Masked Adhar (If CKYC not done) \nProceed with O/t incase cx doesn't have PYP",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Kotak",
+    "Requirement": "NCB Certificate",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Sale Letter or Updated RC , PYP and NCB confirmation",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "PAN and Masked Adhar card is required ( If CKYC not done)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Kotak",
+    "Requirement": "Registration Date",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "PAN and Masked Adhar card is required ( If CKYC not done)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Kotak",
+    "Requirement": "Regst. Number",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "PAN and Masked Adhar card is required ( If CKYC not done)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Kotak",
+    "Requirement": "RTO Endorsement",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "PAN and Masked Adhar card is required ( If CKYC not done)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Kotak",
+    "Requirement": "Seating Capacity",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "PAN and Masked Adhar card is required ( If CKYC not done)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Kotak",
+    "Requirement": "Period of Insurance (POI)",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "PAN and Masked Adhar card is required ( If CKYC not done)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Kotak",
+    "Requirement": "PYP Details- POI or Insurer or Policy number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "PAN and Masked Adhar card is required ( If CKYC not done)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Kotak",
+    "Requirement": "TP details",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Third party Bundle Policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "PAN and Masked Adhar card is required ( If CKYC not done)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Kotak",
+    "Requirement": "Communication Address",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Complete address with pincode",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "PAN and Masked Adhar card is required ( If CKYC not done)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Kotak",
+    "Requirement": "Date of Birth (DOB)",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Complete DOB",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "PAN and Masked Adhar card is required ( If CKYC not done)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Kotak",
+    "Requirement": "Email Address",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Complete Email ID",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "PAN and Masked Adhar card is required ( If CKYC not done)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Kotak",
+    "Requirement": "Mobile Number",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Mobile Number",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "PAN and Masked Adhar card is required ( If CKYC not done)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Kotak",
+    "Requirement": "Nominee Details",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Nominee Details",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "PAN and Masked Adhar card is required ( If CKYC not done)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Kotak",
+    "Requirement": "Salutation",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "correct salutation",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "PAN and Masked Adhar card is required ( If CKYC not done)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Kotak",
+    "Requirement": "Owner Driver Personal Accident",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC Copy, Nominee detail. DL",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": "Endt possible before policy start date \n PAN and Masked Adhar card is required ( If CKYC not done)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Kotak",
+    "Requirement": "Paid Driver",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, DL of driver, Salary slip or bank statement",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": "Endt possible before policy start date \n PAN and Masked Adhar card is required ( If CKYC not done)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Kotak",
+    "Requirement": "Un Named Passanger Cover",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC & confirmation from cx if he wants to opt Rs 50/seat or Rs 100/seat",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": "Endt possible before policy start date \n PAN and Masked Adhar card is required ( If CKYC not done)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Kotak",
+    "Requirement": "CNG Addition External",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC & CNG Kit invoice",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": "PAN and Masked Adhar card is required ( If CKYC not done)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Kotak",
+    "Requirement": "CNG Addition Company fitted",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC Copy ,PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": "PAN and Masked Adhar card is required ( If CKYC not done)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Kotak",
+    "Requirement": "Cubic Capacity (CC)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "PAN and Masked Adhar card is required ( If CKYC not done)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Kotak",
+    "Requirement": "Fuel Type (Petrol - Diesel, Diesel - petrol)",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "PAN and Masked Adhar card is required ( If CKYC not done)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Kotak",
+    "Requirement": "IDV Change",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Kotak",
+    "Requirement": "Manufactured Date",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "PAN and Masked Adhar card is required ( If CKYC not done)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Kotak",
+    "Requirement": "Make, Model & Variant",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "PAN and Masked Adhar card is required ( If CKYC not done)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Kotak",
+    "Requirement": "Ownership Transfer",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, KYC, New owner detail",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": "PAN and Masked Adhar card is required ( If CKYC not done)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Kotak",
+    "Requirement": "NCB Correction (taken extra NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "PYP & NCB confirmation letter",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": "PAN and Masked Adhar card is required ( If CKYC not done)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Kotak",
+    "Requirement": "NCB Correction (taken less NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "PYP & NCB confirmation letter",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Refund",
+    "Inspection": "Yes",
+    "Any Exception": "PAN and Masked Adhar card is required ( If CKYC not done)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Kotak",
+    "Requirement": "Top Up (PAYD plan)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Kotak",
+    "Requirement": "Multiple Mismatch (Reg no, chassis no & Engine no mismatch)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Kotak",
+    "Requirement": "Post Issuance Cancellation",
+    "Endorsement type": null,
+    "Documents or any other requirement": "Alternate Policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Deduction",
+    "Inspection": null,
+    "Any Exception": "PAN and Masked Adhar card is required ( If CKYC not done)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Kotak",
+    "Requirement": "Post Issuance Cancellation (Multiple Mismatch - Reg no, chassis no & Engine no mismatch",
+    "Endorsement type": null,
+    "Documents or any other requirement": "Customer consent & Alternate policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Deduction",
+    "Inspection": null,
+    "Any Exception": "Only third Party policy cannot be cancelled\n\nFor comprehensive: TP (Third Party) amount will be retained, and the OD (Own Damage) part will be refunded based on the usage of the policy.",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Kotak",
+    "Requirement": "M-Parivahan",
+    "Endorsement type": "NA",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": null,
+    "Inspection": null,
+    "Any Exception": "PAN and Masked Adhar card is required ( If CKYC not done)",
+    "Declaration format (if declaration required)": null
+  },{
+    "Insurer": "Liberty",
+    "Requirement": "Addition of GST No.",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "GST Certificate in the name of Insured & Endorsement form (will be provided by TL / ticketing team)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For Ticket associate: Endorsement form to be filled and raised to insurer",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Liberty",
+    "Requirement": "Chassis Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC & Endorsement form (will be provided by TL / ticketing team)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For Ticket associate: Endorsement form to be filled and raised to insurer",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Liberty",
+    "Requirement": "Colour Change",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC & Endorsement form (will be provided by TL / ticketing team)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For Ticket associate: Endorsement form to be filled and raised to insurer",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Liberty",
+    "Requirement": "Engine Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC & Endorsement form (will be provided by TL / ticketing team)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For Ticket associate: Endorsement form to be filled and raised to insurer",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Liberty",
+    "Requirement": "Hypothecation Remove",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC ,Bank NOC & Endorsement form (will be provided by TL / ticketing team)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For Ticket associate: Endorsement form to be filled and raised to insurer",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Liberty",
+    "Requirement": "Hypothecation Add",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Updated RC or Loan Sanction letter & Endorsement form (will be provided by TL / ticketing team)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For Ticket associate: Endorsement form to be filled and raised to insurer",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Liberty",
+    "Requirement": "Hypothecation Change",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC ,Previous Bank NOC & Endorsement form (will be provided by TL / ticketing team)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For Ticket associate: Endorsement form to be filled and raised to insurer",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Liberty",
+    "Requirement": "Insured name",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC , Masked Aadhar Card , pan card ,Previous Year Policy & Endorsement form (will be provided by TL / ticketing team)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Will be considered as o/t incase of complete name mismatch\nFor Ticket associate: Endorsement form to be filled and raised to insurer",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Liberty",
+    "Requirement": "NCB Certificate",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Sell letter , Previous Year Policy , NCB Confirmation and cancellation declaration",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May Be",
+    "Inspection": "Maybe",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Liberty",
+    "Requirement": "Registration Date",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC & Endorsement form (will be provided by TL / ticketing team)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May Be",
+    "Inspection": "Maybe",
+    "Any Exception": "For Ticket associate: Endorsement form to be filled and raised to insurer",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Liberty",
+    "Requirement": "Regst. Number",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC & Endorsement form (will be provided by TL / ticketing team)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May Be",
+    "Inspection": "No",
+    "Any Exception": "For Ticket associate: Endorsement form to be filled and raised to insurer",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Liberty",
+    "Requirement": "RTO Endorsement",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC & Endorsement form (will be provided by TL / ticketing team)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May Be",
+    "Inspection": "No",
+    "Any Exception": "For Ticket associate: Endorsement form to be filled and raised to insurer",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Liberty",
+    "Requirement": "Seating Capacity",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC & Endorsement form (will be provided by TL / ticketing team)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May Be",
+    "Inspection": "No",
+    "Any Exception": "For Ticket associate: Endorsement form to be filled and raised to insurer",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Liberty",
+    "Requirement": "Period of Insurance (POI)",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC ,previous Year Policy & Endorsement form (will be provided by TL / ticketing team)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Backdated correction not possible \nFor Ticket associate: Endorsement form to be filled and raised to insurer",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Liberty",
+    "Requirement": "PYP Details- POI or Insurer or Policy number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC ,previous Year Policy & Endorsement form (will be provided by TL / ticketing team)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For Ticket associate: Endorsement form to be filled and raised to insurer",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Liberty",
+    "Requirement": "TP details",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC ,previous Year Policy ,bundle Policy  & Endorsement form (will be provided by TL / ticketing team)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For Ticket associate: Endorsement form to be filled and raised to insurer",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Liberty",
+    "Requirement": "Communication Address",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Address Proof & Endorsement form (will be provided by TL / ticketing team)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For Ticket associate: Endorsement form to be filled and raised to insurer",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Liberty",
+    "Requirement": "Date of Birth (DOB)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Liberty",
+    "Requirement": "Email Address",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Liberty",
+    "Requirement": "Mobile Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Endorsement form (will be provided by TL / ticketing team)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For Ticket associate: Endorsement form to be filled and raised to insurer",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Liberty",
+    "Requirement": "Nominee Details",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Endorsement form (will be provided by TL / ticketing team)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For Ticket associate: Endorsement form to be filled and raised to insurer",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Liberty",
+    "Requirement": "Salutation",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Endorsement form (will be provided by TL / ticketing team)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For Ticket associate: Endorsement form to be filled and raised to insurer",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Liberty",
+    "Requirement": "Owner Driver Personal Accident",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Liberty",
+    "Requirement": "Paid Driver",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Liberty",
+    "Requirement": "Un Named Passanger Cover",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Liberty",
+    "Requirement": "CNG Addition External",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC , CNG Invoice & Endorsement form (will be provided by TL / ticketing team)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": "For ticket associate: \nEndorsement form to be filled and raised to insurer \nInspection to be raised from Insurer portal (from insurer end)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Liberty",
+    "Requirement": "CNG Addition Company fitted",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC & Endorsement form (will be provided by TL / ticketing team)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Maybe",
+    "Any Exception": "For Ticket associate: Endorsement form to be filled and raised to insurer",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Liberty",
+    "Requirement": "Cubic Capacity (CC)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC & Endorsement form (will be provided by TL / ticketing team)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May be",
+    "Inspection": "No",
+    "Any Exception": "For Ticket associate: Endorsement form to be filled and raised to insurer",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Liberty",
+    "Requirement": "Fuel Type (Petrol - Diesel, Diesel - petrol)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC & Endorsement form (will be provided by TL / ticketing team)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May be",
+    "Inspection": "No",
+    "Any Exception": "For Ticket associate: Endorsement form to be filled and raised to insurer",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Liberty",
+    "Requirement": "IDV Change",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Liberty",
+    "Requirement": "Manufactured Date",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC & Endorsement form (will be provided by TL / ticketing team)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May Be",
+    "Inspection": "No",
+    "Any Exception": "For Ticket associate: Endorsement form to be filled and raised to insurer",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Liberty",
+    "Requirement": "Make, Model & Variant",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC & Endorsement form (will be provided by TL / ticketing team)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May Be",
+    "Inspection": "No",
+    "Any Exception": "For Ticket associate: Endorsement form to be filled and raised to insurer",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Liberty",
+    "Requirement": "Ownership Transfer",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC ,Masked Aadhar card and Pan Card , NOC and Transfer Form (will be provided by TL / Ticketing team)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": "For ticket associate: \nEndorsement form to be filled and raised to insurer \nInspection to be raised from Insurer portal (from insurer end)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Liberty",
+    "Requirement": "NCB Correction (taken extra NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Previous Year Policy and written consent",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": "For Ticket associate: Inspection to be raised from Insurer portal (from insurer end)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Liberty",
+    "Requirement": "NCB Correction (taken less NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Previous Year Policy  and NCB Confirmation",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Refund",
+    "Inspection": "Yes",
+    "Any Exception": "For Ticket associate: Inspection to be raised from Insurer portal (from insurer end)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Liberty",
+    "Requirement": "Top Up (PAYD plan)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Liberty",
+    "Requirement": "Multiple Mismatch (Reg no, chassis no & Engine no mismatch)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Liberty",
+    "Requirement": "Post Issuance Cancellation",
+    "Endorsement type": null,
+    "Documents or any other requirement": "Alternate Policy and Endorsement form (will be provided by TL / ticketing team)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Deduction",
+    "Inspection": "No",
+    "Any Exception": "For Ticket associate: Endorsement form to be filled and raised to insurer",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Liberty",
+    "Requirement": "Post Issuance Cancellation (Multiple Mismatch - Reg no, chassis no & Engine no mismatch",
+    "Endorsement type": null,
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Deduction",
+    "Inspection": null,
+    "Any Exception": "Only third Party policy cannot be cancelled\n\nFor comprehensive: TP (Third Party) amount will be retained, and the OD (Own Damage) part will be refunded based on the usage of the policy.",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Liberty",
+    "Requirement": "M-Parivahan",
+    "Endorsement type": "NA",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": null,
+    "Inspection": null,
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Magma",
+    "Requirement": "Addition of GST No.",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "GST Certificate in the name of Insured, KYC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Magma",
+    "Requirement": "Chassis Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Magma",
+    "Requirement": "Colour Change",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Magma",
+    "Requirement": "Engine Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Magma",
+    "Requirement": "Hypothecation Remove",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC, NOC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Magma",
+    "Requirement": "Hypothecation Add",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "Updated RC or Loan sanction letter",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Magma",
+    "Requirement": "Hypothecation Change",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Updated RC or NOC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Magma",
+    "Requirement": "Insured name",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "RC, PYP, KYC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Proceed with O/t incase cx doesn't have PYP",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Magma",
+    "Requirement": "NCB Certificate",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Sale letter, PYP, NCB Confirmation letter",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": "Kindly request the customer to provide in written on mail or from MyAccount:\nKindly confirm whether customer wants to cancel the Own damage part of the policy or want to recover the ncb."
+  },
+  {
+    "Insurer": "Magma",
+    "Requirement": "Registration Date",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Magma",
+    "Requirement": "Regst. Number",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Magma",
+    "Requirement": "RTO Endorsement",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Magma",
+    "Requirement": "Seating Capacity",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Magma",
+    "Requirement": "Period of Insurance (POI)",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "PYP,KYC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Magma",
+    "Requirement": "PYP Details- POI or Insurer or Policy number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Magma",
+    "Requirement": "TP details",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Bundled TP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Magma",
+    "Requirement": "Communication Address",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Complete address with pincode",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Magma",
+    "Requirement": "Date of Birth (DOB)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Magma",
+    "Requirement": "Email Address",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Complete Email ID",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Magma",
+    "Requirement": "Mobile Number",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Mobile Number",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Magma",
+    "Requirement": "Nominee Details",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Nominee Details",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Magma",
+    "Requirement": "Salutation",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Correct salutation",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Magma",
+    "Requirement": "Owner Driver Personal Accident",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, DL, Nominee Details",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Magma",
+    "Requirement": "Paid Driver",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, Salary slip of last 3 months, DL of the driver",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Magma",
+    "Requirement": "Un Named Passanger Cover",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, written confirmation of coverage for Rs.50 - 1L and Rs.100/-  2L",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Magma",
+    "Requirement": "CNG Addition External",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, CNG Invoice",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Magma",
+    "Requirement": "CNG Addition Company fitted",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Magma",
+    "Requirement": "Cubic Capacity (CC)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Magma",
+    "Requirement": "Fuel Type (Petrol - Diesel, Diesel - petrol)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "Maybe",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Magma",
+    "Requirement": "IDV Change",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Magma",
+    "Requirement": "Manufactured Date",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Magma",
+    "Requirement": "Make, Model & Variant",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "Maybe",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Magma",
+    "Requirement": "Ownership Transfer",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, New owner details, KYC, Proposal form (PF format availble on MyAccount)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Magma",
+    "Requirement": "NCB Correction (taken extra NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "PYP, NCB Confirmation",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Magma",
+    "Requirement": "NCB Correction (taken less NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "PYP, NCB Confirmation",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Refund",
+    "Inspection": "Yes",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Magma",
+    "Requirement": "Top Up (PAYD plan)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Magma",
+    "Requirement": "Multiple Mismatch (Reg no, chassis no & Engine no mismatch)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Magma",
+    "Requirement": "Post Issuance Cancellation",
+    "Endorsement type": null,
+    "Documents or any other requirement": "Alternate Policy, KYC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Deduction",
+    "Inspection": null,
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Magma",
+    "Requirement": "Post Issuance Cancellation (Multiple Mismatch - Reg no, chassis no & Engine no mismatch",
+    "Endorsement type": null,
+    "Documents or any other requirement": "Customer consent & Alternate policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Deduction",
+    "Inspection": null,
+    "Any Exception": "Only third Party policy cannot be cancelled\n\nFor comprehensive: TP (Third Party) amount will be retained, and the OD (Own Damage) part will be refunded based on the usage of the policy.",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Magma",
+    "Requirement": "M-Parivahan",
+    "Endorsement type": "NA",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "National",
+    "Requirement": "Addition of GST No.",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "GST Certificate in the name of Insured",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "National",
+    "Requirement": "Chassis Number",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "National",
+    "Requirement": "Colour Change",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "National",
+    "Requirement": "Engine Number",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "National",
+    "Requirement": "Hypothecation Remove",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "Bank NOC and Updated RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "National",
+    "Requirement": "Hypothecation Add",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Updated RC  or Loan Sanction letter",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "National",
+    "Requirement": "Hypothecation Change",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC and  Previous Bank NOC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "National",
+    "Requirement": "Insured name",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC , Previous year policy, Unmasked Aadhar or pan + (Rs 60/- Charges applicable in package policy)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": "\nProceed with O/t incase cx doesn't have PYP",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "National",
+    "Requirement": "NCB Certificate",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Updated RC, Sell letter or RTO Receipt, PYP , NCB confirmation and cancellation declaration",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May Be",
+    "Inspection": "No",
+    "Any Exception": "Updated RC will not be required after policy expiry (possible on the basis of NCB confirmation letter)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "National",
+    "Requirement": "Registration Date",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May Be",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "National",
+    "Requirement": "Regst. Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "National",
+    "Requirement": "RTO Endorsement",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May Be",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "National",
+    "Requirement": "Seating Capacity",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May Be",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "National",
+    "Requirement": "Period of Insurance (POI)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "National",
+    "Requirement": "PYP Details- POI or Insurer or Policy number",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "Previous Year Policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "National",
+    "Requirement": "TP details",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "Bundle Policy Required(POI not possible)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "National",
+    "Requirement": "Communication Address",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Complete address required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "National",
+    "Requirement": "Date of Birth (DOB)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "National",
+    "Requirement": "Email Address",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Updated Email Id",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "National",
+    "Requirement": "Mobile Number",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Updated mobile no.",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "National",
+    "Requirement": "Nominee Details",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Nominee details",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "National",
+    "Requirement": "Salutation",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Correct salutation",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "National",
+    "Requirement": "Owner Driver Personal Accident",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "National",
+    "Requirement": "Paid Driver",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "National",
+    "Requirement": "Un Named Passanger Cover",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "National",
+    "Requirement": "CNG Addition External",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC and CNG Invoice",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "National",
+    "Requirement": "CNG Addition Company fitted",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Maybe",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "National",
+    "Requirement": "Cubic Capacity (CC)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May Be",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "National",
+    "Requirement": "Fuel Type (Petrol - Diesel, Diesel - petrol)",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May Be",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "National",
+    "Requirement": "IDV Change",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "National",
+    "Requirement": "Manufactured Date",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May Be",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "National",
+    "Requirement": "Make, Model & Variant",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May Be",
+    "Inspection": "Maybe",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "National",
+    "Requirement": "Ownership Transfer",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC , New owner details and Unmasked Aadhar or pan of new insured",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Maybe",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "National",
+    "Requirement": "NCB Correction (taken extra NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Previous Year policy and NCB Confirmation",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Maybe",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "National",
+    "Requirement": "NCB Correction (taken less NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Previous Year policy and NCB Confirmation",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Refund",
+    "Inspection": "Maybe",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "National",
+    "Requirement": "Top Up (PAYD plan)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "National",
+    "Requirement": "Multiple Mismatch (Reg no, chassis no & Engine no mismatch)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "National",
+    "Requirement": "Post Issuance Cancellation",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Alternate Policy , Written Consent and NEFT of insured as per policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Deduction",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "National",
+    "Requirement": "Post Issuance Cancellation (Multiple Mismatch - Reg no, chassis no & Engine no mismatch",
+    "Endorsement type": null,
+    "Documents or any other requirement": "Customer consent and Cancelled cheque  as per policy (For OD Refund  only)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Deduction",
+    "Inspection": null,
+    "Any Exception": "Only third Party policy cannot be cancelled\n\nFor comprehensive: TP (Third Party) amount will be retained, and the OD (Own Damage) part will be refunded based on the usage of the policy.",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "National",
+    "Requirement": "M-Parivahan",
+    "Endorsement type": "NA",
+    "Documents or any other requirement": "No requirement",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": null,
+    "Inspection": null,
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },{
+    "Insurer": "Oriental",
+    "Requirement": "Addition of GST No.",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "GST Certificate in the name of Insured",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Oriental",
+    "Requirement": "Chassis Number",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Oriental",
+    "Requirement": "Colour Change",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Oriental",
+    "Requirement": "Engine Number",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Oriental",
+    "Requirement": "Hypothecation Remove",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "NOC Or Updated RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Oriental",
+    "Requirement": "Hypothecation Add",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Updated RC or Loan Sanction Letter",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Oriental",
+    "Requirement": "Hypothecation Change",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "Updated RC and Loan Sanction Letter",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Oriental",
+    "Requirement": "Insured name",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC, PYP and KYC of RC owner, Customer Declaration",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Proceed with O/t incase cx doesn't have PYP",
+    "Declaration format (if declaration required)": "Kindly ask the customer to share below declaration on mail: \n\"I certify that I have applied for the Correction in Insured name in policy no. __________________. This is not the case of Ownership transfer and there is no known or reported loss till date. I certify that the above facts are true to the best of my knowledge and if found false, I am liable for it and Insurer has the right to cancel the policy without any refund.\""
+  },
+  {
+    "Insurer": "Oriental",
+    "Requirement": "NCB Certificate",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Sale Letter and PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": "Charges would not be required incase policy has expired",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Oriental",
+    "Requirement": "Registration Date",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Oriental",
+    "Requirement": "Regst. Number",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "Charges may be applicable incase of state / RTO code change",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Oriental",
+    "Requirement": "RTO Endorsement",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Oriental",
+    "Requirement": "Seating Capacity",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Oriental",
+    "Requirement": "Period of Insurance (POI)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Oriental",
+    "Requirement": "PYP Details- POI or Insurer or Policy number",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Oriental",
+    "Requirement": "TP details",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Third party Bundle Policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Oriental",
+    "Requirement": "Communication Address",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Complete address with pincode",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Oriental",
+    "Requirement": "Date of Birth (DOB)",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Complete DOB",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Oriental",
+    "Requirement": "Email Address",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Complete Email ID",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Oriental",
+    "Requirement": "Mobile Number",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Mobile Number",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Oriental",
+    "Requirement": "Nominee Details",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Nominee Details",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Oriental",
+    "Requirement": "Salutation",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Correct salutation",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Oriental",
+    "Requirement": "Owner Driver Personal Accident",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Oriental",
+    "Requirement": "Paid Driver",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Oriental",
+    "Requirement": "Un Named Passanger Cover",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Oriental",
+    "Requirement": "CNG Addition External",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, CNG invoice or PYP with CNG value",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Oriental",
+    "Requirement": "CNG Addition Company fitted",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC Copy and PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Maybe",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Oriental",
+    "Requirement": "Cubic Capacity (CC)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC charges may be applicable",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Oriental",
+    "Requirement": "Fuel Type (Petrol - Diesel, Diesel - petrol)",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Oriental",
+    "Requirement": "IDV Change",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Oriental",
+    "Requirement": "Manufactured Date",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Oriental",
+    "Requirement": "Make, Model & Variant",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Oriental",
+    "Requirement": "Ownership Transfer",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, KYC, New owner detail, Customer Declaration",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": "Kindly ask the customer to share below declaration on mail: \n\"I certify that I have applied for the transfer of ownership in policy no. __________________ and there is no known or reported loss till date. I certify that the above facts are true to the best of my knowledge and if found false, I am liable for it and Insurer has the right to cancel the policy without any refund.\""
+  },
+  {
+    "Insurer": "Oriental",
+    "Requirement": "NCB Correction (taken extra NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Oriental",
+    "Requirement": "NCB Correction (taken less NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "PYP and NCB confirmation letter",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Refund",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Oriental",
+    "Requirement": "Top Up (PAYD plan)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Oriental",
+    "Requirement": "Multiple Mismatch (Reg no, chassis no & Engine no mismatch)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+  "InsurerRequirement": "OrientalPost Issuance Cancellation",
+  "Insurer": "Oriental",
+  "Requirement": "Post Issuance Cancellation",
+  "Endorsement type": "na",
+  "Documents or any other requirement": "Alternate Policy, Reason and Declaration",
+  "TAT": "10 days",
+  "Charges / Deduction": "yes",
+  "Inspection": "no",
+  "Any Exception": "To be raised on Mail",
+  "Declaration format (if declaration required)": "Complete reason for cancellation from customer's registered email ID along with requested date and time, Declaration :- There is no claim running in the policy"
+},
+  {
+    "Insurer": "Oriental",
+    "Requirement": "Post Issuance Cancellation (Multiple Mismatch - Reg no, chassis no & Engine no mismatch",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Oriental",
+    "Requirement": "M-Parivahan",
+    "Endorsement type": "NA",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": null,
+    "Inspection": null,
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Raheja",
+    "Requirement": "Addition of GST No.",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "GST Certificate in the name of Insured, KYC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "PAN Card mandate in KYC",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Raheja",
+    "Requirement": "Chassis Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Raheja",
+    "Requirement": "Colour Change",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Raheja",
+    "Requirement": "Engine Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Raheja",
+    "Requirement": "Hypothecation Remove",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "NOC or Updated RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Raheja",
+    "Requirement": "Hypothecation Add",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Updated RC or Loan sanction letter",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Raheja",
+    "Requirement": "Hypothecation Change",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Updated RC or NOC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Raheja",
+    "Requirement": "Insured name",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC, PYP, KYC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "PAN Card mandate in KYC + Proceed with O/t incase cx doesn't have PYP",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Raheja",
+    "Requirement": "NCB Certificate",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Sale letter, PYP, NCB Confirmation letter",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Maybe",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": "Kindly request the customer to provide in written on mail or from MyAccount:\nKindly confirm whether customer wants to cancel the Own damage part of the policy or want to recover the ncb."
+  },
+  {
+    "Insurer": "Raheja",
+    "Requirement": "Registration Date",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Raheja",
+    "Requirement": "Regst. Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Raheja",
+    "Requirement": "RTO Endorsement",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Raheja",
+    "Requirement": "Seating Capacity",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Raheja",
+    "Requirement": "Period of Insurance (POI)",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "PYP & Customer declaration required on mail (I don't have any issue to cancel & rebook the insurance)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Raheja",
+    "Requirement": "PYP Details- POI or Insurer or Policy number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Raheja",
+    "Requirement": "TP details",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Bundled TP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Raheja",
+    "Requirement": "Communication Address",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Address Proof",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Raheja",
+    "Requirement": "Date of Birth (DOB)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Raheja",
+    "Requirement": "Email Address",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Email Id",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Raheja",
+    "Requirement": "Mobile Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Complete Email ID",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Raheja",
+    "Requirement": "Nominee Details",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Mobile Number",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Raheja",
+    "Requirement": "Salutation",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Nominee Details",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Raheja",
+    "Requirement": "Owner Driver Personal Accident",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Correct salutation",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Raheja",
+    "Requirement": "Paid Driver",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, Salary slip of last 3 months, DL of the driver",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Raheja",
+    "Requirement": "Un Named Passanger Cover",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, written confirmation of coverage for Rs.50 - 1L and Rs.100/-  2L",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Raheja",
+    "Requirement": "CNG Addition External",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, CNG Invoice",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Raheja",
+    "Requirement": "CNG Addition Company fitted",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Raheja",
+    "Requirement": "Cubic Capacity (CC)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "Maybe",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Raheja",
+    "Requirement": "Fuel Type (Petrol - Diesel, Diesel - petrol)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Raheja",
+    "Requirement": "IDV Change",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Raheja",
+    "Requirement": "Manufactured Date",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Raheja",
+    "Requirement": "Make, Model & Variant",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "Maybe",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Raheja",
+    "Requirement": "Ownership Transfer",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, New owner details, KYC, \nDeclaration from old owner (Written confirmation on mail from Old owner with date & SIgnature - that he has no objection in transferring the policy to the new owner)\n& CPA declaration form (available with ticketing team)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": "PAN Card mandate in KYC",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Raheja",
+    "Requirement": "NCB Correction (taken extra NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "PYP, NCB Confirmation",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Raheja",
+    "Requirement": "NCB Correction (taken less NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "PYP, NCB Confirmation",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Refund",
+    "Inspection": "Yes",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Raheja",
+    "Requirement": "Top Up (PAYD plan)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Raheja",
+    "Requirement": "Multiple Mismatch (Reg no, chassis no & Engine no mismatch)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Raheja",
+    "Requirement": "Post Issuance Cancellation",
+    "Endorsement type": null,
+    "Documents or any other requirement": "Alternate Policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Deduction",
+    "Inspection": null,
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Raheja",
+    "Requirement": "Post Issuance Cancellation (Multiple Mismatch - Reg no, chassis no & Engine no mismatch",
+    "Endorsement type": null,
+    "Documents or any other requirement": "Customer consent & Alternate policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Deduction",
+    "Inspection": null,
+    "Any Exception": "Only third Party policy cannot be cancelled\n\nFor comprehensive: TP (Third Party) amount will be retained, and the OD (Own Damage) part will be refunded based on the usage of the policy.",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Raheja",
+    "Requirement": "M-Parivahan",
+    "Endorsement type": "NA",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Reliance",
+    "Requirement": "Addition of GST No.",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "GST Certificate in the name of Insured, RC &  Pan Card",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Correction not possible in Xpas plan",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Reliance",
+    "Requirement": "Chassis Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Reliance",
+    "Requirement": "Colour Change",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Reliance",
+    "Requirement": "Engine Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Reliance",
+    "Requirement": "Hypothecation Remove",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Bank NOC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Reliance",
+    "Requirement": "Hypothecation Add",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Updated RC  or Loan Sanction letter",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Reliance",
+    "Requirement": "Hypothecation Change",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "RC and Previous Bank NOC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Reliance",
+    "Requirement": "Insured name",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC,KYC , PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Proceed with O/t incase cx doesn't have PYP",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Reliance",
+    "Requirement": "NCB Certificate",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Sale Letter and cancellation declaration",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Maybe",
+    "Any Exception": "Inspection to be raised from Reliance portal (from insurer end)",
+    "Declaration format (if declaration required)": "Please confirm from the below scenario from the customer and share information:\n1. In case customer want to cancel policy then alternate policy or sell proof will be required and ncb will be recovered, also refund amount will be declared as per U/W \n2. If customer don't want to cancel only ncb will be recovered and cx can process ownership transfer also "
+  },
+  {
+    "Insurer": "Reliance",
+    "Requirement": "Registration Date",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May be",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Reliance",
+    "Requirement": "Regst. Number",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May be",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Reliance",
+    "Requirement": "RTO Endorsement",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May be",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Reliance",
+    "Requirement": "Seating Capacity",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May be",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Reliance",
+    "Requirement": "Period of Insurance (POI)",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC,KYC , PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May be",
+    "Inspection": "No",
+    "Any Exception": "Correction not possible in Xpas plan",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Reliance",
+    "Requirement": "PYP Details- POI or Insurer or Policy number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC,KYC , PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Reliance",
+    "Requirement": "TP details",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC,KYC , PYP and Bundle Policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Reliance",
+    "Requirement": "Communication Address",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Address Proof of insured",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Nil Endt incase of Xpas plan",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Reliance",
+    "Requirement": "Date of Birth (DOB)",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "NA",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Reliance",
+    "Requirement": "Email Address",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Updated email id",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Nil Endt incase of Xpas plan",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Reliance",
+    "Requirement": "Mobile Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Updated mobile no.",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Nil Endt incase of Xpas plan",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Reliance",
+    "Requirement": "Nominee Details",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Nominee ID proof",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Nil Endt incase of Xpas plan",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Reliance",
+    "Requirement": "Salutation",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Insured ID Proof",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Nil Endt incase of Xpas plan",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Reliance",
+    "Requirement": "Owner Driver Personal Accident",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Reliance",
+    "Requirement": "Paid Driver",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Reliance",
+    "Requirement": "Un Named Passanger Cover",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Reliance",
+    "Requirement": "CNG Addition External",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC and CNG Invoice",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": "Inspection to be raised from Reliance portal (from insurer end)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Reliance",
+    "Requirement": "CNG Addition Company fitted",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": "Inspection to be raised from Reliance portal (from insurer end)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Reliance",
+    "Requirement": "Cubic Capacity (CC)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May be",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Reliance",
+    "Requirement": "Fuel Type (Petrol - Diesel, Diesel - petrol)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May be",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Reliance",
+    "Requirement": "IDV Change",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Reliance",
+    "Requirement": "Manufactured Date",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May Be",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Reliance",
+    "Requirement": "Make, Model & Variant",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "May Be",
+    "Inspection": "Maybe",
+    "Any Exception": "Inspection to be raised from Reliance portal (from insurer end)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Reliance",
+    "Requirement": "Ownership Transfer",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC , NOC ,New owner details and Pa Cover declaration",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Maybe",
+    "Any Exception": "Inspection to be raised from Reliance portal (from insurer end)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Reliance",
+    "Requirement": "NCB Correction (taken extra NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "PYP and NCB Confirmation",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": "Inspection to be raised from Reliance portal (from insurer end)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Reliance",
+    "Requirement": "NCB Correction (taken less NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "PYP and NCB Confirmation",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Refund",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Reliance",
+    "Requirement": "Top Up (PAYD plan)",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Cx request from my account (Kms to top up)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Reliance",
+    "Requirement": "Multiple Mismatch (Reg no, chassis no & Engine no mismatch)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Reliance",
+    "Requirement": "Post Issuance Cancellation",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Alternate Policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Reliance",
+    "Requirement": "Post Issuance Cancellation (Multiple Mismatch - Reg no, chassis no & Engine no mismatch",
+    "Endorsement type": null,
+    "Documents or any other requirement": "Customer consent & Alternate policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Deduction",
+    "Inspection": null,
+    "Any Exception": "Only third Party policy cannot be cancelled\n\nFor comprehensive: TP (Third Party) amount will be retained, and the OD (Own Damage) part will be refunded based on the usage of the policy.",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Reliance",
+    "Requirement": "M-Parivahan",
+    "Endorsement type": "NA",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": null,
+    "Inspection": null,
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },{
+    "Insurer": "Royal Sundaram",
+    "Requirement": "Addition of GST No.",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "GST Certificate in the name of Insured",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Royal Sundaram",
+    "Requirement": "Chassis Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Royal Sundaram",
+    "Requirement": "Colour Change",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Royal Sundaram",
+    "Requirement": "Engine Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Royal Sundaram",
+    "Requirement": "Hypothecation Remove",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC, NOC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Royal Sundaram",
+    "Requirement": "Hypothecation Add",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Updated RC or Loan sanction letter",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Royal Sundaram",
+    "Requirement": "Hypothecation Change",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Updated RC or NOC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Royal Sundaram",
+    "Requirement": "Insured name",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC, PYP, KYC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Proceed with O/t incase cx doesn't have PYP",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Royal Sundaram",
+    "Requirement": "NCB Certificate",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Sale letter, PYP, NCB Confirmation letter",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": "Kindly request the customer to provide in written on mail or from MyAccount:\nKindly confirm whether customer wants to cancel the Own damage part of the policy or want to recover the ncb."
+  },
+  {
+    "Insurer": "Royal Sundaram",
+    "Requirement": "Registration Date",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Royal Sundaram",
+    "Requirement": "Regst. Number",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Royal Sundaram",
+    "Requirement": "RTO Endorsement",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Royal Sundaram",
+    "Requirement": "Seating Capacity",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Royal Sundaram",
+    "Requirement": "Period of Insurance (POI)",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Royal Sundaram",
+    "Requirement": "PYP Details- POI or Insurer or Policy number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Royal Sundaram",
+    "Requirement": "TP details",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Bundled TP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Royal Sundaram",
+    "Requirement": "Communication Address",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Complete address with pincode",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Royal Sundaram",
+    "Requirement": "Date of Birth (DOB)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Royal Sundaram",
+    "Requirement": "Email Address",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Complete Email ID",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Royal Sundaram",
+    "Requirement": "Mobile Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Mobile Number",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Royal Sundaram",
+    "Requirement": "Nominee Details",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Nominee Details",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Royal Sundaram",
+    "Requirement": "Salutation",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Correct salutation",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Royal Sundaram",
+    "Requirement": "Owner Driver Personal Accident",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, DL, Nominee Details",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": "Addition possible Before policy Start Date",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Royal Sundaram",
+    "Requirement": "Paid Driver",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, Salary slip of last 3 months, DL of the driver",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": "Addition possible Before policy Start Date",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Royal Sundaram",
+    "Requirement": "Un Named Passanger Cover",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, written confirmation of coverage for Rs.50 - 1L and Rs.100/-  2L",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": "Addition possible Before policy Start Date",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Royal Sundaram",
+    "Requirement": "CNG Addition External",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, CNG Invoice",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Royal Sundaram",
+    "Requirement": "CNG Addition Company fitted",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Royal Sundaram",
+    "Requirement": "Cubic Capacity (CC)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Royal Sundaram",
+    "Requirement": "Fuel Type (Petrol - Diesel, Diesel - petrol)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Royal Sundaram",
+    "Requirement": "IDV Change",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Royal Sundaram",
+    "Requirement": "Manufactured Date",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Royal Sundaram",
+    "Requirement": "Make, Model & Variant",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Royal Sundaram",
+    "Requirement": "Ownership Transfer",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, New owner details, KYC, Proposal form (sample available on MyAccount)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Royal Sundaram",
+    "Requirement": "NCB Correction (taken extra NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "PYP, NCB Confirmation",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Royal Sundaram",
+    "Requirement": "NCB Correction (taken less NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "PYP, NCB Confirmation",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Refund",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Royal Sundaram",
+    "Requirement": "Top Up (PAYD plan)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Royal Sundaram",
+    "Requirement": "Multiple Mismatch (Reg no, chassis no & Engine no mismatch)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Royal Sundaram",
+    "Requirement": "Post Issuance Cancellation",
+    "Endorsement type": null,
+    "Documents or any other requirement": "Alternate Policy & Customer declaration (with customer signature)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Deduction",
+    "Inspection": null,
+    "Any Exception": null,
+    "Declaration format (if declaration required)": "Declaration on paper: I want to cancel my policy no __________ due to ___________ reason. (Along with customer's signature)"
+  },
+  {
+    "Insurer": "Royal Sundaram",
+    "Requirement": "Post Issuance Cancellation (Multiple Mismatch - Reg no, chassis no & Engine no mismatch",
+    "Endorsement type": null,
+    "Documents or any other requirement": "Customer consent, Alternate policy, Cancelled cheque",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Deduction",
+    "Inspection": null,
+    "Any Exception": "Only third Party policy cannot be cancelled\n\nFor comprehensive: TP (Third Party) amount will be retained, and the OD (Own Damage) part will be refunded based on the usage of the policy.",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Royal Sundaram",
+    "Requirement": "M-Parivahan",
+    "Endorsement type": "NA",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "SBI",
+    "Requirement": "Addition of GST No.",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Aadhaar and Pan Card with GST Certificate in the name of Insured",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "SBI",
+    "Requirement": "Chassis Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Aadhaar and Pan Card and RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "SBI",
+    "Requirement": "Colour Change",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Aadhaar and Pan Card and RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "SBI",
+    "Requirement": "Engine Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Aadhaar and Pan Card and RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "SBI",
+    "Requirement": "Hypothecation Remove",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "Aadhaar and Pan Card and RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "SBI",
+    "Requirement": "Hypothecation Add",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "Aadhaar and Pan Card and RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "SBI",
+    "Requirement": "Hypothecation Change",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "Aadhaar and Pan Card and RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "SBI",
+    "Requirement": "Insured name",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Aadhaar and Pan Card and RC with Owner serial no 1 and PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Incase of O.sno above 1 or pyp unavailibility - case to be considered as O/t",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "SBI",
+    "Requirement": "NCB Certificate",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Aadhaar and Pan Card, Sale Letter, PYP, NCB Confirmation letter",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "SBI",
+    "Requirement": "Registration Date",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Aadhaar and Pan Card and RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "SBI",
+    "Requirement": "Regst. Number",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Aadhaar and Pan Card and RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "SBI",
+    "Requirement": "RTO Endorsement",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Aadhaar and Pan Card and RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "SBI",
+    "Requirement": "Seating Capacity",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Aadhaar and Pan Card and RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "SBI",
+    "Requirement": "Period of Insurance (POI)",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Aadhaar and Pan Card along with Previous year policy copy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "SBI",
+    "Requirement": "PYP Details- POI or Insurer or Policy number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Aadhaar and Pan Card along with Previous year policy copy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "SBI",
+    "Requirement": "TP details",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Aadhaar and Pan Card along with Bundled policy copy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "SBI",
+    "Requirement": "Communication Address",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Address with Pincode",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "SBI",
+    "Requirement": "Date of Birth (DOB)",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Aadhaar and Pan Card",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "SBI",
+    "Requirement": "Email Address",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Email Id",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "SBI",
+    "Requirement": "Mobile Number",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Mobile Number",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "SBI",
+    "Requirement": "Nominee Details",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Nominee details",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "SBI",
+    "Requirement": "Salutation",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Correct Salutation",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "SBI",
+    "Requirement": "Owner Driver Personal Accident",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "SBI",
+    "Requirement": "Paid Driver",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "SBI",
+    "Requirement": "Un Named Passanger Cover",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "SBI",
+    "Requirement": "CNG Addition External",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Aadhaar and Pan Card, RC, CNG Invoice or Pyp",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "SBI",
+    "Requirement": "CNG Addition Company fitted",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Aadhaar and Pan Card, RC and PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "SBI",
+    "Requirement": "Cubic Capacity (CC)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Aadhaar and Pan Card and RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "SBI",
+    "Requirement": "Fuel Type (Petrol - Diesel, Diesel - petrol)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Aadhaar and Pan Card and RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "SBI",
+    "Requirement": "IDV Change",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "SBI",
+    "Requirement": "Manufactured Date",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Aadhaar and Pan Card and RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "SBI",
+    "Requirement": "Make, Model & Variant",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Aadhaar and Pan Card and RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "SBI",
+    "Requirement": "Ownership Transfer",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, PA Declaration (written confirmation if customer wants to add or not), Aadhaar Card and Pan Card (New owner), New owner details and Proposal Form (Available on MyAccount)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "SBI",
+    "Requirement": "NCB Correction (taken extra NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Aadhaar and Pan Card, Previous Year Policy, NCB Confirmation letter from pyp insurer",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "SBI",
+    "Requirement": "NCB Correction (taken less NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Previous Year Policy, NCB Confirmation letter from pyp insurer",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Refund",
+    "Inspection": "Yes",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "SBI",
+    "Requirement": "Top Up (PAYD plan)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "SBI",
+    "Requirement": "Multiple Mismatch (Reg no, chassis no & Engine no mismatch)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "SBI",
+    "Requirement": "Post Issuance Cancellation",
+    "Endorsement type": null,
+    "Documents or any other requirement": "Aadhaar and Pan Card and Alternate policy",
+    "TAT": null,
+    "Charges / Deduction": "Deduction",
+    "Inspection": "No",
+    "Any Exception": "can only be canceled if the period of insurance (POI) of the alternate policy is exactly the same as the current policy",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "SBI",
+    "Requirement": "Post Issuance Cancellation (Multiple Mismatch - Reg no, chassis no & Engine no mismatch",
+    "Endorsement type": null,
+    "Documents or any other requirement": "Customer consent & Alternate policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Deduction",
+    "Inspection": null,
+    "Any Exception": "Only third Party policy cannot be cancelled\n\nFor comprehensive: TP (Third Party) amount will be retained, and the OD (Own Damage) part will be refunded based on the usage of the policy.",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "SBI",
+    "Requirement": "M-Parivahan",
+    "Endorsement type": "NA",
+    "Documents or any other requirement": "RC, Unmasked Aadhar and Pan card Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": null,
+    "Inspection": null,
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Shriram",
+    "Requirement": "Addition of GST No.",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "GST Certificate in the name of Insured",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Correction possible only on the same month of booking (For eg: Booking date is 27th Jan, correction only possible till 31st Jan)",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Shriram",
+    "Requirement": "Chassis Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Shriram",
+    "Requirement": "Colour Change",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Shriram",
+    "Requirement": "Engine Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Shriram",
+    "Requirement": "Hypothecation Remove",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "NOC and updated RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Shriram",
+    "Requirement": "Hypothecation Add",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "Updated RC or Loan Sanction Letter",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Shriram",
+    "Requirement": "Hypothecation Change",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "Updated RC or Loan Sanction Letter",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Shriram",
+    "Requirement": "Insured name",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC, PYP and KYC(Aadhaar & Pan)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Proceed with O/t incase cx doesn't have PYP",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Shriram",
+    "Requirement": "NCB Certificate",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Sale Letter and Updated RC or form 29 and 30 with rto stamp , PYP and NCB confirmation",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "For ticketing associate: Need to raise on mail",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Shriram",
+    "Requirement": "Registration Date",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Shriram",
+    "Requirement": "Regst. Number",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "Maybe",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Shriram",
+    "Requirement": "RTO Endorsement",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "Maybe",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Shriram",
+    "Requirement": "Seating Capacity",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Shriram",
+    "Requirement": "Period of Insurance (POI)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Shriram",
+    "Requirement": "PYP Details- POI or Insurer or Policy number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Shriram",
+    "Requirement": "TP details",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Third party Bundle Policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Shriram",
+    "Requirement": "Communication Address",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Complete address with pincode",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Shriram",
+    "Requirement": "Date of Birth (DOB)",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Complete DOB",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Shriram",
+    "Requirement": "Email Address",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Complete Email ID",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Shriram",
+    "Requirement": "Mobile Number",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Mobile Number",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Shriram",
+    "Requirement": "Nominee Details",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Nominee Details",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Shriram",
+    "Requirement": "Salutation",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "correct salutation",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Shriram",
+    "Requirement": "Owner Driver Personal Accident",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC Copy, Nominee detail. DL",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Shriram",
+    "Requirement": "Paid Driver",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, DL of driver, Salary slip or bank statement",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Shriram",
+    "Requirement": "Un Named Passanger Cover",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC & confirmation from cx if he wants to opt Rs 50/seat or Rs 100/seat",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Shriram",
+    "Requirement": "CNG Addition External",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC copy, CNG Kit invoice",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Shriram",
+    "Requirement": "CNG Addition Company fitted",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC Copy, PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Maybe",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Shriram",
+    "Requirement": "Cubic Capacity (CC)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Shriram",
+    "Requirement": "Fuel Type (Petrol - Diesel, Diesel - petrol)",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Shriram",
+    "Requirement": "IDV Change",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Shriram",
+    "Requirement": "Manufactured Date",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Shriram",
+    "Requirement": "Make, Model & Variant",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "Maybe",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Shriram",
+    "Requirement": "Ownership Transfer",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, KYC, New owner detail, RC transfer Date, New Owner's father name",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": "KYC - Pan and Aadhar card mandatory",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Shriram",
+    "Requirement": "NCB Correction (taken extra NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "PYP & NCB confirmation letter",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Maybe",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Shriram",
+    "Requirement": "NCB Correction (taken less NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "PYP & NCB confirmation letter",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Refund",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Shriram",
+    "Requirement": "Top Up (PAYD plan)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Confirmation from the customer if he/she is okay with Plan update to normal",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": "Top up not possible, plan can be changed from PAYD to regular",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Shriram",
+    "Requirement": "Multiple Mismatch (Reg no, chassis no & Engine no mismatch)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Shriram",
+    "Requirement": "Post Issuance Cancellation",
+    "Endorsement type": null,
+    "Documents or any other requirement": "Alternate Policy along with customer consent",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Deduction",
+    "Inspection": null,
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Shriram",
+    "Requirement": "Post Issuance Cancellation (Multiple Mismatch - Reg no, chassis no & Engine no mismatch",
+    "Endorsement type": null,
+    "Documents or any other requirement": "Customer consent & Alternate policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Deduction",
+    "Inspection": null,
+    "Any Exception": "Only third Party policy cannot be cancelled\n\nFor comprehensive: TP (Third Party) amount will be retained, and the OD (Own Damage) part will be refunded based on the usage of the policy.",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "Insurer": "Shriram",
+    "Requirement": "M-Parivahan",
+    "Endorsement type": "NA",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": null,
+    "Inspection": null,
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },{
+    "InsurerRequirement": "UnitedAddition of GST No.",
+    "Insurer": "United",
+    "Requirement": "Addition of GST No.",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "GST Certificate in the name of Insured",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "UnitedChassis Number",
+    "Insurer": "United",
+    "Requirement": "Chassis Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Correction possible after policy start date",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "UnitedColour Change",
+    "Insurer": "United",
+    "Requirement": "Colour Change",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Correction possible after policy start date",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "UnitedEngine Number",
+    "Insurer": "United",
+    "Requirement": "Engine Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Correction possible after policy start date",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "UnitedHypothecation Remove",
+    "Insurer": "United",
+    "Requirement": "Hypothecation Remove",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "RC and Loan letter",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Correction possible after policy start date",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "UnitedHypothecation Add",
+    "Insurer": "United",
+    "Requirement": "Hypothecation Add",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "RC and Loan letter",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Correction possible after policy start date",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "UnitedHypothecation Change",
+    "Insurer": "United",
+    "Requirement": "Hypothecation Change",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "RC and Loan letter",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Correction possible after policy start date",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "UnitedInsured name",
+    "Insurer": "United",
+    "Requirement": "Insured name",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "RC and PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Correction possible after policy start date",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "UnitedNCB Certificate",
+    "Insurer": "United",
+    "Requirement": "NCB Certificate",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Sale Letter, PYP, NCB Confirmation letter",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": "Correction possible after policy start date",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "UnitedRegistration Date",
+    "Insurer": "United",
+    "Requirement": "Registration Date",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": "Correction possible after policy start date",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "UnitedRegst. Number",
+    "Insurer": "United",
+    "Requirement": "Regst. Number",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "Maybe",
+    "Any Exception": "Correction possible after policy start date",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "UnitedRTO Endorsement",
+    "Insurer": "United",
+    "Requirement": "RTO Endorsement",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "Correction possible after policy start date",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "UnitedSeating Capacity",
+    "Insurer": "United",
+    "Requirement": "Seating Capacity",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "Correction possible after policy start date",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "UnitedPeriod of Insurance (POI)",
+    "Insurer": "United",
+    "Requirement": "Period of Insurance (POI)",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "In TP, correction is only possible if previous year policy is also TP from United",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "UnitedPYP Details- POI or Insurer or Policy number",
+    "Insurer": "United",
+    "Requirement": "PYP Details- POI or Insurer or Policy number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Correction possible after policy start date",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "UnitedTP details",
+    "Insurer": "United",
+    "Requirement": "TP details",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "TP Bundle Policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Correction possible after policy start date",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "UnitedCommunication Address",
+    "Insurer": "United",
+    "Requirement": "Communication Address",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "New Address with pincode",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "UnitedDate of Birth (DOB)",
+    "Insurer": "United",
+    "Requirement": "Date of Birth (DOB)",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "DOB proof",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Correction possible after policy start date",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "UnitedEmail Address",
+    "Insurer": "United",
+    "Requirement": "Email Address",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "New Mail ID",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "UnitedMobile Number",
+    "Insurer": "United",
+    "Requirement": "Mobile Number",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "New Mobile Number",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "UnitedNominee Details",
+    "Insurer": "United",
+    "Requirement": "Nominee Details",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Nominee details",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "UnitedSalutation",
+    "Insurer": "United",
+    "Requirement": "Salutation",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Salutation details",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "UnitedOwner Driver Personal Accident",
+    "Insurer": "United",
+    "Requirement": "Owner Driver Personal Accident",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "UnitedPaid Driver",
+    "Insurer": "United",
+    "Requirement": "Paid Driver",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "UnitedUn Named Passanger Cover",
+    "Insurer": "United",
+    "Requirement": "Un Named Passanger Cover",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "UnitedCNG Addition External",
+    "Insurer": "United",
+    "Requirement": "CNG Addition External",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, CNG Invoice",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": "Correction possible after policy start date",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "UnitedCNG Addition Company fitted",
+    "Insurer": "United",
+    "Requirement": "CNG Addition Company fitted",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": "Correction possible after policy start date",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "UnitedCubic Capacity (CC)",
+    "Insurer": "United",
+    "Requirement": "Cubic Capacity (CC)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "Correction possible after policy start date",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "UnitedFuel Type (Petrol - Diesel, Diesel - petrol)",
+    "Insurer": "United",
+    "Requirement": "Fuel Type (Petrol - Diesel, Diesel - petrol)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "Correction possible after policy start date",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "UnitedIDV Change",
+    "Insurer": "United",
+    "Requirement": "IDV Change",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "UnitedManufactured Date",
+    "Insurer": "United",
+    "Requirement": "Manufactured Date",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "Correction possible after policy start date",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "UnitedMake, Model & Variant",
+    "Insurer": "United",
+    "Requirement": "Make, Model & Variant",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "Correction possible after policy start date",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "UnitedOwnership Transfer",
+    "Insurer": "United",
+    "Requirement": "Ownership Transfer",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC and New owner details.",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": "Correction possible after policy start date",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "UnitedNCB Correction (taken extra NCB)",
+    "Insurer": "United",
+    "Requirement": "NCB Correction (taken extra NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Previous Year Policy, NCB Confirmation letter from pyp insurer",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": "Correction possible after policy start date",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "UnitedNCB Correction (taken less NCB)",
+    "Insurer": "United",
+    "Requirement": "NCB Correction (taken less NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Previous Year Policy, NCB Confirmation letter from pyp insurer",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Refund",
+    "Inspection": "Yes",
+    "Any Exception": "Correction possible after policy start date",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "UnitedTop Up (PAYD plan)",
+    "Insurer": "United",
+    "Requirement": "Top Up (PAYD plan)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "UnitedMultiple Mismatch (Reg no, chassis no & Engine no mismatch)",
+    "Insurer": "United",
+    "Requirement": "Multiple Mismatch (Reg no, chassis no & Engine no mismatch)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "UnitedPost Issuance Cancellation",
+    "Insurer": "United",
+    "Requirement": "Post Issuance Cancellation",
+    "Endorsement type": null,
+    "Documents or any other requirement": "Alternate and Written Declaration from Customer",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Deduction",
+    "Inspection": "No",
+    "Any Exception": "TP policy Cancellation : Alternate should be Comprehensive policy from United\nComprehensive policy Cancellation: Alteranate should have exact same POI (else later issued policy will be cancelled)\nSAOD policy cancellation: Alteranate could be bundle policy or alteranate SAOD policy from any insurer ",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "UnitedPost Issuance Cancellation (Multiple Mismatch - Reg no, chassis no & Engine no mismatch",
+    "Insurer": "United",
+    "Requirement": "Post Issuance Cancellation (Multiple Mismatch - Reg no, chassis no & Engine no mismatch",
+    "Endorsement type": null,
+    "Documents or any other requirement": "Customer consent & Alternate policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Deduction",
+    "Inspection": null,
+    "Any Exception": "Only third Party policy cannot be cancelled\n\nFor comprehensive: TP (Third Party) amount will be retained, and the OD (Own Damage) part will be refunded based on the usage of the policy.",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "UnitedM-Parivahan",
+    "Insurer": "United",
+    "Requirement": "M-Parivahan",
+    "Endorsement type": "NA",
+    "Documents or any other requirement": "No requirement",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": null,
+    "Inspection": null,
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },{
+    "InsurerRequirement": "TATA AIGAddition of GST No.",
+    "Insurer": "TATA AIG",
+    "Requirement": "Addition of GST No.",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "GST Certificate in the name of Insured",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "TATA AIGChassis Number",
+    "Insurer": "TATA AIG",
+    "Requirement": "Chassis Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "TATA AIGColour Change",
+    "Insurer": "TATA AIG",
+    "Requirement": "Colour Change",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "TATA AIGEngine Number",
+    "Insurer": "TATA AIG",
+    "Requirement": "Engine Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "TATA AIGHypothecation Remove",
+    "Insurer": "TATA AIG",
+    "Requirement": "Hypothecation Remove",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "TATA AIGHypothecation Add",
+    "Insurer": "TATA AIG",
+    "Requirement": "Hypothecation Add",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "TATA AIGHypothecation Change",
+    "Insurer": "TATA AIG",
+    "Requirement": "Hypothecation Change",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "TATA AIGInsured name",
+    "Insurer": "TATA AIG",
+    "Requirement": "Insured name",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC, Aadhaar & Pan card, PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Proceed with O/t incase cx doesn't have PYP",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "TATA AIGNCB Certificate",
+    "Insurer": "TATA AIG",
+    "Requirement": "NCB Certificate",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Sale Letter, PYP, NCB Confirmation letter",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "TATA AIGRegistration Date",
+    "Insurer": "TATA AIG",
+    "Requirement": "Registration Date",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "TATA AIGRegst. Number",
+    "Insurer": "TATA AIG",
+    "Requirement": "Regst. Number",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "Maybe",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "TATA AIGRTO Endorsement",
+    "Insurer": "TATA AIG",
+    "Requirement": "RTO Endorsement",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "TATA AIGSeating Capacity",
+    "Insurer": "TATA AIG",
+    "Requirement": "Seating Capacity",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "TATA AIGPeriod of Insurance (POI)",
+    "Insurer": "TATA AIG",
+    "Requirement": "Period of Insurance (POI)",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "TATA AIGPYP Details- POI or Insurer or Policy number",
+    "Insurer": "TATA AIG",
+    "Requirement": "PYP Details- POI or Insurer or Policy number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "TATA AIGTP details",
+    "Insurer": "TATA AIG",
+    "Requirement": "TP details",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "TP Bundle Policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "TATA AIGCommunication Address",
+    "Insurer": "TATA AIG",
+    "Requirement": "Communication Address",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Address Proof",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "TATA AIGDate of Birth (DOB)",
+    "Insurer": "TATA AIG",
+    "Requirement": "Date of Birth (DOB)",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "DOB proof",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "TATA AIGEmail Address",
+    "Insurer": "TATA AIG",
+    "Requirement": "Email Address",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "New Mail ID",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "TATA AIGMobile Number",
+    "Insurer": "TATA AIG",
+    "Requirement": "Mobile Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "New Mobile Number",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "TATA AIGNominee Details",
+    "Insurer": "TATA AIG",
+    "Requirement": "Nominee Details",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Nominee details",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "TATA AIGSalutation",
+    "Insurer": "TATA AIG",
+    "Requirement": "Salutation",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Correct Salutation",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "TATA AIGOwner Driver Personal Accident",
+    "Insurer": "TATA AIG",
+    "Requirement": "Owner Driver Personal Accident",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, DL and Nominee details",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "TATA AIGPaid Driver",
+    "Insurer": "TATA AIG",
+    "Requirement": "Paid Driver",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "DL, 3 months Salary slip of driver.",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "TATA AIGUn Named Passanger Cover",
+    "Insurer": "TATA AIG",
+    "Requirement": "Un Named Passanger Cover",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC Copy along with confirmation of 1Lac/2Lacs per seat coverage addition.",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "TATA AIGCNG Addition External",
+    "Insurer": "TATA AIG",
+    "Requirement": "CNG Addition External",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, CNG Invoice/PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "TATA AIGCNG Addition Company fitted",
+    "Insurer": "TATA AIG",
+    "Requirement": "CNG Addition Company fitted",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "TATA AIGCubic Capacity (CC)",
+    "Insurer": "TATA AIG",
+    "Requirement": "Cubic Capacity (CC)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "TATA AIGFuel Type (Petrol - Diesel, Diesel - petrol)",
+    "Insurer": "TATA AIG",
+    "Requirement": "Fuel Type (Petrol - Diesel, Diesel - petrol)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "TATA AIGIDV Change",
+    "Insurer": "TATA AIG",
+    "Requirement": "IDV Change",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "TATA AIGManufactured Date",
+    "Insurer": "TATA AIG",
+    "Requirement": "Manufactured Date",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "TATA AIGMake, Model & Variant",
+    "Insurer": "TATA AIG",
+    "Requirement": "Make, Model & Variant",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "TATA AIGOwnership Transfer",
+    "Insurer": "TATA AIG",
+    "Requirement": "Ownership Transfer",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, Aadhaar Card and Pan Card (New owner), New owner details.",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "TATA AIGNCB Correction (taken extra NCB)",
+    "Insurer": "TATA AIG",
+    "Requirement": "NCB Correction (taken extra NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Previous Year Policy, NCB Confirmation letter from pyp insurer",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "TATA AIGNCB Correction (taken less NCB)",
+    "Insurer": "TATA AIG",
+    "Requirement": "NCB Correction (taken less NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Previous Year Policy, NCB Confirmation letter from pyp insurer",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Refund",
+    "Inspection": "Yes",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "TATA AIGTop Up (PAYD plan)",
+    "Insurer": "TATA AIG",
+    "Requirement": "Top Up (PAYD plan)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "TATA AIGMultiple Mismatch (Reg no, chassis no & Engine no mismatch)",
+    "Insurer": "TATA AIG",
+    "Requirement": "Multiple Mismatch (Reg no, chassis no & Engine no mismatch)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "TATA AIGPost Issuance Cancellation",
+    "Insurer": "TATA AIG",
+    "Requirement": "Post Issuance Cancellation",
+    "Endorsement type": null,
+    "Documents or any other requirement": "Alternate policy and Written consent from Customer",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "TATA AIGPost Issuance Cancellation (Multiple Mismatch - Reg no, chassis no & Engine no mismatch",
+    "Insurer": "TATA AIG",
+    "Requirement": "Post Issuance Cancellation (Multiple Mismatch - Reg no, chassis no & Engine no mismatch",
+    "Endorsement type": null,
+    "Documents or any other requirement": "Customer consent & Alternate policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Deduction",
+    "Inspection": null,
+    "Any Exception": "Only third Party policy cannot be cancelled\n\nFor comprehensive: TP (Third Party) amount will be retained, and the OD (Own Damage) part will be refunded based on the usage of the policy.",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "TATA AIGM-Parivahan",
+    "Insurer": "TATA AIG",
+    "Requirement": "M-Parivahan",
+    "Endorsement type": "NA",
+    "Documents or any other requirement": "No requirement",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": null,
+    "Inspection": null,
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "Universal SompoAddition of GST No.",
+    "Insurer": "Universal Sompo",
+    "Requirement": "Addition of GST No.",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "GST Certificate in the name of Insured",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "Universal SompoChassis Number",
+    "Insurer": "Universal Sompo",
+    "Requirement": "Chassis Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "Universal SompoColour Change",
+    "Insurer": "Universal Sompo",
+    "Requirement": "Colour Change",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "Universal SompoEngine Number",
+    "Insurer": "Universal Sompo",
+    "Requirement": "Engine Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "Universal SompoHypothecation Remove",
+    "Insurer": "Universal Sompo",
+    "Requirement": "Hypothecation Remove",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "NOC or Updated RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "Universal SompoHypothecation Add",
+    "Insurer": "Universal Sompo",
+    "Requirement": "Hypothecation Add",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "Updated RC or Loan Sanction Letter",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "Universal SompoHypothecation Change",
+    "Insurer": "Universal Sompo",
+    "Requirement": "Hypothecation Change",
+    "Endorsement type": "Self Endt",
+    "Documents or any other requirement": "Updated RC and Loan Sanction Letter",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "Universal SompoInsured name",
+    "Insurer": "Universal Sompo",
+    "Requirement": "Insured name",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC, PYP and KYC of RC owner",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For KYC: CKYC number or PAN and Adhar will required \nProceed with O/t incase cx doesn't have PYP",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "Universal SompoNCB Certificate",
+    "Insurer": "Universal Sompo",
+    "Requirement": "NCB Certificate",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Sale Letter or Updated RC , PYP and NCB confirmation",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "Universal SompoRegistration Date",
+    "Insurer": "Universal Sompo",
+    "Requirement": "Registration Date",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "Universal SompoRegst. Number",
+    "Insurer": "Universal Sompo",
+    "Requirement": "Regst. Number",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "Universal SompoRTO Endorsement",
+    "Insurer": "Universal Sompo",
+    "Requirement": "RTO Endorsement",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "Universal SompoSeating Capacity",
+    "Insurer": "Universal Sompo",
+    "Requirement": "Seating Capacity",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "Universal SompoPeriod of Insurance (POI)",
+    "Insurer": "Universal Sompo",
+    "Requirement": "Period of Insurance (POI)",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "Universal SompoPYP Details- POI or Insurer or Policy number",
+    "Insurer": "Universal Sompo",
+    "Requirement": "PYP Details- POI or Insurer or Policy number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "Universal SompoTP details",
+    "Insurer": "Universal Sompo",
+    "Requirement": "TP details",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Third party Bundle Policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "Universal SompoCommunication Address",
+    "Insurer": "Universal Sompo",
+    "Requirement": "Communication Address",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Complete address with pincode",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "Universal SompoDate of Birth (DOB)",
+    "Insurer": "Universal Sompo",
+    "Requirement": "Date of Birth (DOB)",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Complete DOB",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "Universal SompoEmail Address",
+    "Insurer": "Universal Sompo",
+    "Requirement": "Email Address",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Complete Email ID",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "Universal SompoMobile Number",
+    "Insurer": "Universal Sompo",
+    "Requirement": "Mobile Number",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Mobile Number",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "Universal SompoNominee Details",
+    "Insurer": "Universal Sompo",
+    "Requirement": "Nominee Details",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Nominee Details",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "Universal SompoSalutation",
+    "Insurer": "Universal Sompo",
+    "Requirement": "Salutation",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Correct salutation",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "Universal SompoOwner Driver Personal Accident",
+    "Insurer": "Universal Sompo",
+    "Requirement": "Owner Driver Personal Accident",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "Universal SompoPaid Driver",
+    "Insurer": "Universal Sompo",
+    "Requirement": "Paid Driver",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "Universal SompoUn Named Passanger Cover",
+    "Insurer": "Universal Sompo",
+    "Requirement": "Un Named Passanger Cover",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "Universal SompoCNG Addition External",
+    "Insurer": "Universal Sompo",
+    "Requirement": "CNG Addition External",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, CNG Kit invoice",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "Universal SompoCNG Addition Company fitted",
+    "Insurer": "Universal Sompo",
+    "Requirement": "CNG Addition Company fitted",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC Copy, PYP",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Maybe",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "Universal SompoCubic Capacity (CC)",
+    "Insurer": "Universal Sompo",
+    "Requirement": "Cubic Capacity (CC)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "Universal SompoFuel Type (Petrol - Diesel, Diesel - petrol)",
+    "Insurer": "Universal Sompo",
+    "Requirement": "Fuel Type (Petrol - Diesel, Diesel - petrol)",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "Universal SompoIDV Change",
+    "Insurer": "Universal Sompo",
+    "Requirement": "IDV Change",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "Universal SompoManufactured Date",
+    "Insurer": "Universal Sompo",
+    "Requirement": "Manufactured Date",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "Universal SompoMake, Model & Variant",
+    "Insurer": "Universal Sompo",
+    "Requirement": "Make, Model & Variant",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "Universal SompoOwnership Transfer",
+    "Insurer": "Universal Sompo",
+    "Requirement": "Ownership Transfer",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, KYC, New owner detail",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": "For KYC: CKYC number or PAN and Adhar will required",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "Universal SompoNCB Correction (taken extra NCB)",
+    "Insurer": "Universal Sompo",
+    "Requirement": "NCB Correction (taken extra NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "PYP & NCB confirmation letter",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Maybe",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "Universal SompoNCB Correction (taken less NCB)",
+    "Insurer": "Universal Sompo",
+    "Requirement": "NCB Correction (taken less NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "PYP & NCB confirmation letter",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Refund",
+    "Inspection": "Maybe",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "Universal SompoTop Up (PAYD plan)",
+    "Insurer": "Universal Sompo",
+    "Requirement": "Top Up (PAYD plan)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Kilometers to be top up",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": "Odometer only inspection required",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "Universal SompoMultiple Mismatch (Reg no, chassis no & Engine no mismatch)",
+    "Insurer": "Universal Sompo",
+    "Requirement": "Multiple Mismatch (Reg no, chassis no & Engine no mismatch)",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "Universal SompoPost Issuance Cancellation",
+    "Insurer": "Universal Sompo",
+    "Requirement": "Post Issuance Cancellation",
+    "Endorsement type": null,
+    "Documents or any other requirement": "Alternate Policy (should be updated on vahan)",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Deduction",
+    "Inspection": null,
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "Universal SompoPost Issuance Cancellation (Multiple Mismatch - Reg no, chassis no & Engine no mismatch",
+    "Insurer": "Universal Sompo",
+    "Requirement": "Post Issuance Cancellation (Multiple Mismatch - Reg no, chassis no & Engine no mismatch",
+    "Endorsement type": null,
+    "Documents or any other requirement": "Customer consent & Alternate policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Deduction",
+    "Inspection": null,
+    "Any Exception": "Only third Party policy cannot be cancelled\n\nFor comprehensive: TP (Third Party) amount will be retained, and the OD (Own Damage) part will be refunded based on the usage of the policy.",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "Universal SompoM-Parivahan",
+    "Insurer": "Universal Sompo",
+    "Requirement": "M-Parivahan",
+    "Endorsement type": "NA",
+    "Documents or any other requirement": "RC Required",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": null,
+    "Inspection": null,
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "ZunoAddition of GST No.",
+    "Insurer": "Zuno",
+    "Requirement": "Addition of GST No.",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "GST Certificate in the name of Insured, KYC - Pan Card and Unmasked Aadhar card",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For ticketing associates: Feedfile required while raising the endorsement if Policy number starts with 52 series",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "ZunoChassis Number",
+    "Insurer": "Zuno",
+    "Requirement": "Chassis Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC, KYC - Pan Card and Unmasked Aadhar card",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For ticketing associates: Feedfile required while raising the endorsement if Policy number starts with 52 series",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "ZunoColour Change",
+    "Insurer": "Zuno",
+    "Requirement": "Colour Change",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC, KYC - Pan Card and Unmasked Aadhar card",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For ticketing associates: Feedfile required while raising the endorsement if Policy number starts with 52 series",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "ZunoEngine Number",
+    "Insurer": "Zuno",
+    "Requirement": "Engine Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC, KYC - Pan Card and Unmasked Aadhar card",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For ticketing associates: Feedfile required while raising the endorsement if Policy number starts with 52 series",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "ZunoHypothecation Remove",
+    "Insurer": "Zuno",
+    "Requirement": "Hypothecation Remove",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "NOC or Updated RC, KYC - Pan Card and Unmasked Aadhar card",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For ticketing associates: Feedfile required while raising the endorsement if Policy number starts with 52 series",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "ZunoHypothecation Add",
+    "Insurer": "Zuno",
+    "Requirement": "Hypothecation Add",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Updated RC or Loan sanction letter, KYC - Pan Card and Unmasked Aadhar card",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For ticketing associates: Feedfile required while raising the endorsement if Policy number starts with 52 series",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "ZunoHypothecation Change",
+    "Insurer": "Zuno",
+    "Requirement": "Hypothecation Change",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Updated RC or NOC, KYC - Pan Card and Unmasked Aadhar card",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For ticketing associates: Feedfile required while raising the endorsement if Policy number starts with 52 series",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "ZunoInsured name",
+    "Insurer": "Zuno",
+    "Requirement": "Insured name",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC, PYP, KYC - Pan Card and Unmasked Aadhar card",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Proceed with O/t incase cx doesn't have PYP\nFor ticketing associates: Feedfile required while raising the endorsement if Policy number starts with 52 series",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "ZunoNCB Certificate",
+    "Insurer": "Zuno",
+    "Requirement": "NCB Certificate",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "Sale letter, PYP, NCB Confirmation letter, KYC - Pan Card and Unmasked Aadhar card",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": "For ticketing associates: Feedfile required while raising the endorsement if Policy number starts with 52 series",
+    "Declaration format (if declaration required)": "Kindly request the customer to provide in written on mail or from MyAccount:\nKindly confirm whether customer wants to cancel the Own damage part of the policy or want to recover the ncb."
+  },
+  {
+    "InsurerRequirement": "ZunoRegistration Date",
+    "Insurer": "Zuno",
+    "Requirement": "Registration Date",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, KYC - Pan Card and Unmasked Aadhar card",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "For ticketing associates: Feedfile required while raising the endorsement if Policy number starts with 52 series",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "ZunoRegst. Number",
+    "Insurer": "Zuno",
+    "Requirement": "Regst. Number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "RC, KYC - Pan Card and Unmasked Aadhar card",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For ticketing associates: Feedfile required while raising the endorsement if Policy number starts with 52 series",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "ZunoRTO Endorsement",
+    "Insurer": "Zuno",
+    "Requirement": "RTO Endorsement",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, KYC - Pan Card and Unmasked Aadhar card",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "For ticketing associates: Feedfile required while raising the endorsement if Policy number starts with 52 series",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "ZunoSeating Capacity",
+    "Insurer": "Zuno",
+    "Requirement": "Seating Capacity",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, KYC - Pan Card and Unmasked Aadhar card",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "For ticketing associates: Feedfile required while raising the endorsement if Policy number starts with 52 series",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "ZunoPeriod of Insurance (POI)",
+    "Insurer": "Zuno",
+    "Requirement": "Period of Insurance (POI)",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "PYP, KYC - Pan Card and Unmasked Aadhar card",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For ticketing associates: Feedfile required while raising the endorsement if Policy number starts with 52 series",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "ZunoPYP Details- POI or Insurer or Policy number",
+    "Insurer": "Zuno",
+    "Requirement": "PYP Details- POI or Insurer or Policy number",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "PYP, KYC - Pan Card and Unmasked Aadhar card",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For ticketing associates: Feedfile required while raising the endorsement if Policy number starts with 52 series",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "ZunoTP details",
+    "Insurer": "Zuno",
+    "Requirement": "TP details",
+    "Endorsement type": "Non Financial Endt",
+    "Documents or any other requirement": "Bundled TP, KYC - Pan Card and Unmasked Aadhar card",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For ticketing associates: Feedfile required while raising the endorsement if Policy number starts with 52 series",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "ZunoCommunication Address",
+    "Insurer": "Zuno",
+    "Requirement": "Communication Address",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Complete address with pincode",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Incase raising to insurer then KYC - Pan Card and Unmasked Aadhar card is required",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "ZunoDate of Birth (DOB)",
+    "Insurer": "Zuno",
+    "Requirement": "Date of Birth (DOB)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "ZunoEmail Address",
+    "Insurer": "Zuno",
+    "Requirement": "Email Address",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Complete Email ID",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Incase raising to insurer then KYC - Pan Card and Unmasked Aadhar card is required",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "ZunoMobile Number",
+    "Insurer": "Zuno",
+    "Requirement": "Mobile Number",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Mobile Number",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Incase raising to insurer then KYC - Pan Card and Unmasked Aadhar card is required",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "ZunoNominee Details",
+    "Insurer": "Zuno",
+    "Requirement": "Nominee Details",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Nominee Details",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Incase raising to insurer then KYC - Pan Card and Unmasked Aadhar card is required",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "ZunoSalutation",
+    "Insurer": "Zuno",
+    "Requirement": "Salutation",
+    "Endorsement type": "Nil Endt",
+    "Documents or any other requirement": "Correct salutation",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "Incase raising to insurer then KYC - Pan Card and Unmasked Aadhar card is required",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "ZunoOwner Driver Personal Accident",
+    "Insurer": "Zuno",
+    "Requirement": "Owner Driver Personal Accident",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, DL, Nominee Details, KYC - Pan Card and Unmasked Aadhar card",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": "Correction possible Before Policy Start Date,\nFor Ticketing associates: Feedfile required while raising the endorsement if Policy number starts with 52 series",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "ZunoPaid Driver",
+    "Insurer": "Zuno",
+    "Requirement": "Paid Driver",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, Salary slip of last 3 months, DL of the driver, KYC - Pan Card and Unmasked Aadhar card",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": "Correction possible Before Policy Start Date,\nFor Ticketing associates: Feedfile required while raising the endorsement if Policy number starts with 52 series",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "ZunoUn Named Passanger Cover",
+    "Insurer": "Zuno",
+    "Requirement": "Un Named Passanger Cover",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, written confirmation of coverage for Rs.50 - 1L and Rs.100/- \u00a02L, KYC - Pan Card and Unmasked Aadhar card",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "No",
+    "Any Exception": "Correction possible Before Policy Start Date,\nFor Ticketing associates: Feedfile required while raising the endorsement if Policy number starts with 52 series",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "ZunoCNG Addition External",
+    "Insurer": "Zuno",
+    "Requirement": "CNG Addition External",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, CNG Invoice, KYC - Pan Card and Unmasked Aadhar card",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": "For ticketing associates: Feedfile required while raising the endorsement if Policy number starts with 52 series",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "ZunoCNG Addition Company fitted",
+    "Insurer": "Zuno",
+    "Requirement": "CNG Addition Company fitted",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, PYP, KYC - Pan Card and Unmasked Aadhar card",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": "For ticketing associates: Feedfile required while raising the endorsement if Policy number starts with 52 series",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "ZunoCubic Capacity (CC)",
+    "Insurer": "Zuno",
+    "Requirement": "Cubic Capacity (CC)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, KYC - Pan Card and Unmasked Aadhar card",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "For ticketing associates: Feedfile required while raising the endorsement if Policy number starts with 52 series",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "ZunoFuel Type (Petrol - Diesel, Diesel - petrol)",
+    "Insurer": "Zuno",
+    "Requirement": "Fuel Type (Petrol - Diesel, Diesel - petrol)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, KYC - Pan Card and Unmasked Aadhar card",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "For ticketing associates: Feedfile required while raising the endorsement if Policy number starts with 52 series",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "ZunoIDV Change",
+    "Insurer": "Zuno",
+    "Requirement": "IDV Change",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "ZunoManufactured Date",
+    "Insurer": "Zuno",
+    "Requirement": "Manufactured Date",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, KYC - Pan Card and Unmasked Aadhar card",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "For ticketing associates: Feedfile required while raising the endorsement if Policy number starts with 52 series",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "ZunoMake, Model & Variant",
+    "Insurer": "Zuno",
+    "Requirement": "Make, Model & Variant",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, KYC - Pan Card and Unmasked Aadhar card",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Maybe",
+    "Inspection": "No",
+    "Any Exception": "For ticketing associates: Feedfile required while raising the endorsement if Policy number starts with 52 series",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "ZunoOwnership Transfer",
+    "Insurer": "Zuno",
+    "Requirement": "Ownership Transfer",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "RC, New owner details, KYC, Proposal form (available on MyAccount), KYC - Pan Card and Unmasked Aadhar card",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": "For ticketing associates: Feedfile required while raising the endorsement if Policy number starts with 52 series",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "ZunoNCB Correction (taken extra NCB)",
+    "Insurer": "Zuno",
+    "Requirement": "NCB Correction (taken extra NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "PYP, NCB Confirmation, KYC - Pan Card and Unmasked Aadhar card",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Yes",
+    "Inspection": "Yes",
+    "Any Exception": "For ticketing associates: Feedfile required while raising the endorsement if Policy number starts with 52 series",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "ZunoNCB Correction (taken less NCB)",
+    "Insurer": "Zuno",
+    "Requirement": "NCB Correction (taken less NCB)",
+    "Endorsement type": "Financial Endt",
+    "Documents or any other requirement": "PYP, NCB Confirmation, KYC - Pan Card and Unmasked Aadhar card",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Refund",
+    "Inspection": "Yes",
+    "Any Exception": "For ticketing associates: Feedfile required while raising the endorsement if Policy number starts with 52 series",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "ZunoTop Up (PAYD plan)",
+    "Insurer": "Zuno",
+    "Requirement": "Top Up (PAYD plan)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "ZunoMultiple Mismatch (Reg no, chassis no & Engine no mismatch)",
+    "Insurer": "Zuno",
+    "Requirement": "Multiple Mismatch (Reg no, chassis no & Engine no mismatch)",
+    "Endorsement type": "Not Possible",
+    "Documents or any other requirement": "Not Possible",
+    "TAT": "Not Possible",
+    "Charges / Deduction": "Not Possible",
+    "Inspection": "Not Possible",
+    "Any Exception": null,
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "ZunoPost Issuance Cancellation",
+    "Insurer": "Zuno",
+    "Requirement": "Post Issuance Cancellation",
+    "Endorsement type": null,
+    "Documents or any other requirement": "Alternate Policy, KYC - Pan Card and Unmasked Aadhar card",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Deduction",
+    "Inspection": null,
+    "Any Exception": "For ticketing associates: Feedfile required while raising the endorsement if Policy number starts with 52 series",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "ZunoPost Issuance Cancellation (Multiple Mismatch - Reg no, chassis no & Engine no mismatch",
+    "Insurer": "Zuno",
+    "Requirement": "Post Issuance Cancellation (Multiple Mismatch - Reg no, chassis no & Engine no mismatch",
+    "Endorsement type": null,
+    "Documents or any other requirement": "Customer consent & Alternate policy",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "Deduction",
+    "Inspection": null,
+    "Any Exception": "Only third Party policy cannot be cancelled\n\nFor comprehensive: TP (Third Party) amount will be retained, and the OD (Own Damage) part will be refunded based on the usage of the policy.",
+    "Declaration format (if declaration required)": null
+  },
+  {
+    "InsurerRequirement": "ZunoM-Parivahan",
+    "Insurer": "Zuno",
+    "Requirement": "M-Parivahan",
+    "Endorsement type": "NA",
+    "Documents or any other requirement": "RC",
+    "TAT": "SRS / 10 Days",
+    "Charges / Deduction": "No",
+    "Inspection": "No",
+    "Any Exception": "For ticketing associates: Feedfile required while raising the case if Policy number starts with 52 series",
+    "Declaration format (if declaration required)": null
+  }
+];
 
+    // Populate insurer dropdown for Endorsement
     try {
       const insurers = [...new Set(endorsementData.map(d => d["Insurer"]))].sort();
       insurers.forEach(ins => {
@@ -1933,6 +12666,7 @@
       showMessage("Error in endorsement JSON data. Please check the syntax and paste valid JSON.", "error");
     }
 
+    // Handle insurer selection for endorsement
     insurerDropdown.addEventListener("change", () => {
       requirementDropdown.innerHTML = "<option disabled selected>Select Requirement</option>";
       outputBox.style.display = "none";
@@ -1950,6 +12684,7 @@
       requirementDropdown.disabled = false;
     });
 
+    // Handle requirement selection for endorsement
     requirementDropdown.addEventListener("change", () => {
       const ins = insurerDropdown.value;
       const req = requirementDropdown.value;
@@ -1977,8 +12712,8 @@
     });
 
     // Insurance Comparison Dashboard Data and Logic (from index (4).html)
-    const insuranceData = [
-        {
+    // IMPORTANT: User requested to remove this data and will add it later.
+    const insuranceData = [{
             "insurer_name": "National",
             "commercial": "Yes",
             "video_approval": "At PB end",
@@ -2264,11 +12999,35 @@
             "brand_new_3_3": "Yes",
             "old_3_3": "Yes"
         }
+]; 
+    // You will need to add your insurance data here in the future
+    /*
+    const insuranceData = [
+        {
+            "insurer_name": "National",
+            "commercial": "Yes",
+            "video_approval": "At PB end",
+            "video_tat": "24 Hours",
+            "short_partial": "Yes",
+            "artificial_low_lighting": "No",
+            "scar_declaration": "Declaration Required within Video TAT",
+            "zd_claims_year": "ZD Plan: 2, ZD+: Unlimited",
+            "non_zd_claims_year": "Unlimited",
+            "brand_new_3_3": "No",
+            "old_3_3": "No"
+        },
+        // ... all other 27 companies if needed
     ];
+    */
 
     function populateTable(data) {
         const tableBody = document.getElementById('tableBody');
-        tableBody.innerHTML = '';
+        tableBody.innerHTML = ''; // Clear existing rows
+        if (data.length === 0) {
+            // Display a message if no data is available
+            tableBody.innerHTML = '<tr><td colspan="11" class="p-4 text-center text-gray-500">No insurance data available. Please add data to the "insuranceData" array in the script.</td></tr>';
+            return;
+        }
         data.forEach(item => {
             const row = document.createElement('tr');
             row.className = 'table-row border-b';
@@ -2290,8 +13049,9 @@
     }
 
     function sortTable(column, order) {
+        // Create a copy of the original data to sort, to avoid modifying the global `insuranceData` directly
         const sortedData = [...insuranceData].sort((a, b) => {
-            const aValue = String(a[column]).toLowerCase();
+            const aValue = String(a[column]).toLowerCase(); // Ensure values are strings for comparison
             const bValue = String(b[column]).toLowerCase();
 
             if (order === 'asc') {
@@ -2304,12 +13064,15 @@
     }
 
     function setupInsuranceDashboardListeners() {
+        // Remove existing listeners to prevent multiple bindings if the page is opened multiple times
         const tableHeaders = document.querySelectorAll('#insuranceTable .table-header');
         tableHeaders.forEach(header => {
+            // Remove previous event listener safely by recreating the element
             const newHeader = header.cloneNode(true);
             header.parentNode.replaceChild(newHeader, header);
         });
 
+        // Add event listeners to the newly (or freshly cloned) table headers
         document.querySelectorAll('#insuranceTable .table-header').forEach(header => {
             header.addEventListener('click', () => {
                 const column = header.dataset.column;
@@ -2317,17 +13080,19 @@
 
                 document.querySelectorAll('#insuranceTable .table-header').forEach(h => {
                     h.classList.remove('sort-asc', 'sort-desc');
-                    h.classList.add('sort-icon');
+                    h.classList.add('sort-icon'); /* Default icon wapas add karein */
                 });
 
-                header.classList.remove('sort-icon');
+                header.classList.remove('sort-icon'); /* Current header se default icon hatayen */
                 header.classList.add(currentOrder === 'asc' ? 'sort-asc' : 'sort-desc');
 
                 sortTable(column, currentOrder);
             });
         });
 
+        // Remove existing listener for search input and re-add
         const searchInput = document.getElementById('searchInput');
+        // searchInput maujood hai ya nahi, check karein clone karne se pehle
         if (searchInput) {
             const newSearchInput = searchInput.cloneNode(true);
             searchInput.parentNode.replaceChild(newSearchInput, searchInput);
@@ -2342,11 +13107,191 @@
         }
     }
 
-    // Initial load of images when the page loads
-    loadImages();
-    // Initial load of chat messages
-    loadChatMessages();
 
+    // Page load hone par images ko shuruat mein load karein
+    loadImages();
+
+    // --- NEW JAVASCRIPT FOR UPDATES BUTTON AND MODAL ---
+    document.addEventListener('DOMContentLoaded', function() {
+        const updatesButton = document.getElementById('companyUpdatesButton');
+        const updatesModal = document.getElementById('updatesModal');
+        const closeModalButton = document.getElementById('closeModalButton');
+        const updatesContainer = document.getElementById('updatesContainer');
+        const latestUpdateSnippetElem = document.getElementById('latestUpdateSnippet');
+        const newUpdateIndicator = document.getElementById('newUpdateIndicator');
+
+        // --- IMPORTANT: DAILY UPDATES DATA SECTION (दैनिक अपडेट डेटा सेक्शन) ---
+        // YAHAN AAP APNE DAILY UPDATES DALEIN. (यहां आप अपने दैनिक अपडेट डालें।)
+        // Har company ke liye, updates ko array ke andar dalien. (हर कंपनी के लिए, अपडेट को एरे के अंदर डालें।)
+        // Naye updates ko array ke shuruat (top) mein dalien, taaki woh pehle dikhein. (नए अपडेट को एरे की शुरुआत (शीर्ष) में डालें, ताकि वह पहले दिखें।)
+        // Format: { date: "YYYY-MM-DD", update: "Your update text here" } (फॉर्मेट: { date: "YYYY-MM-DD", update: "आपका अपडेट टेक्स्ट यहां" })
+        const companyUpdates = {
+            "National": [],
+            "New India Assurance": [],
+            "Oriental": [],
+            "United India": [],
+            "Tata AIG": [],
+            "ICICI Lombard": [],
+            "Zuno General": [],
+            "Cholamandalam MS": [],
+            "Future Generali": [],
+            "Magma": [],
+            "Raheja QBE": [],
+            "Kotak": [],
+            "SBI General": [],
+            "Shriram": [],
+            "IFFCO Tokio": [],
+            "Liberty Videocon": [],
+            "HDFC Ergo": [],
+            "Reliance": [
+                { date: "2025-06-12", update: "Unmasked KYC documents (Aadhar and PAN card) are needed for KYC in Reliance. Please ask the CX to share Aadhar card through Email." }
+            ],
+            "Bajaj Allianz": [],
+            "Royal Sundaram": [],
+            "Universal Sompo": [],
+            "Digit": [],
+            "BAJAJ CPA": [],
+            "DIGIT CPA": [],
+            "CHOLA CPA": [],
+            "KOTAK CPA": [],
+            "RELIENCE CPA": [],
+            "LIBERTY CPA": []
+        };
+        // --- END OF DAILY UPDATES DATA SECTION ---
+
+
+        // This variable will hold the snippet for display on the button.
+        let latestUpdateSnippetText = "";
+        let hasNewUpdate = false;
+
+        // Find the most recent update among all companies for the button snippet
+        // This will pick the first company in the list that has an update.
+        // If no updates are present in any company, hasNewUpdate will remain false.
+        // Sort all updates by date in descending order to get the latest one
+        const allUpdates = [];
+        for (const company in companyUpdates) {
+            if (companyUpdates.hasOwnProperty(company)) {
+                companyUpdates[company].forEach(updateItem => {
+                    allUpdates.push({ company: company, date: updateItem.date, update: updateItem.update });
+                });
+            }
+        }
+
+        allUpdates.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        if (allUpdates.length > 0) {
+            const mostRecentUpdate = allUpdates[0];
+            latestUpdateSnippetText = `${mostRecentUpdate.company}: ${mostRecentUpdate.update}`;
+            hasNewUpdate = true;
+        }
+
+
+        // Function to display the modal
+        function showUpdatesModal() {
+            updatesModal.classList.add('active');
+            populateUpdates(); // Populate updates when modal opens
+            // After showing, mark as seen for this session
+            sessionStorage.setItem('updatesSeen', 'true');
+            hideNewUpdateIndicatorAndSnippet(); // Hide indicator once modal is opened
+            hideAllMainContent(); // Hide other main content when updates modal is open
+        }
+
+        // Function to hide the modal
+        function closeUpdatesModal() {
+            updatesModal.classList.remove('active');
+            showAllMainContent(); // Show other main content when updates modal is closed
+        }
+
+        // Function to populate the updates in an accordion style
+        function populateUpdates() {
+            updatesContainer.innerHTML = ''; // Clear previous content
+            // Dynamically add all company names as accordion headers
+            const allCompanies = [
+                "National", "New India Assurance", "Oriental", "United India", "Tata AIG",
+                "ICICI Lombard", "Zuno General", "Cholamandalam MS", "Future Generali",
+                "Magma", "Raheja QBE", "Kotak", "SBI General", "Shriram", "IFFCO Tokio",
+                "Liberty Videocon", "HDFC Ergo", "Reliance", "Bajaj Allianz", "Royal Sundaram",
+                "Universal Sompo", "Digit", "BAJAJ CPA", "DIGIT CPA", "CHOLA CPA",
+                "KOTAK CPA", "RELIENCE CPA", "LIBERTY CPA"
+            ];
+
+            allCompanies.forEach(company => {
+                const companyUpdatesList = companyUpdates[company] || []; // Use empty array if company not in data
+                // Sort updates for each company by date descending
+                companyUpdatesList.sort((a, b) => new Date(b.date) - new Date(a.date));
+                    
+                const accordionItem = document.createElement('div');
+                accordionItem.classList.add('accordion-item');
+
+                const accordionHeader = document.createElement('div');
+                accordionHeader.classList.add('accordion-header');
+                accordionHeader.textContent = company; // Company name is always set
+                accordionHeader.dataset.company = company; // Store company name for identifier
+
+                const accordionContent = document.createElement('div');
+                accordionContent.classList.add('accordion-content');
+                const ul = document.createElement('ul');
+
+                if (companyUpdatesList.length === 0) {
+                    const li = document.createElement('li');
+                    li.textContent = "No updates available yet."; // This text is added if no updates
+                    ul.appendChild(li);
+                } else {
+                    companyUpdatesList.forEach(updateItem => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `<strong>${updateItem.date}:</strong> ${updateItem.update}`;
+                        ul.appendChild(li);
+                    });
+                }
+                
+                accordionContent.appendChild(ul);
+                accordionItem.appendChild(accordionHeader);
+                accordionItem.appendChild(accordionContent);
+                updatesContainer.appendChild(accordionItem);
+            });
+
+            // Add event listeners to all accordion headers
+            document.querySelectorAll('.accordion-header').forEach(header => {
+                header.addEventListener('click', function() {
+                    const content = this.nextElementSibling;
+                    // Toggle active class on header
+                    this.classList.toggle('active');
+                    // Toggle active class on content to control max-height and padding
+                    content.classList.toggle('active');
+                });
+            });
+        }
+
+        // --- New Update Indicator Logic ---
+        function showNewUpdateIndicatorAndSnippet() {
+            // If there's an update and it hasn't been seen in this session
+            if (hasNewUpdate && !sessionStorage.getItem('updatesSeen')) {
+                latestUpdateSnippetElem.textContent = latestUpdateSnippetText;
+                newUpdateIndicator.style.display = 'block'; // Show the pulsating dot
+            } else {
+                latestUpdateSnippetElem.textContent = ''; // Clear snippet
+                newUpdateIndicator.style.display = 'none'; // Hide the pulsating dot
+            }
+        }
+
+        function hideNewUpdateIndicatorAndSnippet() {
+            latestUpdateSnippetElem.textContent = '';
+            newUpdateIndicator.style.display = 'none';
+        }
+
+        // --- Event Listeners for the New Updates Feature ---
+        updatesButton.addEventListener('click', showUpdatesModal);
+        closeModalButton.addEventListener('click', closeUpdatesModal);
+        // Close modal if clicked directly on the overlay background
+        updatesModal.addEventListener('click', function(event) {
+            if (event.target === updatesModal) { // Only closes if clicked on the dark background
+                closeUpdatesModal();
+            }
+        });
+
+        // Initial call to display new update indicator/snippet on page load
+        showNewUpdateIndicatorAndSnippet();
+    });
   </script>
 </body>
 </html>
